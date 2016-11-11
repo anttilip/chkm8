@@ -16,3 +16,6 @@ pelaaja häviää pelin. Tätä ominaisuutta ei välttämättä implementoida pe
 Pelissä on yksinkertainen graafinen käyttöliittymä, eikä sen ulkoasuun
 kiinnitetä kehityksessä erityisesti huomiota.
 
+
+## Rakenne
+![luokkakaavio](luokkakaavio.png)
