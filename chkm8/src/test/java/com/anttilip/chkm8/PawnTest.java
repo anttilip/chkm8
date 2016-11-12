@@ -44,10 +44,7 @@ public class PawnTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    
+    /*
     @Test
     public void whitePawnOneForward() {
         Pawn pawn = new Pawn(new Position(3, 1), Player.WHITE);
@@ -77,4 +74,5 @@ public class PawnTest {
         Pawn pawn = new Pawn(new Position(3, 2), Player.WHITE);
         assertFalse(pawn.isMoveAllowed(new Position(3, 4)));
     }
+*/
 }

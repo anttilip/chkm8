@@ -1,21 +1,18 @@
 package com.anttilip.chkm8.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public abstract class Piece {
     protected Position position;
     protected final Player player;
-    protected List<Position> possibleMoves;
     
     public Piece(Position position, Player player) {
         this.player = player;
         this.position = position;
-        this.possibleMoves = new ArrayList();
     }
     
-    abstract void updatePossibleMoves(HashMap<Position, Player> occupiedPositions);
+    public abstract List<Position> getAllowedMoves(HashMap<Position, Piece> occupiedPositions);
 
     public Position getPosition() {
         return position;
@@ -29,12 +26,9 @@ public abstract class Piece {
         return this.player;
     }
     
-    public boolean isMoveAllowed(Position target) {
-        return this.possibleMoves.contains(target);
-    }
-    
+    @Override
     public String toString() {
-        return this.player + ", " + this.getClass().getSimpleName() + ": " + this.position.toString();
+        return this.player + " " + this.getClass().getSimpleName();
     }
        
 }

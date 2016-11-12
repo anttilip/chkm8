@@ -30,6 +30,15 @@ public class Position {
         setY(y);
     }
     
+    public void set(Position position) {
+        setX(position.x);
+        setY(position.y);
+    }
+    
+    public boolean onBoard() {
+        return (this.x >= 0 && this.x < 8 && this.y >= 0 && this.y < 8);
+    }
+    
     public String toString() {
         String alphabets = "ABCDEFGH";
         return alphabets.charAt(this.x) + Integer.toString(y + 1);
@@ -43,6 +52,15 @@ public class Position {
         Position other = (Position) o;
         
         return other.x == this.x && other.y == this.y;
+    }
+    
+    @Override
+    public int hashCode() {
+        return 10 * this.x + this.y;
+    }
+    
+    public static Position add(Position a, Position b) {
+        return new Position(a.getX() + b.getX(), a.getY() + b.getY());
     }
 
 }
