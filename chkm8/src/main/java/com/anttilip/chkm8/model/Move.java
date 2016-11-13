@@ -5,6 +5,8 @@
  */
 package com.anttilip.chkm8.model;
 
+import com.anttilip.chkm8.model.pieces.Piece;
+
 /**
  *
  * @author antti
@@ -21,7 +23,7 @@ public class Move {
     }
     
     public Move(Piece piece, Position target) {
-        this(piece, piece.position, target);
+        this(piece, piece.getPosition(), target);
     }
 
     public Piece getPiece() {

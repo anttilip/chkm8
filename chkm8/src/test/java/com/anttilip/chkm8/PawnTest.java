@@ -5,8 +5,8 @@
  */
 package com.anttilip.chkm8;
 
-import com.anttilip.chkm8.model.Pawn;
-import com.anttilip.chkm8.model.Piece;
+import com.anttilip.chkm8.model.pieces.Pawn;
+import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.HashMap;

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anttilip.chkm8.model;
+package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Player;
+import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
 
 import java.util.HashMap;

@@ -1,5 +1,7 @@
-package com.anttilip.chkm8.model;
+package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Player;
+import com.anttilip.chkm8.model.Position;
 import java.util.HashMap;
 import java.util.List;
 

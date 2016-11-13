@@ -1,5 +1,12 @@
 package com.anttilip.chkm8.model;
 
+import com.anttilip.chkm8.model.pieces.Queen;
+import com.anttilip.chkm8.model.pieces.Bishop;
+import com.anttilip.chkm8.model.pieces.Rook;
+import com.anttilip.chkm8.model.pieces.Piece;
+import com.anttilip.chkm8.model.pieces.Pawn;
+import com.anttilip.chkm8.model.pieces.King;
+import com.anttilip.chkm8.model.pieces.Knight;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +27,7 @@ public class Board {
 
     public Piece getPiece(Position position) {
         for (Piece piece : this.pieces) {
-            if (piece.position.equals(position)) {
+            if (piece.getPosition().equals(position)) {
                 return piece;
             }
         }

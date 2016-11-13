@@ -1,5 +1,6 @@
 package com.anttilip.chkm8.model; 
 
+import com.anttilip.chkm8.model.pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
 

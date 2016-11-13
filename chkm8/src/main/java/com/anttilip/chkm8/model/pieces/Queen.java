@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anttilip.chkm8.model;
+package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Player;
+import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +15,9 @@ import java.util.List;
  *
  * @author antti
  */
-public class Rook extends Piece {
+public class Queen extends Piece {
 
-    public Rook(Position position, Player player) {
+    public Queen(Position position, Player player) {
         super(position, player);
     }
 
@@ -29,6 +31,10 @@ public class Rook extends Piece {
             new Position(0, 1),   // Up
             new Position(-1, 0),  // Left
             new Position(0, -1),  // Down
+            new Position(1, 1),   // Up-Right
+            new Position(-1, 1),  // Up-Left
+            new Position(-1, -1), // Down-Left
+            new Position(1, -1)   // Down-Right
         };
 
         for (Position direction : directions) {
@@ -40,7 +46,7 @@ public class Rook extends Piece {
                         allowedMoves.add(target);
                     }
                     // If target contains a piece, checking must be stopped 
-                    // since "jumping" over pieces is not allowed on Rook
+                    // since "jumping" over pieces is not allowed on Queen
                     break;
                 } else {
                     // If target is not occupied, mvoe is allowed

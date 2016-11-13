@@ -5,11 +5,11 @@
  */
 package com.anttilip.chkm8;
 
-import com.anttilip.chkm8.model.Pawn;
-import com.anttilip.chkm8.model.Piece;
+import com.anttilip.chkm8.model.pieces.Pawn;
+import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
-import com.anttilip.chkm8.model.Rook;
+import com.anttilip.chkm8.model.pieces.Rook;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;

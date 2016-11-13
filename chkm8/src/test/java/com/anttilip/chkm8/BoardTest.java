@@ -5,7 +5,7 @@
  */
 
 import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.Piece;
+import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.model.Position;
 import org.junit.After;
 import org.junit.AfterClass;
