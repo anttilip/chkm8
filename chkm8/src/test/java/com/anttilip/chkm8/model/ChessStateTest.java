@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anttilip.chkm8;
+package com.anttilip.chkm8.model;
 
 import com.anttilip.chkm8.model.pieces.Bishop;
 import com.anttilip.chkm8.model.Board;
