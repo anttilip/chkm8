@@ -17,6 +17,14 @@ public class Pawn extends Piece {
         return (this.player == Player.WHITE && this.position.getY() == Board.BOARD_SIZE - 1)
                 || (this.player == Player.BLACK && this.position.getY() == 0);
     }
+    
+    public boolean isFirstMove() {
+        return this.firstMove;
+    }
+    
+    public void doFirstMove() {
+        this.firstMove = false;
+    }
 
     @Override
     public List<Position> getAllowedMoves(HashMap<Position, Piece> occupiedPositions) {
@@ -37,7 +45,6 @@ public class Pawn extends Piece {
             allowedMoves.add(target);
             if (this.firstMove) {
                 // If pawn has not yet moved, it can move two squares
-                this.firstMove = false;
                 Position doubleMove = Position.add(this.position, new Position(0, 2 * direction));
                 if (!occupiedPositions.containsKey(doubleMove)) {
                     allowedMoves.add(doubleMove);

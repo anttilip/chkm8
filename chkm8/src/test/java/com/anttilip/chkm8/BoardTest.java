@@ -5,9 +5,7 @@
  */
 
 import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.Pawn;
 import com.anttilip.chkm8.model.Piece;
-import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,28 +44,69 @@ public class BoardTest {
     }
     
     @Test
-    public void checkInitialPieceCount() {
+    public void initialPieceCount() {
         assertTrue(board.getPieces().size() == 32);
     }
     
     @Test
-    public void checkWhitePieceColor() {
-        assertTrue(board.getPieces().get(3).getPlayer() == Player.WHITE);
+    public void noPieceIsOutsideWhitePawnRow() {
+        assertTrue(board.getPiece(8, 1) == null);
     }
     
     @Test
-    public void checkBlackPieceColor() {
-        assertTrue(board.getPieces().get(20).getPlayer() == Player.BLACK);
+    public void noPieceIsOutsideWhiteKingRow() {
+        assertTrue(board.getPiece(8, 0) == null);
     }
     
     @Test
-    public void checkWhitePawnInitialPosition() {
-        assertTrue(board.getPieces().get(3).getClass().getSimpleName().equals("Pawn"));
+    public void noPieceIsOutsideBlackPawnRow() {
+        assertTrue(board.getPiece(8, 6) == null);
     }
     
     @Test
-    public void checkBlackPawnInitialPosition() {
-        assertTrue(board.getPieces().get(20).getClass().getSimpleName().equals("Pawn"));
+    public void noPieceIsOutsideBlackKingRow() {
+        assertTrue(board.getPiece(8, 7) == null);
     }
-
+    
+    @Test
+    public void initialWhitePawnPosition() {
+        assertTrue(board.getPiece(3, 1).toString().equals("WHITE Pawn"));
+    }
+    
+    @Test
+    public void initialWhiteKingPosition() {
+        assertTrue(board.getPiece(4, 0).toString().equals("WHITE King"));
+    }
+    
+    @Test
+    public void initialBlackKingPawnPosition() {
+        assertTrue(board.getPiece(6, 6).toString().equals("BLACK Pawn"));
+    }
+    
+    @Test
+    public void initialBlackQueenPosition() {
+        assertTrue(board.getPiece(3, 7).toString().equals("BLACK Queen"));
+    }
+    
+    @Test
+    public void movePieceMovesPiece() {
+        Piece whiteRook = board.getPiece(0, 0);
+        board.movePiece(whiteRook, new Position(4, 4));
+        assertTrue(board.getPiece(4, 4) == whiteRook);
+    }
+    
+    @Test
+    public void movePieceLeavesOldPositionEmpty() {
+        Piece whiteRook = board.getPiece(0, 0);
+        board.movePiece(whiteRook, new Position(4, 4));
+        assertTrue(board.getPiece(0, 0) == null);
+    }
+    
+    @Test
+    public void movePieceToOccupiedRemovesOldPiece() {
+        Piece whiteRook = board.getPiece(0, 0);
+        Piece blackQueen = board.getPiece(3, 7);
+        board.movePiece(whiteRook, blackQueen.getPosition());
+        assertFalse(board.getPieces().contains(blackQueen));
+    }
 }

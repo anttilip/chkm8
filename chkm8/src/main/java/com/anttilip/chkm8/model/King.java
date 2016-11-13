@@ -14,35 +14,39 @@ import java.util.List;
  * @author antti
  */
 public class King extends Piece {
+
     private boolean isChecked;
-    
+
     public King(Position position, Player player) {
         super(position, player);
         this.isChecked = false;
     }
-    
+
     public boolean isChecked() {
         return this.isChecked;
+    }
+
+    public void setIsChecked(boolean checked) {
+        this.isChecked = checked;
     }
 
     @Override
     public List<Position> getAllowedMoves(HashMap<Position, Piece> occupiedPositions) {
         List<Position> allowedMoves = new ArrayList();
-        List<Position> potentialMoves = new ArrayList();
-              
-        // Up
-        potentialMoves.add(Position.add(this.position, new Position(0, 1)));
 
-        // Left
-        potentialMoves.add(Position.add(this.position, new Position(-1, 0)));
+        Position[] directions = {
+            new Position(1, 0),   // Right
+            new Position(0, 1),   // Up
+            new Position(-1, 0),  // Left
+            new Position(0, -1),  // Down
+            new Position(1, 1),   // Up-Right
+            new Position(-1, 1),  // Up-Left
+            new Position(-1, -1), // Down-Left
+            new Position(1, -1)   // Down-Right
+        };
 
-        // Down
-        potentialMoves.add(Position.add(this.position, new Position(0, -1)));
-
-        // Right
-        potentialMoves.add(Position.add(this.position, new Position(1, 0)));
-
-        for (Position target : potentialMoves) {
+        for (Position direction : directions) {
+            Position target = Position.add(this.position, direction);
             if (!target.onBoard()) {
                 // If position is out of board, move can't be allowed
                 continue;
@@ -58,6 +62,4 @@ public class King extends Piece {
         return allowedMoves;
     }
 
-
-    
 }
