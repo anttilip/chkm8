@@ -5,5 +5,5 @@ as a course project for Javalabra.
 
 
 ## Dokumentaatio
-[Aiheen kuvaus ja rakenne](dokumentaatio/aiheenKuvausJaRakenne.md)
-
+- [Aiheen kuvaus ja rakenne](dokumentaatio/aiheenKuvausJaRakenne.md)
+- [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
