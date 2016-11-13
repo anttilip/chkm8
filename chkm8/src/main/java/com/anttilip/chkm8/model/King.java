@@ -14,9 +14,15 @@ import java.util.List;
  * @author antti
  */
 public class King extends Piece {
-
+    private boolean isChecked;
+    
     public King(Position position, Player player) {
         super(position, player);
+        this.isChecked = false;
+    }
+    
+    public boolean isChecked() {
+        return this.isChecked;
     }
 
     @Override

@@ -15,15 +15,9 @@ import java.util.List;
  * @author antti
  */
 public class Knight extends Piece {
-    private boolean isChecked;
     
     public Knight(Position position, Player player) {
-        super(position, player);
-        this.isChecked = false;
-    }
-    
-    public boolean isChecked() {
-        return this.isChecked;
+        super(position, player);     
     }
 
     @Override
