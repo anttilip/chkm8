@@ -20,7 +20,7 @@ public abstract class Piece {
     }
 
     public abstract List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed);
-    
+
     public boolean moveLeadsToSelfCheck(Position target, Board board) {
         Board boardCopy = board.copy();
         boardCopy.movePiece(boardCopy.getPiece(this.position), target);
@@ -43,6 +43,6 @@ public abstract class Piece {
     public String toString() {
         return this.player + " " + this.getClass().getSimpleName();
     }
-    
+
     public abstract Piece copy();
 }

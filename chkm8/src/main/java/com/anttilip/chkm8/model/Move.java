@@ -13,11 +13,11 @@ import com.anttilip.chkm8.model.pieces.Piece;
  */
 public class Move {
 
-    private Piece piece;
-    private Position target;
-    private Position origin;
-    private int boardHash;
-    private Board board;
+    private final Piece piece;
+    private final Position target;
+    private final Position origin;
+    private final int boardHash;
+    private final Board board;
 
     public Move(Piece piece, Position origin, Position target, int boardHash, Board board) {
         this.piece = piece;

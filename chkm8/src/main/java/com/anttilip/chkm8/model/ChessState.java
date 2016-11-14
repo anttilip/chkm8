@@ -20,7 +20,6 @@ enum State {
 }
 
 public class ChessState {
-
     private Board board;
     private final Stack<Move> moveHistory;
     private final Set<State> states;
@@ -38,14 +37,11 @@ public class ChessState {
     }
 
     public void move(Piece piece, Position targetPosition) {
-        this.checkStates();
         Move move = new Move(piece, piece.getPosition(), targetPosition, board.hashCode(), board.copy());
         moveHistory.push(move);
         board.movePiece(piece, targetPosition);
-        //moveHistory.add(move);
 
         // Switch players in the end of turn
-        this.checkStates();
         switchPlayers();
     }
 
@@ -63,18 +59,23 @@ public class ChessState {
     }
 
     public Set<State> getGameStates() {
+        this.checkStates();
         return this.states;
     }
 
     private void checkStates() {
+        this.states.clear();
         this.updateAllowedMoves();
         List<State> currentStates = new ArrayList();
         this.checkMoveCountStates();
         this.checkCheckStates();
         this.checkStalemate();
         this.checkRepetitions(currentStates);
-
         // TODO: Insufficient material
+        
+        if (this.states.isEmpty()) {
+            this.states.add(State.INCOMPLETE);
+        }
     }
 
     public int getMoveCount() {
@@ -90,11 +91,11 @@ public class ChessState {
     }
 
     private void checkMoveCountStates() {
-        if (this.getMoveCount() >= 75) {
-            this.states.add(State.MOVE75);
-        }
         if (this.getMoveCount() >= 50) {
             this.states.add(State.MOVE50);
+        }
+        if (this.getMoveCount() >= 75) {
+            this.states.add(State.MOVE75);
         }
     }
 
@@ -118,8 +119,8 @@ public class ChessState {
         if (!this.states.contains(State.CHECK)) {
             // If player is checked, game can't be a draw
             boolean atLeastOneMove = false;
-            for (Piece piece : this.board.getPieces()) {
-                if (piece.getPlayer() == this.currentPlayer && !board.getAllowedMoves(piece).isEmpty()) {
+            for (Piece piece : this.board.getPieces(this.currentPlayer)) {
+                if (!board.getAllowedMoves(piece).isEmpty()) {
                     atLeastOneMove = true;
                 }
             }
