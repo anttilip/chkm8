@@ -5,14 +5,10 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
-import com.anttilip.chkm8.model.pieces.Pawn;
-import com.anttilip.chkm8.model.pieces.Piece;
-import com.anttilip.chkm8.model.Player;
+import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
-import com.anttilip.chkm8.model.Position;
-import com.anttilip.chkm8.model.pieces.Rook;
-import java.util.HashMap;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,7 +23,7 @@ import static org.junit.Assert.*;
 public class RookTest {
     
     private Rook rook;
-    private HashMap<Position, Piece> emptyMap;
+    private Board board;
     
     public RookTest() {
     }
@@ -43,7 +39,12 @@ public class RookTest {
     @Before
     public void setUp() {
         rook = new Rook(new Position(3, 3), Player.WHITE);
-        emptyMap = new HashMap();
+        board = new Board(new ArrayList());
+        board.getPieces().add(rook);
+        // Kings are needed to ensure that game runs correctly
+        // However kings are intentionally placed outside the map
+        board.getPieces().add(new King(new Position(12, 10), Player.WHITE));
+        board.getPieces().add(new King(new Position(10, 12), Player.BLACK));
     }
     
     @After
@@ -52,58 +53,58 @@ public class RookTest {
     
     @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(rook.getAllowedMoves(emptyMap).size() == 14);
+        assertTrue(rook.getAllowedMoves(board, false).size() == 14);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, 2));
-        assertTrue(rook.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(rook.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, -2));
-        assertTrue(rook.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(rook.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(rook.getPosition(), new Position(-2, 0));
-        assertTrue(rook.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(rook.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
-        assertTrue(rook.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(rook.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void cantGoDiagonally() {
         Position position = Position.add(rook.getPosition(), new Position(1, 1));
-        assertFalse(rook.getAllowedMoves(emptyMap).contains(position));
+        assertFalse(rook.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void cantJumpOverPieces() {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
         Position inTheWay = Position.add(rook.getPosition(), new Position(1, 0));
-        emptyMap.put(inTheWay, new Pawn(inTheWay, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(emptyMap).contains(position));
+        board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
+        assertFalse(rook.getAllowedMoves(board, false).contains(position));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(rook.getPosition(), new Position(1, 0));
-        emptyMap.put(enemy, new Pawn(enemy, Player.BLACK));
-        assertTrue(rook.getAllowedMoves(emptyMap).contains(enemy));
+        board.getPieces().add(new Pawn(enemy, Player.BLACK));
+        assertTrue(rook.getAllowedMoves(board, false).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(rook.getPosition(), new Position(1, 0));
-        emptyMap.put(friendly, new Pawn(friendly, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(emptyMap).contains(friendly));
+        board.getPieces().add(new Pawn(friendly, Player.WHITE));
+        assertFalse(rook.getAllowedMoves(board, false).contains(friendly));
     }
 }

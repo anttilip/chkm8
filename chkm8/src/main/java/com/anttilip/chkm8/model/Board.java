@@ -9,20 +9,22 @@ import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Knight;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Board {
 
     public static final int BOARD_SIZE = 8;
     private final List<Piece> pieces;
 
-    public Board() {
-        this.pieces = createBoard();
+    public Board(List<Piece> pieces) {
+        this.pieces = pieces;
     }
 
     public List<Position> getAllowedMoves(Piece piece) {
-        return piece.getAllowedMoves(getPiecePositions());
+        return piece.getAllowedMoves(this, false);
     }
 
     public Piece getPiece(Position position) {
@@ -32,7 +34,7 @@ public class Board {
             }
         }
         return null;
-    } 
+    }
 
     public Piece getPiece(int x, int y) {
         return getPiece(new Position(x, y));
@@ -41,19 +43,37 @@ public class Board {
     public List<Piece> getPieces() {
         return this.pieces;
     }
-    
+
+    public List<Piece> getPieces(Player player) {
+        List<Piece> playersPieces = new ArrayList();
+        for (Piece piece : this.pieces) {
+            if (piece.getPlayer() == player) {
+                playersPieces.add(piece);
+            }
+        }
+        return playersPieces;
+    }
+
+    public King getKing(Player player) {
+        for (Piece piece : this.pieces) {
+            if (piece instanceof King && piece.getPlayer() == player) {
+                return (King) piece;
+            }
+        }
+        return null;
+    }
+
     public void movePiece(Piece piece, Position target) {
         // If target position contains a piece, it will be eaten and removed
-        Map<Position, Piece> positions = getPiecePositions();
+        Map<Position, Piece> positions = getPiecePositionMap();
         if (positions.containsKey(target)) {
             this.pieces.remove(positions.get(target));
         }
-        
         // Move piece to its new position
         piece.setPosition(target);
     }
 
-    private HashMap<Position, Piece> getPiecePositions() {
+    public HashMap<Position, Piece> getPiecePositionMap() {
         // Get piece positions on board
         HashMap<Position, Piece> piecePositions = new HashMap();
 
@@ -64,7 +84,18 @@ public class Board {
         return piecePositions;
     }
 
-    public static List<Piece> createBoard() {
+    public boolean isCheck(Player player) {
+        King king = this.getKing(player);
+        Player other = (player == Player.WHITE) ? Player.BLACK : Player.WHITE;
+        for (Piece piece : this.getPieces(other)) {
+            if (piece.getAllowedMoves(this, true).contains(king.getPosition())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Board createBoard() {
         List<Piece> pieces = new ArrayList();
 
         for (Player player : Player.values()) {
@@ -90,9 +121,19 @@ public class Board {
 
             // Create King
             pieces.add(new King(new Position(4, (BOARD_SIZE - 1) * player.getValue()), player));
+
         }
 
-        return pieces;
+        return new Board(pieces);
+    }
+
+    public Board copy() {
+        List<Piece> piecesCopy = new ArrayList();
+        for (Piece orig : this.pieces) {
+            piecesCopy.add(orig.copy());
+        }
+
+        return new Board(piecesCopy);
     }
 
 }

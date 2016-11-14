@@ -5,14 +5,7 @@
  */
 package com.anttilip.chkm8.model;
 
-import com.anttilip.chkm8.model.pieces.Bishop;
-import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.ChessState;
-import com.anttilip.chkm8.model.Move;
 import com.anttilip.chkm8.model.pieces.Piece;
-import com.anttilip.chkm8.model.Player;
-import com.anttilip.chkm8.model.Position;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

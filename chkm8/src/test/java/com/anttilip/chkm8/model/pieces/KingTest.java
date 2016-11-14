@@ -5,14 +5,10 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
-import com.anttilip.chkm8.model.pieces.King;
-import com.anttilip.chkm8.model.pieces.Pawn;
-import com.anttilip.chkm8.model.pieces.Piece;
-import com.anttilip.chkm8.model.Player;
+import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
-import com.anttilip.chkm8.model.Position;
-import java.util.HashMap;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,7 +23,7 @@ import static org.junit.Assert.*;
 public class KingTest {
     
     private King king;
-    private HashMap<Position, Piece> emptyMap;
+    private Board board;
     
     public KingTest() {
     }
@@ -43,7 +39,8 @@ public class KingTest {
     @Before
     public void setUp() {
         king = new King(new Position(3, 3), Player.WHITE);
-        emptyMap = new HashMap();
+        board = new Board(new ArrayList());
+        board.getPieces().add(king);
     }
     
     @After
@@ -63,68 +60,68 @@ public class KingTest {
     
      @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(king.getAllowedMoves(emptyMap).size() == 8);
+        assertTrue(king.getAllowedMoves(board, false).size() == 8);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(king.getPosition(), new Position(0, 1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(king.getPosition(), new Position(0, -1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 0));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 0));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void topRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void topLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void bottomRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, -1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void bottomLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, -1));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(position));
+        assertTrue(king.getAllowedMoves(board, false).contains(position));
     }
     
     @Test
     public void canEatEnemy() {
         Position enemy = Position.add(king.getPosition(), new Position(1, 1));
-        emptyMap.put(enemy, new Pawn(enemy, Player.BLACK));
-        assertTrue(king.getAllowedMoves(emptyMap).contains(enemy));
+        board.getPieces().add(new Pawn(enemy, Player.BLACK));
+        assertTrue(king.getAllowedMoves(board, false).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(king.getPosition(), new Position(1, 1));
-        emptyMap.put(friendly, new Pawn(friendly, Player.WHITE));
-        assertFalse(king.getAllowedMoves(emptyMap).contains(friendly));
+        board.getPieces().add(new Pawn(friendly, Player.WHITE));
+        assertFalse(king.getAllowedMoves(board, false).contains(friendly));
     }
 }

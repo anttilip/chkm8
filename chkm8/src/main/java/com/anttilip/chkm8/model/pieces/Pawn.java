@@ -20,17 +20,18 @@ public class Pawn extends Piece {
         return (this.player == Player.WHITE && this.position.getY() == Board.BOARD_SIZE - 1)
                 || (this.player == Player.BLACK && this.position.getY() == 0);
     }
-    
+
     public boolean isFirstMove() {
         return this.firstMove;
     }
-    
+
     public void doFirstMove() {
         this.firstMove = false;
     }
 
     @Override
-    public List<Position> getAllowedMoves(HashMap<Position, Piece> occupiedPositions) {
+    public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
+        HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
         List<Position> allowedMoves = new ArrayList();
 
         // If pawn is in the end line, it can't move and will be promoted to queen
@@ -42,14 +43,20 @@ public class Pawn extends Piece {
         int direction = (this.player == Player.WHITE) ? 1 : -1;
 
         // Regular and double move
-        Position target = Position.add(this.position, new Position(0, 1 * direction));
+        Position target = Position.add(this.position, new Position(0, direction));
         if (!occupiedPositions.containsKey(target)) {
             // Target is not occupied by any piece
-            allowedMoves.add(target);
+            // Move is not allowed if it causes own king to be checked
+            if (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board))  {
+                allowedMoves.add(target);
+            }
+
             if (this.firstMove) {
                 // If pawn has not yet moved, it can move two squares
                 Position doubleMove = Position.add(this.position, new Position(0, 2 * direction));
-                if (!occupiedPositions.containsKey(doubleMove)) {
+                if (!occupiedPositions.containsKey(doubleMove) 
+                        && (selfCheckAllowed 
+                            || !super.moveLeadsToSelfCheck(doubleMove, board))) {
                     allowedMoves.add(doubleMove);
                 }
             }
@@ -58,20 +65,30 @@ public class Pawn extends Piece {
 
         // Atacking moves
         Position[] attackingMoves = {
-            Position.add(this.position, new Position(1, 1 * direction)),
-            Position.add(this.position, new Position(-1, 1 * direction))
+            Position.add(this.position, new Position(1, direction)),
+            Position.add(this.position, new Position(-1, direction))
         };
 
         for (Position attackMove : attackingMoves) {
             if (attackMove.onBoard()) {
                 // Pawn can attack only if opponents piece occupies target position
                 if (occupiedPositions.containsKey(attackMove)
-                        && occupiedPositions.get(attackMove).player != this.player) {
+                        && occupiedPositions.get(attackMove).player != this.player
+                        && (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board))) {
+                    // Move is not allowed if it causes own king to be checked
                     allowedMoves.add(attackMove);
+
                 }
             }
         }
 
         return allowedMoves;
+    }
+
+    @Override
+    public Piece copy() {
+        Pawn copy = new Pawn(this.position, this.player);
+        copy.firstMove = this.firstMove;
+        return copy;
     }
 }

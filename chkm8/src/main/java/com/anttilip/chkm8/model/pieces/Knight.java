@@ -5,6 +5,7 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
@@ -17,13 +18,14 @@ import java.util.List;
  * @author antti
  */
 public class Knight extends Piece {
-    
+
     public Knight(Position position, Player player) {
-        super(position, player);     
+        super(position, player);
     }
 
     @Override
-    public List<Position> getAllowedMoves(HashMap<Position, Piece> occupiedPositions) {
+    public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
+        HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
         List<Position> allowedMoves = new ArrayList();
         List<Position> potentialMoves = new ArrayList();
 
@@ -56,15 +58,22 @@ public class Knight extends Piece {
                 // If position is out of board, move can't be allowed
                 continue;
             }
-            if (!occupiedPositions.containsKey(target)
+            if ((!occupiedPositions.containsKey(target)
                     || (occupiedPositions.containsKey(target)
-                    && occupiedPositions.get(target).player != this.player)) {
+                        && occupiedPositions.get(target).player != this.player))
+                    && (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board))) {
                 // Move is allowed if position doesn't have own piece
+                // Move is not allowed if it causes own king to be checked
                 allowedMoves.add(target);
             }
         }
 
         return allowedMoves;
+    }
+
+    @Override
+    public Piece copy() {
+        return new Knight(this.position, this.player);
     }
 
 }
