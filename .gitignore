@@ -22,4 +22,7 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-/chkm8/nbproject/
+chkm8/nbproject/
+.idea
+chkm8/.idea
+chkm8/chkm8.iml
