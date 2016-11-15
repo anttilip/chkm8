@@ -9,6 +9,8 @@ import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -138,6 +140,28 @@ public class QueenTest {
         Position friendly = Position.add(queen.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
         assertFalse(queen.getAllowedMoves(board, false).contains(friendly));
+    }
+
+    @Test
+    public void moveCantCauseCheck() {
+        Piece whiteKing = board.getKing(Player.WHITE);
+        Piece blackRook = new Rook(new Position(3, 5), Player.BLACK);
+        board.getPieces().add(blackRook);
+        board.movePiece(queen, new Position(4, 5));
+        board.movePiece(whiteKing, new Position(5, 5));
+        List<Position> moves = board.getAllowedMoves(queen);
+        assertTrue(moves.size() == 1 && moves.contains(new Position(3, 5)));
+    }
+
+    @Test
+    public void blocksCheck() {
+        Piece whiteKing = board.getKing(Player.WHITE);
+        Piece blackRook = new Rook(new Position(2, 5), Player.BLACK);
+        board.getPieces().add(blackRook);
+        board.movePiece(queen, new Position(5, 4));
+        board.movePiece(whiteKing, new Position(5, 5));
+        List<Position> moves = board.getAllowedMoves(queen);
+        assertTrue(moves.size() == 1 && moves.contains(new Position(4, 5)));
     }
     
     @Test

@@ -9,6 +9,8 @@ import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -113,7 +115,16 @@ public class KingTest {
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
         assertFalse(king.getAllowedMoves(board, false).contains(friendly));
     }
-    
+
+    @Test
+    public void doesNotMoveIntoCheck() {
+        Piece blackRook = new Rook(new Position(3, 5), Player.BLACK);
+        board.getPieces().add(blackRook);
+        board.movePiece(king, new Position(5, 4));
+        List<Position> moves = board.getAllowedMoves(king);
+        assertFalse(moves.contains(new Position(5, 5)));
+    }
+
     @Test
     public void copyOfItselfIsSame() {
         assertTrue(king.copy().equals(king));
