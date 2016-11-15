@@ -15,6 +15,10 @@ public abstract class Piece {
         this.position = position;
     }
 
+    public void move(Position newPosition, Board board) {
+        this.position = newPosition;
+    }
+
     public abstract List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed);
 
     public boolean moveLeadsToSelfCheck(Position target, Board board) {

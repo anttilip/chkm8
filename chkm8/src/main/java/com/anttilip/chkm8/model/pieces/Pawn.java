@@ -3,6 +3,8 @@ package com.anttilip.chkm8.model.pieces;
 import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,16 @@ public class Pawn extends Piece {
     public Pawn(Position position, Player player) {
         super(position, player);
         this.firstMove = true;
+    }
+
+    @Override
+    public void move(Position newPosition, Board board) {
+        this.position = newPosition;
+        if (isInTheEnd()) {
+            // If pawn is in the end, it is promoted to Queen
+            board.getPieces().add(new Queen(this.position, this.player));
+            board.getPieces().remove(this);
+        }
     }
 
     public boolean isInTheEnd() {
@@ -33,11 +45,6 @@ public class Pawn extends Piece {
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
         List<Position> allowedMoves = new ArrayList<>();
-
-        // If pawn is in the end line, it can't move and will be promoted to queen
-        if (this.isInTheEnd()) {
-            return allowedMoves;
-        }
 
         // Pawns have only one direction and it depends on player color
         int direction = (this.player == Player.WHITE) ? 1 : -1;

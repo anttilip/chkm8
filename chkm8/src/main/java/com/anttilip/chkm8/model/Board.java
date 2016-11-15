@@ -68,7 +68,7 @@ public class Board {
             this.pieces.remove(positions.get(target));
         }
         // Move piece to its new position
-        piece.setPosition(target);
+        piece.move(target, this);
     }
 
     public HashMap<Position, Piece> getPiecePositionMap() {

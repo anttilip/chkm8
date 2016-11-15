@@ -344,10 +344,19 @@ public class ChessStateTest {
     
     @Test
     public void stateIncompleteWhenOnly50Move() {
-        // To avoid game-ending state REPETITION5, some illegal moves are tested
-        for (int i = 0; i < 50; i++) {
-            chessState.move(whitePawn, new Position(2, i));
+        // Black rook moves strangely to avoid game-ending state REPETITION5
+        for (int i = 1; i <= 6; i++) {
+            chessState.move(blackRook, new Position(0, i));
+            chessState.move(blackRook, new Position(1, i));
+            chessState.move(blackRook, new Position(2, i));
+            chessState.move(blackRook, new Position(3, i));
+            chessState.move(blackRook, new Position(4, i));
+            chessState.move(blackRook, new Position(5, i));
+            chessState.move(blackRook, new Position(6, i));
+            chessState.move(blackRook, new Position(7, i));
         }
+        chessState.move(blackRook, new Position(0, 1));
+        chessState.move(blackRook, new Position(1, 1));
         assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 

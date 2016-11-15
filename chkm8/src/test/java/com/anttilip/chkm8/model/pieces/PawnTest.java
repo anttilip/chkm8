@@ -195,5 +195,18 @@ public class PawnTest {
         Bishop other = new Bishop(whitePawn.position, whitePawn.player);
         assertTrue(whitePawn.hashCode() != other.hashCode());
     }
+
+    @Test
+    public void promotionToQueen() {
+        board.movePiece(this.whitePawn, new Position(3, 7));
+        board.getAllowedMoves(board.getPiece(3, 7));
+        assertTrue(board.getPiece(3, 7) instanceof Queen);
+    }
+
+    @Test
+    public void promotionToQueenSamePlayer() {
+        board.movePiece(this.whitePawn, new Position(3, 7));
+        assertTrue(board.getPiece(3, 7).getPlayer() == whitePawn.player);
+    }
 }
 
