@@ -25,7 +25,7 @@ public class Rook extends Piece {
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
 
         // Use Positions as a directions to simplify move checking
         Position[] directions = {
@@ -49,7 +49,7 @@ public class Rook extends Piece {
                     // since "jumping" over pieces is not allowed on Rook
                     break;
                 } else if (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board)) {
-                    // If target is not occupied, mvoe is allowed
+                    // If target is not occupied, move is allowed
                     // Move is not allowed if it causes own king to be checked
                     allowedMoves.add(target);
                 }
@@ -63,5 +63,14 @@ public class Rook extends Piece {
     @Override
     public Piece copy() {
         return new Rook(this.position, this.player);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Rook)) {
+            return false;
+        }
+        Rook other = (Rook) o;
+        return other.position.equals(this.position) && other.player == this.player;
     }
 }

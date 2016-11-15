@@ -16,14 +16,12 @@ public class Move {
     private final Piece piece;
     private final Position target;
     private final Position origin;
-    private final int boardHash;
     private final Board board;
 
-    public Move(Piece piece, Position origin, Position target, int boardHash, Board board) {
+    public Move(Piece piece, Position origin, Position target, Board board) {
         this.piece = piece;
         this.origin = origin;
         this.target = target;
-        this.boardHash = boardHash;
         this.board = board;
     }
 
@@ -40,7 +38,7 @@ public class Move {
     }
 
     public int getBoardHash() {
-        return this.boardHash;
+        return this.board.hashCode();
     }
     
     public Board getBoard() {

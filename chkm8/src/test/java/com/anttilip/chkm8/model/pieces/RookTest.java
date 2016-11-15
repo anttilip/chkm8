@@ -39,7 +39,7 @@ public class RookTest {
     @Before
     public void setUp() {
         rook = new Rook(new Position(3, 3), Player.WHITE);
-        board = new Board(new ArrayList());
+        board = new Board(new ArrayList<>());
         board.getPieces().add(rook);
         // Kings are needed to ensure that game runs correctly
         // However kings are intentionally placed outside the map
@@ -106,5 +106,28 @@ public class RookTest {
         Position friendly = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
         assertFalse(rook.getAllowedMoves(board, false).contains(friendly));
+    }
+    
+    @Test
+    public void copyOfItselfIsSame() {
+        assertTrue(rook.copy().equals(rook));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame() {
+        Piece other = rook.copy();
+        other.setPosition(new Position(4, 4));
+        assertFalse(other.equals(rook));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(rook.hashCode() == rook.copy().hashCode());
+    }
+
+    @Test
+    public void hashCodeWithOtherIsSame() {
+        Pawn other = new Pawn(rook.position, rook.player);
+        assertTrue(rook.hashCode() != other.hashCode());
     }
 }

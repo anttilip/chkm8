@@ -39,7 +39,7 @@ public class KnightTest {
     @Before
     public void setUp() {
         knight = new Knight(new Position(3, 3), Player.WHITE);
-        board = new Board(new ArrayList());
+        board = new Board(new ArrayList<>());
         board.getPieces().add(knight);
         // Kings are needed to ensure that game runs correctly
         // However kings are intentionally placed outside the map
@@ -130,5 +130,34 @@ public class KnightTest {
         Position friendly = Position.add(knight.getPosition(), new Position(2, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
         assertFalse(knight.getAllowedMoves(board, false).contains(friendly));
+    }
+    
+    @Test
+    public void copyOfItselfIsSame() {
+        assertTrue(knight.copy().equals(knight));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame() {
+        Piece other = knight.copy();
+        other.setPosition(new Position(4, 4));
+        assertFalse(other.equals(knight));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame2() {
+        Piece other = new Bishop(knight.getPosition(), Player.BLACK);
+        assertFalse(other.equals(knight));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(knight.hashCode() == knight.copy().hashCode());
+    }
+
+    @Test
+    public void hashCodeWithOtherIsSame() {
+        Pawn other = new Pawn(knight.position, knight.player);
+        assertTrue(knight.hashCode() != other.hashCode());
     }
 }

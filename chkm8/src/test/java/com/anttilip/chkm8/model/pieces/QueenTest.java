@@ -39,7 +39,7 @@ public class QueenTest {
     @Before
     public void setUp() {
         queen = new Queen(new Position(3, 3), Player.WHITE);
-        board = new Board(new ArrayList());
+        board = new Board(new ArrayList<>());
         board.getPieces().add(queen);
         // Kings are needed to ensure that game runs correctly
         // However kings are intentionally placed outside the map
@@ -140,5 +140,27 @@ public class QueenTest {
         assertFalse(queen.getAllowedMoves(board, false).contains(friendly));
     }
     
+    @Test
+    public void copyOfItselfIsSame() {
+        assertTrue(queen.copy().equals(queen));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame() {
+        Piece other = queen.copy();
+        other.setPosition(new Position(4, 4));
+        assertFalse(other.equals(queen));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(queen.hashCode() == queen.copy().hashCode());
+    }
+
+    @Test
+    public void hashCodeWithOtherIsSame() {
+        Pawn other = new Pawn(queen.position, queen.player);
+        assertTrue(queen.hashCode() != other.hashCode());
+    }
 
 }

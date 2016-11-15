@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
  * @author antti
  */
 public class PositionTest {
-    
-    Position position;
+
+    private Position position;
     
     public PositionTest() {
     }
@@ -91,8 +91,9 @@ public class PositionTest {
     }
     
     @Test
-    public void hashCodeWorks() {
-        assertTrue(position.hashCode() == 52);
+    public void twoSameObjectsHaveSameHashCode() {
+        Position same = new Position(5, 2);
+        assertTrue(position.hashCode() == same.hashCode());
     }
     
     @Test
@@ -114,5 +115,16 @@ public class PositionTest {
         Position other = new Position(-5, -1);
         Position result = new Position(-3, 1);
         assertTrue(Position.add(one, other).equals(result));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        Position other = new Position(5, 2);
+        assertTrue(position.hashCode() == other.hashCode());
+    }
+    @Test
+    public void isNotEqualWithString() {
+        String other = "Not the same";
+        assertFalse(position.equals(other));
     }
 }

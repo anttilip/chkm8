@@ -32,7 +32,7 @@ public class Pawn extends Piece {
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
 
         // If pawn is in the end line, it can't move and will be promoted to queen
         if (this.isInTheEnd()) {
@@ -63,7 +63,7 @@ public class Pawn extends Piece {
 
         }
 
-        // Atacking moves
+        // Attacking moves
         Position[] attackingMoves = {
             Position.add(this.position, new Position(1, direction)),
             Position.add(this.position, new Position(-1, direction))
@@ -90,5 +90,14 @@ public class Pawn extends Piece {
         Pawn copy = new Pawn(this.position, this.player);
         copy.firstMove = this.firstMove;
         return copy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Pawn)) {
+            return false;
+        }
+        Pawn other = (Pawn) o;
+        return other.position.equals(this.position) && other.player == this.player && other.isFirstMove() == this.firstMove;
     }
 }

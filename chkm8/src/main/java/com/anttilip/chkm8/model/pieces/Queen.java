@@ -25,7 +25,7 @@ public class Queen extends Piece {
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
 
         // Use Positions as a directions to simplify move checking
         Position[] directions = {
@@ -54,7 +54,7 @@ public class Queen extends Piece {
                     // since "jumping" over pieces is not allowed on Queen
                     break;
                 } else if (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board)) {
-                    // If target is not occupied, mvoe is allowed
+                    // If target is not occupied, move is allowed
                     allowedMoves.add(target);
                 }
                 // Lets move one more to the target direction
@@ -67,5 +67,14 @@ public class Queen extends Piece {
     @Override
     public Piece copy() {
         return new Queen(this.position, this.player);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Queen)) {
+            return false;
+        }
+        Queen other = (Queen) o;
+        return other.position.equals(this.position) && other.player == this.player;
     }
 }

@@ -3,11 +3,7 @@ package com.anttilip.chkm8.model.pieces;
 import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public abstract class Piece {
 
@@ -43,6 +39,27 @@ public abstract class Piece {
     public String toString() {
         return this.player + " " + this.getClass().getSimpleName();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 13;
+        hash = 5 * hash + this.position.hashCode();
+        hash = 19 * hash + ((this.player == Player.WHITE) ? 11 : 21);
+        return 31 * hash + this.getClass().hashCode();
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (!(o instanceof Piece)) {
+//            return false;
+//        }
+//        Piece other = (Position) o;
+//
+//        return other.x == this.x && other.y == this.y;
+//    }
+
+    @Override
+    public abstract boolean equals(Object o);
 
     public abstract Piece copy();
 }

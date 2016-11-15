@@ -18,25 +18,14 @@ import java.util.List;
  */
 public class King extends Piece {
 
-    private boolean isChecked;
-
     public King(Position position, Player player) {
         super(position, player);
-        this.isChecked = false;
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
-    }
-
-    public void setIsChecked(boolean checked) {
-        this.isChecked = checked;
     }
 
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
 
         Position[] directions = {
             new Position(1, 0), // Right
@@ -70,9 +59,16 @@ public class King extends Piece {
 
     @Override
     public Piece copy() {
-        King copy = new King(this.position, this.player);
-        copy.isChecked = this.isChecked();
-        return copy;
+        return new King(this.position, this.player);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof King)) {
+            return false;
+        }
+        King other = (King) o;
+        return other.position.equals(this.position) && other.player == this.player;
     }
 
 }

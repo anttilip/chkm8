@@ -26,8 +26,8 @@ public class Knight extends Piece {
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
-        List<Position> potentialMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
+        List<Position> potentialMoves = new ArrayList<>();
 
         // Up Right
         potentialMoves.add(Position.add(this.position, new Position(1, 2)));
@@ -76,4 +76,12 @@ public class Knight extends Piece {
         return new Knight(this.position, this.player);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Knight)) {
+            return false;
+        }
+        Knight other = (Knight) o;
+        return other.position.equals(this.position) && other.player == this.player;
+    }
 }

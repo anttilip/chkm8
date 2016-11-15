@@ -1,8 +1,8 @@
 package com.anttilip.chkm8.model;
 
 public class Position {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     
     public Position(int x, int y) {
         this.x = x;
@@ -38,7 +38,7 @@ public class Position {
     
     @Override
     public int hashCode() {
-        return 10 * this.x + this.y;
+        return 11 * this.x + this.y;
     }
     
     public static Position add(Position a, Position b) {

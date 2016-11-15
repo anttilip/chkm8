@@ -25,7 +25,7 @@ public class Bishop extends Piece {
     @Override
     public List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed) {
         HashMap<Position, Piece> occupiedPositions = board.getPiecePositionMap();
-        List<Position> allowedMoves = new ArrayList();
+        List<Position> allowedMoves = new ArrayList<>();
 
         // Use Positions as a directions to simplify move checking
         Position[] directions = {
@@ -49,7 +49,7 @@ public class Bishop extends Piece {
                     // since "jumping" over pieces is not allowed on Rook
                     break;
                 } else if (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board)) {
-                    // If target is not occupied, mvoe is allowed
+                    // If target is not occupied, move is allowed
                     allowedMoves.add(target);
                 }
                 // Lets move one more to the target direction
@@ -62,6 +62,15 @@ public class Bishop extends Piece {
     @Override
     public Piece copy() {
         return new Bishop(this.position, this.player);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Bishop)) {
+            return false;
+        }
+        Bishop other = (Bishop) o;
+        return other.position.equals(this.position) && other.player == this.player;
     }
 
 }

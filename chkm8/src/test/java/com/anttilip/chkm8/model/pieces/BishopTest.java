@@ -39,7 +39,7 @@ public class BishopTest {
     @Before
     public void setUp() {
         bishop = new Bishop(new Position(3, 3), Player.WHITE);
-        board = new Board(new ArrayList());
+        board = new Board(new ArrayList<>());
         board.getPieces().add(bishop);
         // Kings are needed to ensure that game runs correctly
         // However kings are intentionally placed outside the map
@@ -107,5 +107,33 @@ public class BishopTest {
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
         assertFalse(bishop.getAllowedMoves(board, false).contains(friendly));
     }
+    
+    @Test
+    public void copyOfItselfIsSame() {
+        assertTrue(bishop.copy().equals(bishop));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame() {
+        Piece other = bishop.copy();
+        other.setPosition(new Position(4, 4));
+        assertFalse(other.equals(bishop));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame2() {
+        Piece other = new Bishop(bishop.getPosition(), Player.BLACK);
+        assertFalse(other.equals(bishop));
+    }
 
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(bishop.hashCode() == bishop.copy().hashCode());
+    }
+
+    @Test
+    public void hashCodeWithOtherIsSame() {
+        Pawn other = new Pawn(bishop.position, bishop.player);
+        assertTrue(bishop.hashCode() != other.hashCode());
+    }
 }

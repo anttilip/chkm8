@@ -5,15 +5,15 @@
  */
 package com.anttilip.chkm8.model;
 
-import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.Piece;
-import com.anttilip.chkm8.model.pieces.Rook;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,12 +22,11 @@ import static org.junit.Assert.*;
  */
 public class ChessStateTest {
 
-    ChessState chessState;
-    Piece whiteKing;
-    Piece blackKing;
-    Piece whitePawn;
-    Piece blackRook;
-    Piece blackQueen;
+    private ChessState chessState;
+    private Piece whiteKing;
+    private Piece whitePawn;
+    private Piece blackRook;
+    private Piece blackQueen;
 
     public ChessStateTest() {
     }
@@ -44,8 +43,7 @@ public class ChessStateTest {
     public void setUp() {
         chessState = new ChessState();
         whiteKing = chessState.getBoard().getPiece(4, 0);
-        whitePawn = chessState.getBoard().getPiece(0, 0);
-        blackKing = chessState.getBoard().getPiece(4, 7);
+        whitePawn = chessState.getBoard().getPiece(0, 1);
         blackQueen = chessState.getBoard().getPiece(3, 7);
         blackRook = chessState.getBoard().getPiece(0, 7);
     }
@@ -65,7 +63,7 @@ public class ChessStateTest {
     }
 
     @Test
-    public void moveCounterInitallyZero() {
+    public void moveCounterInitiallyZero() {
         assertTrue(chessState.getMoveCount() == 0);
     }
 
@@ -231,52 +229,54 @@ public class ChessStateTest {
 
     @Test
     public void stateIsIncompleteInBeginning() {
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
     public void stateIsIncompleteNormally() {
         Piece whitePawn = new Pawn(new Position(3, 3), Player.WHITE);
         chessState.move(whitePawn, new Position(3, 4));
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
     public void stateTurnsToCheck() {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(blackRook, new Position(2, 5));
-        assertTrue(chessState.getGameStates().contains(State.CHECK));
+        assertTrue(chessState.getGameStates().contains(GameState.CHECK));
     }
     
     @Test
     public void stateIncompleteWhenOnlyCheck() {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(blackRook, new Position(2, 5));
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
     public void stateTurnsToBackToIncomplete() {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(blackRook, new Position(2, 5));
+        chessState.getGameStates();
         chessState.move(blackRook, new Position(3, 5));
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
+
 
     @Test
     public void stateTurnsToCheckmate() {
         chessState.move(whiteKing, new Position(2, 3));
-        chessState.move(blackRook, new Position(2, 5));
+        chessState.move(blackRook, new Position(2, 2));
         chessState.move(blackQueen, new Position(2, 4));
-        assertTrue(chessState.getGameStates().contains(State.CHECKMATE));
+        assertTrue(chessState.getGameStates().contains(GameState.CHECKMATE));
     }
     
     @Test
     public void stateNotIncompleteWhenCheckmate() {
         chessState.move(whiteKing, new Position(2, 3));
-        chessState.move(blackRook, new Position(2, 5));
+        chessState.move(blackRook, new Position(2, 2));
         chessState.move(blackQueen, new Position(2, 4));
-        assertFalse(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertFalse(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
@@ -287,7 +287,7 @@ public class ChessStateTest {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(whiteKing, new Position(2, 2));
         chessState.move(whiteKing, new Position(2, 3));
-        assertTrue(chessState.getGameStates().contains(State.REPETITION3));
+        assertTrue(chessState.getGameStates().contains(GameState.REPETITION3));
     }
     
     @Test
@@ -298,7 +298,7 @@ public class ChessStateTest {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(whiteKing, new Position(2, 2));
         chessState.move(whiteKing, new Position(2, 3));
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
@@ -313,9 +313,9 @@ public class ChessStateTest {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(whiteKing, new Position(2, 2));
         chessState.move(whiteKing, new Position(2, 3));
-        assertTrue(chessState.getGameStates().contains(State.REPETITION5));
+        assertTrue(chessState.getGameStates().contains(GameState.REPETITION5));
     }
-    
+
     @Test
     public void stateNotIncompleteIfRepetition5() {
         chessState.move(whiteKing, new Position(2, 3));
@@ -328,7 +328,7 @@ public class ChessStateTest {
         chessState.move(whiteKing, new Position(2, 3));
         chessState.move(whiteKing, new Position(2, 2));
         chessState.move(whiteKing, new Position(2, 3));
-        assertFalse(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertFalse(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
     
     @Test
@@ -338,18 +338,17 @@ public class ChessStateTest {
             chessState.move(whiteKing, new Position(2, 2));
         }
 
-        assertTrue(chessState.getGameStates().contains(State.MOVE50));
+        assertTrue(chessState.getGameStates().contains(GameState.MOVE50));
     }
     
     
     @Test
     public void stateIncompleteWhenOnly50Move() {
-        for (int i = 0; i < 25; i++) {
-            chessState.move(whiteKing, new Position(2, 3));
-            chessState.move(whiteKing, new Position(2, 2));
+        // To avoid game-ending state REPETITION5, some illegal moves are tested
+        for (int i = 0; i < 50; i++) {
+            chessState.move(whitePawn, new Position(2, i));
         }
-
-        assertTrue(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertTrue(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
@@ -360,7 +359,7 @@ public class ChessStateTest {
         }
         chessState.move(whiteKing, new Position(2, 3));
 
-        assertFalse(chessState.getGameStates().contains(State.MOVE50));
+        assertFalse(chessState.getGameStates().contains(GameState.MOVE50));
     }
 
     @Test
@@ -371,7 +370,7 @@ public class ChessStateTest {
         }
         chessState.move(whiteKing, new Position(2, 3));
 
-        assertTrue(chessState.getGameStates().contains(State.MOVE75));
+        assertTrue(chessState.getGameStates().contains(GameState.MOVE75));
     }
     
     @Test
@@ -382,7 +381,7 @@ public class ChessStateTest {
         }
         chessState.move(whiteKing, new Position(2, 3));
 
-        assertFalse(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertFalse(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
@@ -392,7 +391,7 @@ public class ChessStateTest {
             chessState.move(whiteKing, new Position(2, 2));
         }
 
-        assertFalse(chessState.getGameStates().contains(State.MOVE75));
+        assertFalse(chessState.getGameStates().contains(GameState.MOVE75));
     }
 
     @Test
@@ -418,9 +417,10 @@ public class ChessStateTest {
         chessState.move(whitePawnCopy, new Position(2, 1));
         chessState.move(blackPawn, new Position(2, 2));
 
-        assertTrue(chessState.getGameStates().contains(State.STALEMATE));
+        assertTrue(chessState.getGameStates().contains(GameState.STALEMATE));
     }
-    
+
+    @Test
     public void stateNotIncompleteWhenStalemate() {
         Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
         Piece whitePawnCopy = chessState.getBoard().getPiece(0, 1).copy();
@@ -443,7 +443,7 @@ public class ChessStateTest {
         chessState.move(whitePawnCopy, new Position(2, 1));
         chessState.move(blackPawn, new Position(2, 2));
 
-        assertFalse(chessState.getGameStates().contains(State.INCOMPLETE));
+        assertFalse(chessState.getGameStates().contains(GameState.INCOMPLETE));
     }
 
     @Test
@@ -470,7 +470,7 @@ public class ChessStateTest {
         chessState.move(blackPawn, new Position(2, 3));
         chessState.move(blackPawn, new Position(2, 2));
 
-        assertFalse(chessState.getGameStates().contains(State.STALEMATE));
+        assertFalse(chessState.getGameStates().contains(GameState.STALEMATE));
     }
 
     @Test
@@ -496,7 +496,7 @@ public class ChessStateTest {
         chessState.move(whitePawnCopy, new Position(2, 2));
         chessState.move(blackPawn, new Position(2, 1));
 
-        assertFalse(chessState.getGameStates().contains(State.STALEMATE));
+        assertFalse(chessState.getGameStates().contains(GameState.STALEMATE));
     }
 
     @Test
@@ -511,7 +511,24 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(whiteBishopCopy);
         chessState.getBoard().getPieces().add(blackKingCopy);
 
-        assertTrue(chessState.getGameStates().contains(State.INSUFFICIENT));
+        assertTrue(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
+    public void stateInsufficient2Bishops() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whiteBishopCopy = chessState.getBoard().getPiece(2, 0).copy();
+        Piece whiteBishopCopy2 = chessState.getBoard().getPiece(5, 0).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whiteBishopCopy);
+        chessState.getBoard().getPieces().add(whiteBishopCopy2);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
     }
 
     @Test
@@ -526,9 +543,43 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(whiteKnightCopy);
         chessState.getBoard().getPieces().add(blackKingCopy);
 
-        assertTrue(chessState.getGameStates().contains(State.INSUFFICIENT));
+        assertTrue(chessState.getGameStates().contains(GameState.INSUFFICIENT));
     }
-    
+
+    @Test
+    public void stateInsufficient2Knights() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whiteKnightCopy = chessState.getBoard().getPiece(1, 0).copy();
+        Piece whiteKnightCopy2 = chessState.getBoard().getPiece(6, 0).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whiteKnightCopy);
+        chessState.getBoard().getPieces().add(whiteKnightCopy2);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
+    public void stateInsufficientKnightAndBishop() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whiteKnightCopy = chessState.getBoard().getPiece(1, 0).copy();
+        Piece whiteBishopCopy = chessState.getBoard().getPiece(5, 0).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whiteKnightCopy);
+        chessState.getBoard().getPieces().add(whiteBishopCopy);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
     @Test
     public void stateInsufficientOnlyKings() {
         Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
@@ -539,7 +590,7 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(whiteKingCopy);
         chessState.getBoard().getPieces().add(blackKingCopy);
 
-        assertTrue(chessState.getGameStates().contains(State.INSUFFICIENT));
+        assertTrue(chessState.getGameStates().contains(GameState.INSUFFICIENT));
     }
 
     @Test
@@ -554,13 +605,28 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(whiteRookCopy);
         chessState.getBoard().getPieces().add(blackKingCopy);
 
-        assertFalse(chessState.getGameStates().contains(State.INSUFFICIENT));
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
     }
 
     @Test
-    public void stateInsufficientSoldierFalse() {
+    public void stateInsufficientQueenFalse() {
         Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
-        Piece whitePawnCopy = chessState.getBoard().getPiece(0, 1).copy();
+        Piece whiteQueenCopy = chessState.getBoard().getPiece(3, 0).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whiteQueenCopy);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
+    public void stateInsufficientPawnFalse() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whitePawnCopy = chessState.getBoard().getPiece(4, 1).copy();
         Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
 
         chessState.getBoard().getPieces().clear();
@@ -569,6 +635,40 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(whitePawnCopy);
         chessState.getBoard().getPieces().add(blackKingCopy);
 
-        assertFalse(chessState.getGameStates().contains(State.INSUFFICIENT));
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
+    public void stateInsufficientPawnTrue() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whitePawnCopy = chessState.getBoard().getPiece(4, 1).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whitePawnCopy);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+        chessState.move(whitePawnCopy, new Position(4, 4));
+        chessState.move(blackKingCopy, new Position(4, 5));
+
+        assertTrue(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
+    public void stateInsufficientPawnAndKnight() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whitePawnCopy = chessState.getBoard().getPiece(4, 1).copy();
+        Piece whiteKnightCopy = chessState.getBoard().getPiece(1, 0).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whitePawnCopy);
+        chessState.getBoard().getPieces().add(whiteKnightCopy);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
     }
 }

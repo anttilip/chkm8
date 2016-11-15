@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 
 public class BoardTest {
-    Board board;
+    private Board board;
     
     public BoardTest() {
     }
@@ -111,4 +111,28 @@ public class BoardTest {
         board.movePiece(whiteRook, blackQueen.getPosition());
         assertFalse(board.getPieces().contains(blackQueen));
     }
+
+    @Test
+    public void boardCopyIsSameAsOriginal() {
+        assertTrue(board.copy().equals(board));
+    }
+
+    @Test
+    public void boardCopyIsntSameAsOther() {
+        Board copy = board.copy();
+        board.movePiece(board.getPiece(3, 1), new Position(3, 2));
+        assertFalse(copy.equals(board));
+    }
+
+    @Test
+    public void boardCopyIsntSameAsOther2() {
+        String other = "Not the same";
+        assertFalse(board.equals(other));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(board.hashCode() == board.copy().hashCode());
+    }
+
 }

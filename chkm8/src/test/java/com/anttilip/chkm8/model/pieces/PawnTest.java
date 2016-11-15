@@ -41,7 +41,7 @@ public class PawnTest {
     public void setUp() {
         whitePawn = new Pawn(new Position(3, 1), Player.WHITE);
         blackPawn = new Pawn(new Position(3, 6), Player.BLACK);
-        board = new Board(new ArrayList());
+        board = new Board(new ArrayList<>());
         board.getPieces().add(whitePawn);
         board.getPieces().add(blackPawn);
         // Kings are needed to ensure that game runs correctly
@@ -60,7 +60,7 @@ public class PawnTest {
     }
     
     @Test
-    public void afterMoveisNotFirstMove() {
+    public void afterMoveIsNotFirstMove() {
         whitePawn.doFirstMove();
         assertFalse(whitePawn.isFirstMove());
     }
@@ -164,6 +164,36 @@ public class PawnTest {
         Position twoUp = Position.add(blackPawn.getPosition(), new Position(0, -2));
         board.getPieces(Player.WHITE).get(0).setPosition(oneUp);
         assertFalse(blackPawn.getAllowedMoves(board, false).contains(twoUp));
+    }
+    
+    @Test
+    public void copyOfItselfIsSame() {
+        assertTrue(whitePawn.copy().equals(whitePawn));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame() {
+        Piece other = whitePawn.copy();
+        other.setPosition(new Position(4, 4));
+        assertFalse(other.equals(whitePawn));
+    }
+    
+    @Test
+    public void copyOfOtherIsNotSame3() {
+        Piece other = whitePawn.copy();
+        whitePawn.doFirstMove();
+        assertFalse(other.equals(whitePawn));
+    }
+
+    @Test
+    public void hashCodeWithSameIsSame() {
+        assertTrue(whitePawn.hashCode() == whitePawn.copy().hashCode());
+    }
+
+    @Test
+    public void hashCodeWithOtherIsSame() {
+        Bishop other = new Bishop(whitePawn.position, whitePawn.player);
+        assertTrue(whitePawn.hashCode() != other.hashCode());
     }
 }
 

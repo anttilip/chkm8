@@ -9,10 +9,8 @@ import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Knight;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Board {
 
@@ -45,7 +43,7 @@ public class Board {
     }
 
     public List<Piece> getPieces(Player player) {
-        List<Piece> playersPieces = new ArrayList();
+        List<Piece> playersPieces = new ArrayList<>();
         for (Piece piece : this.pieces) {
             if (piece.getPlayer() == player) {
                 playersPieces.add(piece);
@@ -75,7 +73,7 @@ public class Board {
 
     public HashMap<Position, Piece> getPiecePositionMap() {
         // Get piece positions on board
-        HashMap<Position, Piece> piecePositions = new HashMap();
+        HashMap<Position, Piece> piecePositions = new HashMap<>();
 
         for (Piece piece : pieces) {
             piecePositions.put(piece.getPosition(), piece);
@@ -96,7 +94,7 @@ public class Board {
     }
 
     public static Board createBoard() {
-        List<Piece> pieces = new ArrayList();
+        List<Piece> pieces = new ArrayList<>();
 
         for (Player player : Player.values()) {
             // Create pawns
@@ -128,12 +126,35 @@ public class Board {
     }
 
     public Board copy() {
-        List<Piece> piecesCopy = new ArrayList();
+        List<Piece> piecesCopy = new ArrayList<>();
         for (Piece orig : this.pieces) {
             piecesCopy.add(orig.copy());
         }
 
         return new Board(piecesCopy);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        for (Piece piece : this.pieces) {
+            hash = 7 * hash + piece.hashCode();
+        }
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Board)) {
+            return false;
+        }
+        Board other = (Board) o;
+        for (Piece piece : other.getPieces()) {
+            if (!this.pieces.contains(piece)) {
+                return false;
+            }
+        }
+        return other.getPieces().size() == this.pieces.size();
     }
 
 }

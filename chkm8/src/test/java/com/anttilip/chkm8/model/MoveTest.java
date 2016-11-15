@@ -5,7 +5,6 @@
  */
 package com.anttilip.chkm8.model;
 
-import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.Piece;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -43,7 +42,7 @@ public class MoveTest {
         whitePawn = board.getPiece(7, 1);
         origin = whitePawn.getPosition();
         target = new Position(7, 2);
-        move = new Move(whitePawn, origin, target, board.hashCode(), board);
+        move = new Move(whitePawn, origin, target, board);
     }
 
     @After
