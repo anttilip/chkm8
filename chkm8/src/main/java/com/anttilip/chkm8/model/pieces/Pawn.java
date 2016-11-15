@@ -20,11 +20,29 @@ public class Pawn extends Piece {
 
     @Override
     public void move(Position newPosition, Board board) {
+        Position originalPosition = this.getPosition();
         this.position = newPosition;
         if (isInTheEnd()) {
             // If pawn is in the end, it is promoted to Queen
             board.getPieces().add(new Queen(this.position, this.player));
             board.getPieces().remove(this);
+        }
+        // If move is double move, make en passant pawn
+        if (Math.abs(newPosition.getY() - originalPosition.getY()) == 2) {
+            int newPawnYDiff = (this.position.getY() > originalPosition.getY()) ? -1 : 1;
+            Position enPassantPos = new Position(this.getPosition().getX(), this.getPosition().getY() + newPawnYDiff);
+            board.addTemporaryPiece(enPassantPos, this);
+        }
+    }
+
+    @Override
+    public void kill(Board board, Piece killer) {
+        // If real pawn is killed, en passant pawn is also killed
+        // If pawn kills en passant pawn, real pawn is also killed
+        if (killer.getPosition() == this.position
+                || (board.getTemporaryPieces().containsValue(this) && killer instanceof Pawn)) {
+            board.getPieces().remove(this);
+            board.removeTemporaryPiece(this);
         }
     }
 
@@ -67,7 +85,6 @@ public class Pawn extends Piece {
                     allowedMoves.add(doubleMove);
                 }
             }
-
         }
 
         // Attacking moves
@@ -75,6 +92,9 @@ public class Pawn extends Piece {
             Position.add(this.position, new Position(1, direction)),
             Position.add(this.position, new Position(-1, direction))
         };
+
+        // Add temporary pieces to allow en passant attacking moves
+        occupiedPositions.putAll(board.getTemporaryPieces());
 
         for (Position attackMove : attackingMoves) {
             if (attackMove.onBoard()) {
@@ -84,7 +104,6 @@ public class Pawn extends Piece {
                         && (selfCheckAllowed || !super.moveLeadsToSelfCheck(target, board))) {
                     // Move is not allowed if it causes own king to be checked
                     allowedMoves.add(attackMove);
-
                 }
             }
         }

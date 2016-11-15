@@ -16,9 +16,11 @@ public class Board {
 
     public static final int BOARD_SIZE = 8;
     private final List<Piece> pieces;
+    private final Map<Position, Piece> temporaryPieces;
 
     public Board(List<Piece> pieces) {
         this.pieces = pieces;
+        this.temporaryPieces = new HashMap<>();
     }
 
     public List<Position> getAllowedMoves(Piece piece) {
@@ -61,11 +63,25 @@ public class Board {
         return null;
     }
 
+    public void addTemporaryPiece(Position pos, Piece piece) {
+        this.temporaryPieces.put(pos, piece);
+    }
+
+    public Map<Position, Piece> getTemporaryPieces() {
+        return this.temporaryPieces;
+    }
+
+    public void removeTemporaryPiece(Piece piece) {
+        this.temporaryPieces.values().remove(piece);
+    }
+
     public void movePiece(Piece piece, Position target) {
         // If target position contains a piece, it will be eaten and removed
         Map<Position, Piece> positions = getPiecePositionMap();
+        // Also add temporary pieces e.g. en passant
+        positions.putAll(this.getTemporaryPieces());
         if (positions.containsKey(target)) {
-            this.pieces.remove(positions.get(target));
+            positions.get(target).kill(this, piece);
         }
         // Move piece to its new position
         piece.move(target, this);

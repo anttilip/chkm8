@@ -19,6 +19,10 @@ public abstract class Piece {
         this.position = newPosition;
     }
 
+    public void kill(Board board, Piece killer) {
+        board.getPieces().remove(this);
+    }
+
     public abstract List<Position> getAllowedMoves(Board board, boolean selfCheckAllowed);
 
     public boolean moveLeadsToSelfCheck(Position target, Board board) {
@@ -52,17 +56,6 @@ public abstract class Piece {
         return 31 * hash + this.getClass().hashCode();
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (!(o instanceof Piece)) {
-//            return false;
-//        }
-//        Piece other = (Position) o;
-//
-//        return other.x == this.x && other.y == this.y;
-//    }
-
-    @Override
     public abstract boolean equals(Object o);
 
     public abstract Piece copy();

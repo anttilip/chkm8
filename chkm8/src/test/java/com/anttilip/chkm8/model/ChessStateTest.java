@@ -498,11 +498,11 @@ public class ChessStateTest {
         chessState.getBoard().getPieces().add(blackQueenCopy);
         chessState.getBoard().getPieces().add(blackPawn);
 
-        chessState.move(whitePawnCopy, new Position(2, 0));
+        chessState.move(whitePawnCopy, new Position(2, 2));
         chessState.move(whiteKingCopy, new Position(7, 7));
         chessState.move(blackKingCopy, new Position(5, 6));
         chessState.move(blackQueenCopy, new Position(6, 5));
-        chessState.move(whitePawnCopy, new Position(2, 2));
+        chessState.move(whitePawnCopy, new Position(2, 3));
         chessState.move(blackPawn, new Position(2, 1));
 
         assertFalse(chessState.getGameStates().contains(GameState.STALEMATE));

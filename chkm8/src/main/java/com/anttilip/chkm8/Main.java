@@ -48,9 +48,8 @@ TODO:
     - Self check move tests
 
   - Model
-    - En passant
-    - Pawn promotion
     - Castling
+    - Split ChessState stateChecking to own (static) class
 
   - View 
     - Whole UI
