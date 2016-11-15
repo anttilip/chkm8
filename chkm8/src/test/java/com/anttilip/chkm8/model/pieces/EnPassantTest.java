@@ -138,4 +138,12 @@ public class EnPassantTest {
         board.movePiece(attackingBlack, new Position(3, 3));
         assertFalse(board.getTemporaryPieces().containsKey(new Position(3, 2)));
     }
+
+    @Test
+    public void enPassantCantBeDoneOnTheSecondTurn() {
+        board.movePiece(movingWhite, new Position(3, 3));
+        board.movePiece(movingBlack, new Position(5, 5));
+        board.movePiece(attackingWhite, new Position(4, 5));
+        assertFalse(board.getAllowedMoves(attackingBlack).contains(new Position(3, 2)));
+    }
 }

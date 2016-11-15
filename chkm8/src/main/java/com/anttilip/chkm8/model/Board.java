@@ -83,6 +83,7 @@ public class Board {
         if (positions.containsKey(target)) {
             positions.get(target).kill(this, piece);
         }
+        this.temporaryPieces.clear();
         // Move piece to its new position
         piece.move(target, this);
     }
