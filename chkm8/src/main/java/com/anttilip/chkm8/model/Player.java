@@ -23,4 +23,8 @@ public enum Player {
     public int getValue() {
         return value;
     }
+
+    public static Player getOther(Player player) {
+        return (player == WHITE) ? BLACK : WHITE;
+    }
 }

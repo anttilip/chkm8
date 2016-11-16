@@ -2,12 +2,7 @@ package com.anttilip.chkm8.model;
 
 import com.anttilip.chkm8.model.pieces.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -45,7 +40,7 @@ public class ChessState {
     }
 
     private void switchPlayers() {
-        currentPlayer = (currentPlayer == Player.WHITE) ? Player.BLACK : Player.WHITE;
+        currentPlayer = Player.getOther(currentPlayer);
     }
 
     public Set<GameState> getGameStates() {

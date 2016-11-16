@@ -7,20 +7,33 @@ import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Knight;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Board {
 
     public static final int BOARD_SIZE = 8;
     private final List<Piece> pieces;
-    private final Map<Position, Piece> temporaryPieces;
+    private Position enPassantPosition;
 
     public Board(List<Piece> pieces) {
         this.pieces = pieces;
-        this.temporaryPieces = new HashMap<>();
+        this.enPassantPosition = null;
+    }
+
+    public void movePiece(Piece piece, Position target) {
+        // If target position contains a piece, it will be eaten and removed
+        if (this.getPiece(target) != null) {
+            this.getPiece(target).kill(this);
+        }
+
+        // Remove en passant since no one attacked it this turn
+        if (enPassantPosition != null && !target.equals(this.enPassantPosition)) {
+            enPassantPosition = null;
+        }
+        // Move piece to its new position
+        piece.move(target, this);
     }
 
     public List<Position> getAllowedMoves(Piece piece) {
@@ -63,45 +76,22 @@ public class Board {
         return null;
     }
 
-    public void addTemporaryPiece(Position pos, Piece piece) {
-        this.temporaryPieces.put(pos, piece);
+    public Position getEnPassantPosition() {
+        return this.enPassantPosition;
     }
 
-    public Map<Position, Piece> getTemporaryPieces() {
-        return this.temporaryPieces;
+    public void setEnPassantPosition(Position enPassantPosition) {
+        this.enPassantPosition = enPassantPosition;
     }
 
-    public void removeTemporaryPiece(Piece piece) {
-        this.temporaryPieces.values().remove(piece);
+    public boolean isOccupied(Position position) {
+        return getPiece(position) != null;
     }
 
-    public void movePiece(Piece piece, Position target) {
-        // If target position contains a piece, it will be eaten and removed
-        Map<Position, Piece> positions = getPiecePositionMap();
-        // Also add temporary pieces e.g. en passant
-        positions.putAll(this.getTemporaryPieces());
-        if (positions.containsKey(target)) {
-            positions.get(target).kill(this, piece);
-        }
-        this.temporaryPieces.clear();
-        // Move piece to its new position
-        piece.move(target, this);
-    }
-
-    public HashMap<Position, Piece> getPiecePositionMap() {
-        // Get piece positions on board
-        HashMap<Position, Piece> piecePositions = new HashMap<>();
-
-        for (Piece piece : pieces) {
-            piecePositions.put(piece.getPosition(), piece);
-        }
-
-        return piecePositions;
-    }
 
     public boolean isCheck(Player player) {
         King king = this.getKing(player);
-        Player other = (player == Player.WHITE) ? Player.BLACK : Player.WHITE;
+        Player other = Player.getOther(player);
         for (Piece piece : this.getPieces(other)) {
             if (piece.getAllowedMoves(this, true).contains(king.getPosition())) {
                 return true;
@@ -147,8 +137,9 @@ public class Board {
         for (Piece orig : this.pieces) {
             piecesCopy.add(orig.copy());
         }
-
-        return new Board(piecesCopy);
+        Board copy = new Board(piecesCopy);
+        copy.enPassantPosition = this.enPassantPosition;
+        return copy;
     }
 
     @Override
@@ -173,5 +164,4 @@ public class Board {
         }
         return other.getPieces().size() == this.pieces.size();
     }
-
 }

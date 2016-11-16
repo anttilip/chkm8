@@ -64,21 +64,19 @@ public class EnPassantTest {
     @Test
     public void enPassantIsCreatedWhite() {
         board.movePiece(movingWhite, new Position(3, 3));
-        Piece enPassant = board.getTemporaryPieces().get(new Position(3, 2));
-        assertTrue(enPassant != null);
+        assertTrue(board.getEnPassantPosition() != null);
     }
 
     @Test
     public void enPassantIsCreatedBlack() {
         board.movePiece(movingBlack, new Position(5, 4));
-        Piece enPassant = board.getTemporaryPieces().get(new Position(5, 5));
-        assertTrue(enPassant != null);
+        assertTrue(board.getEnPassantPosition() != null);
     }
 
     @Test
     public void enPassantIsCorrectClass() {
         board.movePiece(movingWhite, new Position(3, 3));
-        Piece enPassant = board.getTemporaryPieces().get(new Position(3, 2));
+        Piece enPassant = board.getPiece(Position.add(board.getEnPassantPosition(), new Position(0 ,1)));
         assertTrue(enPassant instanceof Pawn);
     }
 
@@ -110,33 +108,58 @@ public class EnPassantTest {
 
     @Test
     public void originalDoesntDieIfRookAttacksEnPassant() {
-        board.movePiece(movingWhite, new Position(3, 3));
         Rook rook = new Rook(new Position(0, 2), Player.BLACK);
         board.getPieces().add(rook);
+        board.movePiece(movingWhite, new Position(3, 3));
         board.movePiece(rook, new Position(3, 2));
         assertTrue(board.getPieces().contains(movingWhite));
     }
 
     @Test
     public void enPassantDoesntBlockOtherPieces() {
-        board.movePiece(movingWhite, new Position(3, 3));
         Rook rook = new Rook(new Position(0, 2), Player.BLACK);
         board.getPieces().add(rook);
+        board.movePiece(movingWhite, new Position(3, 3));
         assertTrue(board.getAllowedMoves(rook).contains(new Position(5, 2)));
     }
 
     @Test
-    public void enPassantIsRemovedFromTemporaryPieces() {
+    public void opponentCanMoveIntoEnPassantWithOtherPieces() {
+        Rook rook = new Rook(new Position(0, 2), Player.BLACK);
+        board.getPieces().add(rook);
+        board.movePiece(movingWhite, new Position(3, 3));
+        assertTrue(board.getAllowedMoves(rook).contains(new Position(3, 2)));
+    }
+
+    @Test
+    public void enPassantDoesntBlockOwnPieces() {
+        Rook rook = new Rook(new Position(0, 2), Player.WHITE);
+        board.getPieces().add(rook);
+        board.movePiece(movingWhite, new Position(3, 3));
+        assertTrue(board.getAllowedMoves(rook).contains(new Position(5, 2)));
+    }
+
+    @Test
+    public void ownPiecesCanMoveIntoEnPassant() {
+        Rook rook = new Rook(new Position(0, 2), Player.WHITE);
+        board.getPieces().add(rook);
+        board.movePiece(movingWhite, new Position(3, 3));
+        assertTrue(board.getAllowedMoves(rook).contains(new Position(3, 2)));
+    }
+
+    @Test
+    public void enPassantIsRemoved() {
         board.movePiece(movingWhite, new Position(3, 3));
         board.movePiece(attackingBlack, new Position(3, 2));
-        assertFalse(board.getTemporaryPieces().containsKey(new Position(3, 2)));
+        board.movePiece(attackingWhite, new Position(4, 5));
+        assertTrue(board.getEnPassantPosition() == null);
     }
 
     @Test
     public void enPassantIsKilledWhenOriginalDies() {
         board.movePiece(movingWhite, new Position(3, 3));
         board.movePiece(attackingBlack, new Position(3, 3));
-        assertFalse(board.getTemporaryPieces().containsKey(new Position(3, 2)));
+        assertFalse(new Position(3, 2).equals(board.getEnPassantPosition()));
     }
 
     @Test

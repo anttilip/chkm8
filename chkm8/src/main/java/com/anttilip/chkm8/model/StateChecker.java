@@ -90,7 +90,7 @@ final class StateChecker {
             return;
         }
         for (Player player : Player.values()) {
-            Player other = (player == Player.WHITE) ? Player.BLACK : Player.WHITE;
+            Player other = Player.getOther(player);
             if (chessState.getBoard().getPieces(player).size() != 1) {
                 // Player with less pieces must have only king
                 continue;
