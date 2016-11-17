@@ -5,6 +5,7 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
@@ -19,9 +20,24 @@ public class Rook extends Piece {
         new Position(-1, 0), // Left
         new Position(0, -1), // Down
     };
+    private boolean firstMove;
 
     public Rook(Position position, Player player) {
         super(position, player, true);
+        this.firstMove = true;
+    }
+
+    @Override
+    public void move(Position newPosition, Board board) {
+        this.firstMove = false;
+        if (board.getPiece(newPosition) != null) {
+            board.getPiece(newPosition).kill(board);
+        }
+        this.position = newPosition;
+    }
+
+    public boolean isFirstMove() {
+        return this.firstMove;
     }
 
     @Override

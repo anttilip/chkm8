@@ -6,6 +6,7 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
+import com.anttilip.chkm8.model.ChessState;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import org.junit.After;
@@ -168,5 +169,24 @@ public class EnPassantTest {
         board.movePiece(movingBlack, new Position(5, 5));
         board.movePiece(attackingWhite, new Position(4, 5));
         assertFalse(board.getAllowedMoves(attackingBlack).contains(new Position(3, 2)));
+    }
+
+    @Test
+    public void enPassantWorksWithUndo() {
+        ChessState cs = new ChessState();
+        cs.getBoard().getPieces().clear();
+        cs.getBoard().getPieces().add(new King(new Position(4, 0), Player.WHITE));
+        cs.getBoard().getPieces().add(new King(new Position(4, 7), Player.BLACK));
+        Piece movingWhitePawn = new Pawn(new Position(2, 1), Player.WHITE);
+        Piece attackingBlackPawn = new Pawn(new Position(3, 3), Player.BLACK);
+        cs.getBoard().getPieces().add(movingWhitePawn);
+        cs.getBoard().getPieces().add(attackingBlackPawn);
+
+        cs.move(movingWhitePawn, new Position(2, 3));
+        cs.move(attackingBlackPawn, new Position(2, 2));
+
+        cs.undoLastMove();
+
+        assertTrue(cs.getBoard().getAllowedMoves(cs.getBoard().getPiece(new Position(3, 3))).contains(new Position(2, 2)));
     }
 }

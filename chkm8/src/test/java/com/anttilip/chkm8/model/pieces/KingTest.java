@@ -6,9 +6,11 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
+import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.junit.After;
@@ -51,69 +53,69 @@ public class KingTest {
 
      @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(king.getAllowedMoves(board, false).size() == 8);
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 8);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(king.getPosition(), new Position(0, 1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(king.getPosition(), new Position(0, -1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 0));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 0));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void topRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void topLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void bottomRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, -1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void bottomLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, -1));
-        assertTrue(king.getAllowedMoves(board, false).contains(position));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void canEatEnemy() {
         Position enemy = Position.add(king.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(king.getAllowedMoves(board, false).contains(enemy));
+        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(king.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(king.getAllowedMoves(board, false).contains(friendly));
+        assertFalse(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
     }
 
     @Test

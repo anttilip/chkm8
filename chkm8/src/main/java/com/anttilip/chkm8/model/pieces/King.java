@@ -5,8 +5,13 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
+import com.anttilip.chkm8.model.Board;
+import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
+
+import java.util.EnumSet;
+import java.util.List;
 
 /**
  *
@@ -23,9 +28,53 @@ public class King extends Piece {
         new Position(-1, -1), // Down-Left
         new Position(1, -1) // Down-Right
     };
+    private boolean firstMove;
 
     public King(Position position, Player player) {
         super(position, player, false);
+        firstMove = true;
+    }
+
+    @Override
+    public void move(Position newPosition, Board board) {
+        this.firstMove = false;
+        // Check if castling
+        if (board.getPiece(newPosition) != null && board.getPiece(newPosition).getPlayer() == this.player) {
+            // Since eating own pieces is not allowed, piece must be rook
+            Piece rook = board.getPiece(newPosition);
+            if (this.position.getX() < rook.position.getX()) {
+                // King side castling
+                this.position = Position.add(this.position, new Position(2, 0));
+                board.movePiece(rook, Position.add(rook.position, new Position(-2, 0)));
+            } else {
+                // Queen side castling
+                this.position = Position.add(this.position, new Position(-2, 0));
+                board.movePiece(rook, Position.add(rook.position, new Position(3, 0)));
+            }
+        } else {
+            // No castling, so regular movement
+            if (board.getPiece(newPosition) != null) {
+                board.getPiece(newPosition).kill(board);
+            }
+            this.position = newPosition;
+        }
+    }
+
+    @Override
+    public void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
+        // Castling
+        if (limit.contains(MoveLimitation.IGNORE_CASTLING)) {
+            return;
+        }
+        for (Rook rook : board.getRooks(this.player)) {
+            if (board.isCastlingAllowed(this, rook)) {
+                allowedMoves.add(rook.getPosition());
+            }
+        }
+    }
+
+    public boolean isFirstMove() {
+        return this.firstMove;
     }
 
     @Override

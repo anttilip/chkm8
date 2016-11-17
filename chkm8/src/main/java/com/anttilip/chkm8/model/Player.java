@@ -5,11 +5,6 @@
  */
 package com.anttilip.chkm8.model;
 
-
-/**
- *
- * @author antti
- */
 public enum Player {
     WHITE (0),
     BLACK (1);

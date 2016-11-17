@@ -103,7 +103,7 @@ public class BoardTest {
     }
     
     @Test
-    public void movePieceToOccupiedRemovesOldPiece() {
+    public void eatenPieceIsRemoved() {
         Piece whiteRook = board.getPiece(0, 0);
         Piece blackQueen = board.getPiece(3, 7);
         board.movePiece(whiteRook, blackQueen.getPosition());

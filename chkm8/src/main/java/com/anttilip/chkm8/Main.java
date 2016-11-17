@@ -26,6 +26,5 @@ public class Main {
 
         System.out.println("\n\nWhite pawn position: " + blackRook.getPosition());
         System.out.println("White pawn allowed moves: " + board2.getAllowedMoves(blackRook));
-        System.out.println("White king is checked: " + board2.isCheck(Player.WHITE));
     }
 }

@@ -9,6 +9,7 @@ import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Knight;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 public class Board {
@@ -23,21 +24,17 @@ public class Board {
     }
 
     public void movePiece(Piece piece, Position target) {
-        // If target position contains a piece, it will be eaten and removed
-        if (this.getPiece(target) != null) {
-            this.getPiece(target).kill(this);
-        }
-
         // Remove en passant since no one attacked it this turn
         if (enPassantPosition != null && !target.equals(this.enPassantPosition)) {
             enPassantPosition = null;
         }
+
         // Move piece to its new position
         piece.move(target, this);
     }
 
     public List<Position> getAllowedMoves(Piece piece) {
-        return piece.getAllowedMoves(this, false);
+        return piece.getAllowedMoves(this, EnumSet.of(MoveLimitation.NONE));
     }
 
     public Piece getPiece(Position position) {
@@ -76,6 +73,16 @@ public class Board {
         return null;
     }
 
+    public List<Rook> getRooks(Player player) {
+        List<Rook> rooks = new ArrayList<>();
+        for (Piece rook : this.getPieces(player)) {
+            if (rook instanceof Rook) {
+                rooks.add((Rook) rook);
+            }
+        }
+        return rooks;
+    }
+
     public Position getEnPassantPosition() {
         return this.enPassantPosition;
     }
@@ -88,12 +95,49 @@ public class Board {
         return getPiece(position) != null;
     }
 
-
-    public boolean isCheck(Player player) {
+    public boolean isCheck(Player player, EnumSet<MoveLimitation> limit) {
         King king = this.getKing(player);
         Player other = Player.getOther(player);
         for (Piece piece : this.getPieces(other)) {
-            if (piece.getAllowedMoves(this, true).contains(king.getPosition())) {
+            EnumSet<MoveLimitation> newLimit = EnumSet.copyOf(limit);
+            newLimit.add(MoveLimitation.ALLOW_SELF_CHECK);
+            if (piece.getAllowedMoves(this, newLimit).contains(king.getPosition())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCastlingAllowed(King king, Rook rook) {
+        // If king or rook has already moved, castling is not possible
+        if (!king.isFirstMove() || !rook.isFirstMove()) {
+            return false;
+        }
+
+        // Check starting and ending positions
+        int start = Math.min(rook.getPosition().getX(), king.getPosition().getX());
+        int end = Math.max(rook.getPosition().getX(), king.getPosition().getX());
+
+        for (int i = start; i <= end; i++) {
+            // Path to castling can't be blocked by other pieces
+            Position square = new Position(i, king.getPosition().getY());
+            Piece other = this.getPiece(square);
+            if (other != null && (!other.equals(king) && !other.equals(rook))) {
+                return false;
+            }
+            // Squares in the path can't be threatened by opponent
+            Player opponent = Player.getOther(king.getPlayer());
+            if (isSquareThreatenedBy(opponent, square)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isSquareThreatenedBy(Player player, Position square) {
+        for (Piece piece : this.getPieces(player)) {
+            if (piece.getAllowedMoves(this, EnumSet.of(MoveLimitation.IGNORE_CASTLING)).contains(square)) {
                 return true;
             }
         }

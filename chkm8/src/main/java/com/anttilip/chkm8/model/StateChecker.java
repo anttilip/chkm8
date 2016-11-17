@@ -5,8 +5,8 @@ import com.anttilip.chkm8.model.pieces.*;
 import java.util.*;
 
 final class StateChecker {
-    static Set<GameState> checkStates(ChessState chessState) {
-        Set<GameState> gameStates = new HashSet<>();
+    static EnumSet<GameState> checkStates(ChessState chessState) {
+        EnumSet<GameState> gameStates = EnumSet.noneOf(GameState.class);
         checkMoveCountStates(chessState, gameStates);
         checkCheckStates(chessState, gameStates);
         checkStalemate(chessState, gameStates);
@@ -37,7 +37,7 @@ final class StateChecker {
 
     private static void checkCheckStates(ChessState chessState, Set<GameState> gameStates) {
         for (Player player : Player.values()) {
-            if (chessState.getBoard().isCheck(player)) {
+            if (chessState.getBoard().isCheck(player, EnumSet.of(MoveLimitation.ALLOW_SELF_CHECK))) {
                 // Player is checked
                 gameStates.add(GameState.CHECK);
                 if (!playerHasAllowedMoves(chessState, player)) {

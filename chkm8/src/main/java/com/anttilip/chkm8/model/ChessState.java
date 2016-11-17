@@ -2,8 +2,8 @@ package com.anttilip.chkm8.model;
 
 import com.anttilip.chkm8.model.pieces.*;
 
+import java.util.EnumSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 public class ChessState {
@@ -43,7 +43,7 @@ public class ChessState {
         currentPlayer = Player.getOther(currentPlayer);
     }
 
-    public Set<GameState> getGameStates() {
+    public EnumSet<GameState> getGameStates() {
         return StateChecker.checkStates(this);
     }
 

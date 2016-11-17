@@ -6,9 +6,11 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
+import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.junit.After;
@@ -55,37 +57,37 @@ public class RookTest {
     
     @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(rook.getAllowedMoves(board, false).size() == 14);
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 14);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, 2));
-        assertTrue(rook.getAllowedMoves(board, false).contains(position));
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, -2));
-        assertTrue(rook.getAllowedMoves(board, false).contains(position));
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(rook.getPosition(), new Position(-2, 0));
-        assertTrue(rook.getAllowedMoves(board, false).contains(position));
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
-        assertTrue(rook.getAllowedMoves(board, false).contains(position));
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
     public void cantGoDiagonally() {
         Position position = Position.add(rook.getPosition(), new Position(1, 1));
-        assertFalse(rook.getAllowedMoves(board, false).contains(position));
+        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
     @Test
@@ -93,21 +95,21 @@ public class RookTest {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
         Position inTheWay = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(board, false).contains(position));
+        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(rook.getAllowedMoves(board, false).contains(enemy));
+        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(board, false).contains(friendly));
+        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
     }
 
     @Test

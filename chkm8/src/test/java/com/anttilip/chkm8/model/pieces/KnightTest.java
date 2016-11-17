@@ -6,9 +6,11 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
+import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 
 import org.junit.After;
@@ -55,55 +57,55 @@ public class KnightTest {
 
     @Test
     public void eightMovesOnEmpty() {
-        assertTrue(knight.getAllowedMoves(board, false).size() == 8);
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 8);
     }
     
     @Test
     public void topRightMove() {
         Position topRight = Position.add(knight.getPosition(), new Position(1, 2));
-        assertTrue(knight.getAllowedMoves(board, false).contains(topRight));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(topRight));
     }
     
     @Test
     public void topLeftMove() {
         Position topLeft = Position.add(knight.getPosition(), new Position(-1, 2));
-        assertTrue(knight.getAllowedMoves(board, false).contains(topLeft));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(topLeft));
     }
     
     @Test
     public void bottomLeftMove() {
         Position bottomLeft = Position.add(knight.getPosition(), new Position(-1, -2));
-        assertTrue(knight.getAllowedMoves(board, false).contains(bottomLeft));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(bottomLeft));
     }
     
     @Test
     public void bottomRightMove() {
         Position bottomRight = Position.add(knight.getPosition(), new Position(1, -2));
-        assertTrue(knight.getAllowedMoves(board, false).contains(bottomRight));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(bottomRight));
     }
     
     @Test
     public void rightTopMove() {
         Position rightTop = Position.add(knight.getPosition(), new Position(2, 1));
-        assertTrue(knight.getAllowedMoves(board, false).contains(rightTop));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(rightTop));
     }
     
     @Test
     public void rightBottomMove() {
         Position rightBottom = Position.add(knight.getPosition(), new Position(2, -1));
-        assertTrue(knight.getAllowedMoves(board, false).contains(rightBottom));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(rightBottom));
     }
     
     @Test
     public void leftBottomMove() {
         Position leftBottom = Position.add(knight.getPosition(), new Position(-2, -1));
-        assertTrue(knight.getAllowedMoves(board, false).contains(leftBottom));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(leftBottom));
     }
     
     @Test
     public void leftTopMove() {
         Position leftTop = Position.add(knight.getPosition(), new Position(-2, 1));
-        assertTrue(knight.getAllowedMoves(board, false).contains(leftTop));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(leftTop));
     }
     
     @Test
@@ -117,21 +119,21 @@ public class KnightTest {
         board.getPieces().add(new Pawn(topRight, Player.BLACK));
         board.getPieces().add(new Pawn(topLeft, Player.BLACK));
         board.getPieces().add(new Pawn(left, Player.BLACK));
-        assertTrue(knight.getAllowedMoves(board, false).contains(leftTop));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(leftTop));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(knight.getPosition(), new Position(2, 1));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(knight.getAllowedMoves(board, false).contains(enemy));
+        assertTrue(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(knight.getPosition(), new Position(2, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(knight.getAllowedMoves(board, false).contains(friendly));
+        assertFalse(knight.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
     }
 
     @Test
