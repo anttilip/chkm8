@@ -1,30 +1,37 @@
 package com.anttilip.chkm8;
 
-import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.ChessState;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
-import com.anttilip.chkm8.model.pieces.King;
-import com.anttilip.chkm8.model.pieces.Pawn;
-import com.anttilip.chkm8.model.pieces.Rook;
-import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+        // Create ChessState that creates board and models chess
         ChessState chessState = new ChessState();
-        System.out.println("Board is initialized with default positions\n");
-        Board board2 = new Board(new ArrayList<>());
-        King whiteKing = new King(new Position(3, 3), Player.WHITE);
-        Pawn whitePawn = new Pawn(new Position(4, 2), Player.WHITE);
-        Rook blackRook = new Rook(new Position(5, 3), Player.BLACK);
-        King blackKing = new King(new Position(6, 6), Player.BLACK);
-        board2.getPieces().add(whiteKing);
-        board2.getPieces().add(whitePawn);
-        board2.getPieces().add(blackRook);
-        board2.getPieces().add(blackKing);
 
-        System.out.println("\n\nWhite pawn position: " + blackRook.getPosition());
-        System.out.println("White pawn allowed moves: " + board2.getAllowedMoves(blackRook));
+        // Print players available pieces
+        System.out.println("Whites pieces: " + chessState.getPlayersPieces(Player.WHITE));
+
+        // Print piece at B1
+        System.out.println("Piece at B1: " + chessState.getPieceAt(1, 0));
+
+        // Print pieces allowed moves
+        System.out.println("Allowed moves: " + chessState.getGetPiecesAllowedMoves(1, 0));
+
+        // Move piece to C3
+        System.out.println("Knight to C3");
+        chessState.move(chessState.getPieceAt(1, 0), new Position(2, 2));
+
+        // Print piece at C3
+        System.out.println("Piece at C3: " + chessState.getPieceAt(2, 2));
+
+        // Print pieces allowed moves
+        System.out.println("Allowed moves: " + chessState.getGetPiecesAllowedMoves(2, 2));
+
+        // Undo last move
+        System.out.println("Undo last move");
+        chessState.undoLastMove();
+        System.out.println("Piece at B1: " + chessState.getPieceAt(1, 0));
     }
 }

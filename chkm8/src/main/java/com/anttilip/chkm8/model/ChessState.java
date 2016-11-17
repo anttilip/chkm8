@@ -21,6 +21,18 @@ public class ChessState {
         return this.board;
     }
 
+    public Piece getPieceAt(int x, int y) {
+        return this.board.getPiece(x, y);
+    }
+
+    public List<Piece> getPlayersPieces(Player player) {
+        return this.board.getPieces(player);
+    }
+
+    public List<Position> getGetPiecesAllowedMoves(int x, int y) {
+        return this.board.getAllowedMoves(board.getPiece(x, y));
+    }
+
     public void move(Piece piece, Position targetPosition) {
         Move move = new Move(piece, piece.getPosition(), targetPosition, board.copy());
         moveHistory.push(move);

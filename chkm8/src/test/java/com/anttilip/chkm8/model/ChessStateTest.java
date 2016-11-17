@@ -7,12 +7,15 @@ package com.anttilip.chkm8.model;
 
 import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.Piece;
+import com.anttilip.chkm8.model.pieces.Queen;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -207,5 +210,27 @@ public class ChessStateTest {
     public void undoDoesntChangeTurnsWhenNoMoves() {
         chessState.undoLastMove();
         assertTrue(chessState.getCurrentPlayer() == Player.WHITE);
+    }
+
+    @Test
+    public void getPieceAtReturnsCorrectly() {
+        Piece whiteQueen = new Queen(new Position(4, 4), Player.WHITE);
+        chessState.getBoard().getPieces().add(whiteQueen);
+        assertTrue(chessState.getPieceAt(4, 4).equals(whiteQueen));
+    }
+
+    @Test
+    public void getPlayersPiecesReturnsCorrectly() {
+        Piece whiteQueen = new Queen(new Position(4, 4), Player.WHITE);
+        chessState.getBoard().getPieces().clear();
+        chessState.getBoard().getPieces().add(whiteQueen);
+        List<Piece> whitesPieces = chessState.getPlayersPieces(Player.WHITE);
+        assertTrue(whitesPieces.size() == 1 && whitesPieces.get(0).equals(whiteQueen));
+    }
+
+    @Test
+    public void getPiecesAllowedMovesReturnsSameAsBoard() {
+        List<Position> moves = chessState.getGetPiecesAllowedMoves(3, 1);
+        assertTrue(moves.size() == 2 && moves.contains(new Position(3, 2)) && moves.contains(new Position(3, 3)));
     }
 }
