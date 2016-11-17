@@ -57,37 +57,37 @@ public class RookTest {
     
     @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 14);
+        assertTrue(board.getAllowedMoves(rook).size() == 14);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, 2));
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(rook).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(rook.getPosition(), new Position(0, -2));
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(rook).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(rook.getPosition(), new Position(-2, 0));
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(rook).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(rook).contains(position));
     }
     
     @Test
     public void cantGoDiagonally() {
         Position position = Position.add(rook.getPosition(), new Position(1, 1));
-        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(rook).contains(position));
     }
     
     @Test
@@ -95,21 +95,21 @@ public class RookTest {
         Position position = Position.add(rook.getPosition(), new Position(2, 0));
         Position inTheWay = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(rook).contains(position));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
+        assertTrue(board.getAllowedMoves(rook).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(rook.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(rook.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
+        assertFalse(board.getAllowedMoves(rook).contains(friendly));
     }
 
     @Test

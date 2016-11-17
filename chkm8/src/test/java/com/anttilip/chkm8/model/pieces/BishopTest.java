@@ -57,37 +57,37 @@ public class BishopTest {
     
     @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 13);
+        assertTrue(board.getAllowedMoves(bishop).size() == 13);
     }
     
     @Test
     public void topRightMove() {
         Position position = Position.add(bishop.getPosition(), new Position(2, 2));
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(bishop).contains(position));
     }
     
     @Test
     public void topLeftMove() {
         Position position = Position.add(bishop.getPosition(), new Position(-2, 2));
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(bishop).contains(position));
     }
     
     @Test
     public void bottomRightMove() {
         Position position = Position.add(bishop.getPosition(), new Position(2, -2));
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(bishop).contains(position));
     }
     
     @Test
     public void bottomLeftMove() {
         Position position = Position.add(bishop.getPosition(), new Position(-2, -2));
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(bishop).contains(position));
     }
     
     @Test
     public void cantGoUp() {
         Position position = Position.add(bishop.getPosition(), new Position(0, 1));
-        assertFalse(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(bishop).contains(position));
     }
     
     @Test
@@ -95,21 +95,21 @@ public class BishopTest {
         Position position = Position.add(bishop.getPosition(), new Position(2, 2));
         Position inTheWay = Position.add(bishop.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
-        assertFalse(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(bishop).contains(position));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(bishop.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
+        assertTrue(board.getAllowedMoves(bishop).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(bishop.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(bishop.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
+        assertFalse(board.getAllowedMoves(bishop).contains(friendly));
     }
 
     @Test

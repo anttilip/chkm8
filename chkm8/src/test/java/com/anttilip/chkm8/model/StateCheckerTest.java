@@ -400,6 +400,23 @@ public class StateCheckerTest {
     }
 
     @Test
+    public void stateInsufficientKnightAndPawn() {
+        Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
+        Piece whiteKnightCopy = chessState.getBoard().getPiece(1, 0).copy();
+        Piece whitePawnCopy = chessState.getBoard().getPiece(1, 1).copy();
+        Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();
+
+        chessState.getBoard().getPieces().clear();
+
+        chessState.getBoard().getPieces().add(whiteKingCopy);
+        chessState.getBoard().getPieces().add(whiteKnightCopy);
+        chessState.getBoard().getPieces().add(whitePawnCopy);
+        chessState.getBoard().getPieces().add(blackKingCopy);
+
+        assertFalse(chessState.getGameStates().contains(GameState.INSUFFICIENT));
+    }
+
+    @Test
     public void stateInsufficientOnlyKings() {
         Piece whiteKingCopy = chessState.getBoard().getPiece(4, 0).copy();
         Piece blackKingCopy = chessState.getBoard().getPiece(4, 7).copy();

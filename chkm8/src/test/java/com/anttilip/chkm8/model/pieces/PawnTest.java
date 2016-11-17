@@ -5,10 +5,8 @@
  */
 package com.anttilip.chkm8.model.pieces;
 
-import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.MoveLimitation;
-import com.anttilip.chkm8.model.Player;
-import com.anttilip.chkm8.model.Position;
+import com.anttilip.chkm8.model.*;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -62,70 +60,54 @@ public class PawnTest {
     public void initiallyFirstMove() {
         assertTrue(whitePawn.isFirstMove());
     }
-    
+
     @Test
     public void afterMoveIsNotFirstMove() {
-        whitePawn.doFirstMove();
+        board.movePiece(whitePawn, new Position(3, 2));
         assertFalse(whitePawn.isFirstMove());
     }
 
     @Test
-    public void whiteInTheEndFalse() {
-        assertFalse(whitePawn.isInTheEnd());
-    }
-
-    @Test
-    public void whiteInTheEndTrue() {
-        whitePawn.setPosition(new Position(3, 7));
-        assertTrue(whitePawn.isInTheEnd());
-    }
-
-    @Test
-    public void blackInTheEndFalse() {
-        assertFalse(blackPawn.isInTheEnd());
-    }
-
-    @Test
-    public void blackInTheEndTrue() {
-        blackPawn.setPosition(new Position(3, 0));
-        assertTrue(blackPawn.isInTheEnd());
-    }
-
-    @Test
     public void firstTurnTwoMoves() {
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 2);
+        ChessState cs = new ChessState();
+        cs.getBoard().getPieces().clear();
+        cs.getBoard().getPieces().add(whitePawn);
+        assertTrue(cs.getBoard().getAllowedMoves(whitePawn).size() == 2);
     }
 
     @Test
     public void secondTurnOneMove() {
-        whitePawn.doFirstMove();
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 1);
+        ChessState cs = new ChessState();
+        cs.getBoard().getPieces().clear();
+        cs.getBoard().getPieces().add(whitePawn);
+        cs.move(whitePawn, new Position(3, 2));
+        assertTrue(cs.getBoard().getAllowedMoves(whitePawn).size() == 1);
     }
 
     @Test
     public void whiteCorrectRegularMove() {
         Position oneUp = Position.add(whitePawn.getPosition(), new Position(0, 1));
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(oneUp));
+        assertTrue(board.getAllowedMoves(whitePawn).contains(oneUp));
     }
 
     @Test
     public void whiteCorrectDoubleMove() {
         Position twoUp = Position.add(whitePawn.getPosition(), new Position(0, 2));
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(twoUp));
+        assertTrue(board.getAllowedMoves(whitePawn).contains(twoUp));
     }
 
     @Test
     public void whiteCorrectAttackMoveRight() {
         Position right = Position.add(whitePawn.getPosition(), new Position(1, 1));
         board.getPieces(Player.BLACK).get(0).setPosition(right);
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(right));
+        assertTrue(board.getAllowedMoves(whitePawn).contains(right));
     }
 
     @Test
     public void whiteCorrectAttackMoveLeft() {
         Position left = Position.add(whitePawn.getPosition(), new Position(-1, 1));
         board.getPieces(Player.BLACK).get(0).setPosition(left);
-        assertTrue(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(left));
+        assertTrue(board.getAllowedMoves(whitePawn).contains(left));
     }
 
     @Test
@@ -133,33 +115,33 @@ public class PawnTest {
         Position oneUp = Position.add(whitePawn.getPosition(), new Position(0, 1));
         Position twoUp = Position.add(whitePawn.getPosition(), new Position(0, 2));
         board.getPieces(Player.BLACK).get(0).setPosition(oneUp);
-        assertFalse(whitePawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(twoUp));
+        assertFalse(board.getAllowedMoves(whitePawn).contains(twoUp));
     }
 
     @Test
     public void blackCorrectRegularMove() {
         Position oneDown = Position.add(blackPawn.getPosition(), new Position(0, -1));
-        assertTrue(blackPawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(oneDown));
+        assertTrue(board.getAllowedMoves(blackPawn).contains(oneDown));
     }
 
     @Test
     public void blackCorrectDoubleMove() {
         Position twoDown = Position.add(blackPawn.getPosition(), new Position(0, -2));
-        assertTrue(blackPawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(twoDown));
+        assertTrue(board.getAllowedMoves(blackPawn).contains(twoDown));
     }
 
     @Test
     public void blackCorrectAttackMoveRight() {
         Position right = Position.add(blackPawn.getPosition(), new Position(1, -1));
         board.getPieces(Player.WHITE).get(0).setPosition(right);
-        assertTrue(blackPawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(right));
+        assertTrue(board.getAllowedMoves(blackPawn).contains(right));
     }
 
     @Test
     public void blackCorrectAttackMoveLeft() {
         Position left = Position.add(blackPawn.getPosition(), new Position(-1, -1));
         board.getPieces(Player.WHITE).get(0).setPosition(left);
-        assertTrue(blackPawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(left));
+        assertTrue(board.getAllowedMoves(blackPawn).contains(left));
     }
 
     @Test
@@ -167,7 +149,7 @@ public class PawnTest {
         Position oneUp = Position.add(blackPawn.getPosition(), new Position(0, -1));
         Position twoUp = Position.add(blackPawn.getPosition(), new Position(0, -2));
         board.getPieces(Player.WHITE).get(0).setPosition(oneUp);
-        assertFalse(blackPawn.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(twoUp));
+        assertFalse(board.getAllowedMoves(blackPawn).contains(twoUp));
     }
 
     @Test
@@ -207,7 +189,7 @@ public class PawnTest {
     @Test
     public void copyOfOtherIsNotSame3() {
         Piece other = whitePawn.copy();
-        whitePawn.doFirstMove();
+        board.movePiece(whitePawn, new Position(3, 2));
         assertFalse(other.equals(whitePawn));
     }
 

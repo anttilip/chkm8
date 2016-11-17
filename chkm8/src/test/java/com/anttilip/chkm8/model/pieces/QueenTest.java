@@ -57,61 +57,61 @@ public class QueenTest {
     
     @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 27);
+        assertTrue(board.getAllowedMoves(queen).size() == 27);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(queen.getPosition(), new Position(0, 2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(queen.getPosition(), new Position(0, -2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(queen.getPosition(), new Position(-2, 0));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(queen.getPosition(), new Position(2, 0));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void topRightMove() {
         Position position = Position.add(queen.getPosition(), new Position(2, 2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void topLeftMove() {
         Position position = Position.add(queen.getPosition(), new Position(-2, 2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void bottomRightMove() {
         Position position = Position.add(queen.getPosition(), new Position(2, -2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void bottomLeftMove() {
         Position position = Position.add(queen.getPosition(), new Position(-2, -2));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
     public void doesntHaveIllegalMove() {
         Position position = Position.add(queen.getPosition(), new Position(3, 2));
-        assertFalse(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
@@ -119,7 +119,7 @@ public class QueenTest {
         Position position = Position.add(queen.getPosition(), new Position(2, 0));
         Position inTheWay = Position.add(queen.getPosition(), new Position(1, 0));
         board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
-        assertFalse(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(queen).contains(position));
     }
     
     @Test
@@ -127,21 +127,21 @@ public class QueenTest {
         Position position = Position.add(queen.getPosition(), new Position(2, 2));
         Position inTheWay = Position.add(queen.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(inTheWay, Player.WHITE));
-        assertFalse(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertFalse(board.getAllowedMoves(queen).contains(position));
     }
     
      @Test
     public void canEatEnemy() {
         Position enemy = Position.add(queen.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
+        assertTrue(board.getAllowedMoves(queen).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(queen.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(queen.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
+        assertFalse(board.getAllowedMoves(queen).contains(friendly));
     }
 
     @Test

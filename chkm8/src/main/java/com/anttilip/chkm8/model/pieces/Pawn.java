@@ -52,18 +52,13 @@ public class Pawn extends Piece {
         }
     }
 
-    public boolean isInTheEnd() {
+    private boolean isInTheEnd() {
         return (this.player == Player.WHITE && this.position.getY() == Board.BOARD_SIZE - 1)
                 || (this.player == Player.BLACK && this.position.getY() == 0);
     }
 
     public boolean isFirstMove() {
         return this.firstMove;
-    }
-
-    public void doFirstMove() {
-        // TODO: Remove this and fix tests using this
-        this.firstMove = false;
     }
 
     @Override
@@ -73,7 +68,7 @@ public class Pawn extends Piece {
 
         // Double move
         Position doubleMove = Position.add(this.position, new Position(0, moveDirection * 2));
-        if (isFirstMove() && allowedMoves.contains(Position.add(this.position, this.moveDirections[0]))) {
+        if (this.firstMove && allowedMoves.contains(Position.add(this.position, this.moveDirections[0]))) {
             if (!board.isOccupied(doubleMove)) {
                 possibleMoves.add(doubleMove);
             }

@@ -60,7 +60,7 @@ public abstract class Piece {
 
     abstract Position[] getMoveDirections();
 
-    public void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
+    protected void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
     }
 
     public void kill(Board board) {

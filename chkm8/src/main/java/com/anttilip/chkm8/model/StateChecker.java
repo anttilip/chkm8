@@ -75,10 +75,10 @@ final class StateChecker {
             }
         }
 
-        if (moveCounter.values().size() > 0 && Collections.max(moveCounter.values()) >= 5) {
+        if (Collections.max(moveCounter.values()) >= 5) {
             gameStates.add(GameState.REPETITION5);
         }
-        if (moveCounter.values().size() > 0 && Collections.max(moveCounter.values()) >= 3) {
+        if (Collections.max(moveCounter.values()) >= 3) {
             gameStates.add(GameState.REPETITION3);
         }
     }

@@ -53,69 +53,69 @@ public class KingTest {
 
      @Test
     public void movesInEmptyMapInitPosition() {
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).size() == 8);
+        assertTrue(board.getAllowedMoves(king).size() == 8);
     }
     
     @Test
     public void topMove() {
         Position position = Position.add(king.getPosition(), new Position(0, 1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void bottomMove() {
         Position position = Position.add(king.getPosition(), new Position(0, -1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void leftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 0));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void rightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 0));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void topRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, 1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void topLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, 1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void bottomRightMove() {
         Position position = Position.add(king.getPosition(), new Position(1, -1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void bottomLeftMove() {
         Position position = Position.add(king.getPosition(), new Position(-1, -1));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(position));
+        assertTrue(board.getAllowedMoves(king).contains(position));
     }
     
     @Test
     public void canEatEnemy() {
         Position enemy = Position.add(king.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(enemy, Player.BLACK));
-        assertTrue(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(enemy));
+        assertTrue(board.getAllowedMoves(king).contains(enemy));
     }
     
     @Test
     public void cantEatOwnPieces() {
         Position friendly = Position.add(king.getPosition(), new Position(1, 1));
         board.getPieces().add(new Pawn(friendly, Player.WHITE));
-        assertFalse(king.getAllowedMoves(board, EnumSet.of(MoveLimitation.NONE)).contains(friendly));
+        assertFalse(board.getAllowedMoves(king).contains(friendly));
     }
 
     @Test
