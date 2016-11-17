@@ -6,24 +6,36 @@
 </head>
 <body>
 <div id="overview"><a href="../../../../apidocs/com/anttilip/chkm8/Main.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <strong class="jxr_keyword">package</strong> com.anttilip.chkm8;
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.Board;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.ChessState;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.Piece;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/anttilip/chkm8/Main.html">Main</a> {
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>       <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) {
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>          <a href="../../../com/anttilip/chkm8/model/ChessState.html">ChessState</a> chessState = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/ChessState.html">ChessState</a>();
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>          
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>          <a href="../../../com/anttilip/chkm8/model/Board.html">Board</a> board = chessState.getBoard();
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>          <em class="jxr_comment">// Print pieces</em>
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>          <strong class="jxr_keyword">for</strong> (Piece p : board.getPieces()) {
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>              System.out.println(p.toString());
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>          }
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>      }
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  }
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.anttilip.chkm8;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.Board;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.ChessState;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.Player;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.Position;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.pieces.King;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.pieces.Pawn;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.anttilip.chkm8.model.pieces.Rook;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/anttilip/chkm8/Main.html">Main</a> {
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) {
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>          <a href="../../../com/anttilip/chkm8/model/ChessState.html">ChessState</a> chessState = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/ChessState.html">ChessState</a>();
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>          System.out.println(<span class="jxr_string">"Board is initialized with default positions\n"</span>);
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>          <a href="../../../com/anttilip/chkm8/model/Board.html">Board</a> board2 = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/Board.html">Board</a>(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>          <a href="../../../com/anttilip/chkm8/model/pieces/King.html">King</a> whiteKing = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/pieces/King.html">King</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/Position.html">Position</a>(3, 3), Player.WHITE);
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>          <a href="../../../com/anttilip/chkm8/model/pieces/Pawn.html">Pawn</a> whitePawn = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/pieces/Pawn.html">Pawn</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/Position.html">Position</a>(4, 2), Player.WHITE);
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>          <a href="../../../com/anttilip/chkm8/model/pieces/Rook.html">Rook</a> blackRook = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/pieces/Rook.html">Rook</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/Position.html">Position</a>(5, 3), Player.BLACK);
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>          <a href="../../../com/anttilip/chkm8/model/pieces/King.html">King</a> blackKing = <strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/pieces/King.html">King</a>(<strong class="jxr_keyword">new</strong> <a href="../../../com/anttilip/chkm8/model/Position.html">Position</a>(6, 6), Player.BLACK);
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>          board2.getPieces().add(whiteKing);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>          board2.getPieces().add(whitePawn);
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          board2.getPieces().add(blackRook);
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          board2.getPieces().add(blackKing);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          System.out.println(<span class="jxr_string">"\n\nWhite pawn position: "</span> + blackRook.getPosition());
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          System.out.println(<span class="jxr_string">"White pawn allowed moves: "</span> + board2.getAllowedMoves(blackRook));
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      }
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2016. All rights reserved.</div>

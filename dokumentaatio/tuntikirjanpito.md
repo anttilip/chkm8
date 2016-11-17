@@ -7,3 +7,7 @@
 12.11.2016 |   6h   | Nappuloiden liikkeet ja pirusti testejä
 12.11.2016 |   8h   | Pelitilat, paremmat liikkeet ja lisää testejä
 13.11.2016 |   3h   | Lisää pelitiloja ja testejä
+14.11.2016 |   5h   | Uusien erikoisliikkeiden lisäys
+15.11.2016 |   4h   | Lisää erikoisliikkeitä ja testejä
+16.11.2016 |   5h   | Rakennetta uusiksi, erikoisliikkeitä ja testejä
+17.11.2016 |   1h   | Dokumentaation päivitystä

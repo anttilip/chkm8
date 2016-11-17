@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2016</copyright>
     <item>
-      <title>File: 12,
+      <title>File: 16,
              Errors: 1,
              Warnings: 0,
              Infos: 0
@@ -47,20 +47,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Position.java">com/anttilip/chkm8/model/Position.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Piece.java">com/anttilip/chkm8/model/Piece.java</a>
                 </td>
                 <td>
                   0
@@ -97,26 +83,138 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Pawn.java">com/anttilip/chkm8/model/Pawn.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
                   1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Queen.java">com/anttilip/chkm8/model/Queen.java</a>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.Main.java">com/anttilip/chkm8/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Move.java">com/anttilip/chkm8/model/Move.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Pawn.java">com/anttilip/chkm8/model/pieces/Pawn.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.King.java">com/anttilip/chkm8/model/pieces/King.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Knight.java">com/anttilip/chkm8/model/pieces/Knight.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Queen.java">com/anttilip/chkm8/model/pieces/Queen.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Piece.java">com/anttilip/chkm8/model/pieces/Piece.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.StateChecker.java">com/anttilip/chkm8/model/StateChecker.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Bishop.java">com/anttilip/chkm8/model/pieces/Bishop.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.pieces.Rook.java">com/anttilip/chkm8/model/pieces/Rook.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.Main.java">com/anttilip/chkm8/Main.java</a>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.GameState.java">com/anttilip/chkm8/model/GameState.java</a>
                 </td>
                 <td>
                   0
@@ -158,49 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Knight.java">com/anttilip/chkm8/model/Knight.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.King.java">com/anttilip/chkm8/model/King.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Bishop.java">com/anttilip/chkm8/model/Bishop.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.Rook.java">com/anttilip/chkm8/model/Rook.java</a>
+                  <a href="${project.url}/checkstyle.html#com.anttilip.chkm8.model.MoveLimitation.java">com/anttilip/chkm8/model/MoveLimitation.java</a>
                 </td>
                 <td>
                   0
