@@ -25,7 +25,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-     Position[] getMoveDirections() {
+     public Position[] getMoveDirections() {
         return MOVE_DIRECTIONS;
     }
 

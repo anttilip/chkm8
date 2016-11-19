@@ -13,7 +13,7 @@ import com.anttilip.chkm8.model.Position;
  * @author antti
  */
 public class Knight extends Piece {
-    private static final Position[] MOVE_DIRECTIONS = {
+    public static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 2), // Up Right
         new Position(-1, 2), // Up Left
         new Position(-2, 1), // Left Up
@@ -29,7 +29,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    Position[] getMoveDirections() {
+    public Position[] getMoveDirections() {
         return MOVE_DIRECTIONS;
     }
 

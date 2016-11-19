@@ -26,6 +26,8 @@ public class PawnTest {
 
     private Pawn whitePawn;
     private Pawn blackPawn;
+    private King whiteKing;
+    private King blackKing;
     private Board board;
 
     public PawnTest() {
@@ -41,15 +43,17 @@ public class PawnTest {
 
     @Before
     public void setUp() {
+        // Kings are needed to ensure that game runs correctly
+        // However kings are intentionally placed outside the map
         whitePawn = new Pawn(new Position(3, 1), Player.WHITE);
         blackPawn = new Pawn(new Position(3, 6), Player.BLACK);
+        whiteKing = new King(new Position(0, 0), Player.WHITE);
+        blackKing = new King(new Position(7, 7), Player.BLACK);
         board = new Board(new ArrayList<>());
         board.getPieces().add(whitePawn);
         board.getPieces().add(blackPawn);
-        // Kings are needed to ensure that game runs correctly
-        // However kings are intentionally placed outside the map
-        board.getPieces().add(new King(new Position(12, 10), Player.WHITE));
-        board.getPieces().add(new King(new Position(10, 12), Player.BLACK));
+        board.getPieces().add(whiteKing);
+        board.getPieces().add(blackKing);
     }
 
     @After
@@ -72,6 +76,7 @@ public class PawnTest {
         ChessState cs = new ChessState();
         cs.getBoard().getPieces().clear();
         cs.getBoard().getPieces().add(whitePawn);
+        cs.getBoard().getPieces().add(whiteKing);
         assertTrue(cs.getBoard().getAllowedMoves(whitePawn).size() == 2);
     }
 
@@ -80,7 +85,9 @@ public class PawnTest {
         ChessState cs = new ChessState();
         cs.getBoard().getPieces().clear();
         cs.getBoard().getPieces().add(whitePawn);
+        cs.getBoard().getPieces().add(whiteKing);
         cs.move(whitePawn, new Position(3, 2));
+
         assertTrue(cs.getBoard().getAllowedMoves(whitePawn).size() == 1);
     }
 

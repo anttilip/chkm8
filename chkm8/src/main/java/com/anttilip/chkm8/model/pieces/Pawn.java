@@ -22,7 +22,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    Position[] getMoveDirections() {
+    public Position[] getMoveDirections() {
         return this.moveDirections;
     }
 
@@ -61,14 +61,12 @@ public class Pawn extends Piece {
         return this.firstMove;
     }
 
-    @Override
-    public void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
-        // Gather every possible special move to a list
-        List<Position> possibleMoves = new ArrayList<>();
 
+    @Override
+    public void getSpecialMoves(Board board, List<Position> possibleMoves) {
         // Double move
         Position doubleMove = Position.add(this.position, new Position(0, moveDirection * 2));
-        if (this.firstMove && allowedMoves.contains(Position.add(this.position, this.moveDirections[0]))) {
+        if (this.firstMove && possibleMoves.contains(Position.add(this.position, this.moveDirections[0]))) {
             if (!board.isOccupied(doubleMove)) {
                 possibleMoves.add(doubleMove);
             }
@@ -76,8 +74,8 @@ public class Pawn extends Piece {
 
         // Attacking moves
         Position[] attackingMoves = {
-                Position.add(this.position, new Position(1, moveDirection)),
-                Position.add(this.position, new Position(-1, moveDirection))
+            Position.add(this.position, new Position(1, moveDirection)),
+            Position.add(this.position, new Position(-1, moveDirection))
         };
         for (Position attackMove : attackingMoves) {
             // Regular attack move
@@ -87,13 +85,6 @@ public class Pawn extends Piece {
             // En passant
             if (board.getEnPassantPosition() != null && board.getEnPassantPosition().equals(attackMove)) {
                 possibleMoves.add(attackMove);
-            }
-        }
-
-        // Possible moves are allowed if own king doesn't get threatened
-        for (Position move : possibleMoves) {
-            if (limit.contains(MoveLimitation.ALLOW_SELF_CHECK) || !super.moveLeadsToSelfCheck(move, board, limit)) {
-                allowedMoves.add(move);
             }
         }
     }

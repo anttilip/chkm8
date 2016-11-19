@@ -41,7 +41,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    Position[] getMoveDirections() {
+    public Position[] getMoveDirections() {
         return MOVE_DIRECTIONS;
     }
 

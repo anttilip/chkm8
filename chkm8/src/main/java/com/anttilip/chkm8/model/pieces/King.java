@@ -18,7 +18,7 @@ import java.util.List;
  * @author antti
  */
 public class King extends Piece {
-    private static final Position[] MOVE_DIRECTIONS = {
+    public static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 0), // Right
         new Position(0, 1), // Up
         new Position(-1, 0), // Left
@@ -61,14 +61,11 @@ public class King extends Piece {
     }
 
     @Override
-    public void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
+    public void getSpecialMoves(Board board, List<Position> possibleMoves) {
         // Castling
-        if (limit.contains(MoveLimitation.IGNORE_CASTLING)) {
-            return;
-        }
         for (Rook rook : board.getRooks(this.player)) {
             if (board.isCastlingAllowed(this, rook)) {
-                allowedMoves.add(rook.getPosition());
+                possibleMoves.add(rook.getPosition());
             }
         }
     }
@@ -78,7 +75,7 @@ public class King extends Piece {
     }
 
     @Override
-    Position[] getMoveDirections() {
+    public Position[] getMoveDirections() {
         return MOVE_DIRECTIONS;
     }
 

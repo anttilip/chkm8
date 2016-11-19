@@ -1,12 +1,10 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 public abstract class Piece {
@@ -28,50 +26,37 @@ public abstract class Piece {
         this.position = newPosition;
     }
 
-    public List<Position> getAllowedMoves(Board board, EnumSet<MoveLimitation> limit) {
-        List<Position> allowedMoves = new ArrayList<>();
-
+    public List<Position> getPossibleMoves(Board board) {
+        List<Position> getPossibleMoves = new ArrayList<>();
         for (Position direction : this.getMoveDirections()) {
             Position target = Position.add(this.position, direction);
             while (target.onBoard()) {
                 if (!board.isOccupied(target)) {
-                    if (limit.contains(MoveLimitation.ALLOW_SELF_CHECK) || !moveLeadsToSelfCheck(target, board, limit)) {
-                        allowedMoves.add(target);
-                        if (this.canMoveMoreThanOnce) {
-                            // If piece can move more than once, move target position to the same direction
-                            target = Position.add(target, direction);
-                            continue;
-                        }
+                    getPossibleMoves.add(target);
+                    if (this.canMoveMoreThanOnce) {
+                        // If piece can move more than once, move target position to the same direction
+                        target = Position.add(target, direction);
+                        continue;
                     }
                 } else if (board.getPiece(target).player != this.player && !(this instanceof Pawn)) {
                     // Pawn is only piece that can't attack where it moves
-                    if (limit.contains(MoveLimitation.ALLOW_SELF_CHECK) ||  !moveLeadsToSelfCheck(target, board, limit)) {
-                        allowedMoves.add(target);
-                    }
+                    getPossibleMoves.add(target);
                 }
-                // Target position was not in board or was occupied by
                 break;
             }
         }
-        // Some pieces have special moves that need to be checked
-        getSpecialMoves(board, limit, allowedMoves);
-        return allowedMoves;
+
+        getSpecialMoves(board, getPossibleMoves);
+        return getPossibleMoves;
     }
 
-    abstract Position[] getMoveDirections();
+    public abstract Position[] getMoveDirections();
 
-    protected void getSpecialMoves(Board board, EnumSet<MoveLimitation> limit, List<Position> allowedMoves) {
+    protected void getSpecialMoves(Board board, List<Position> possibleMoves) {
     }
 
     public void kill(Board board) {
         board.getPieces().remove(this);
-    }
-
-    public boolean moveLeadsToSelfCheck(Position target, Board board, EnumSet<MoveLimitation> limit) {
-        Board boardCopy = board.copy();
-        boardCopy.setEnPassantPosition(null);
-        boardCopy.movePiece(boardCopy.getPiece(this.position), target);
-        return boardCopy.isCheck(this.player, limit);
     }
 
     public Position getPosition() {

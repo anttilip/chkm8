@@ -30,7 +30,7 @@ public class ChessState {
     }
 
     public List<Position> getGetPiecesAllowedMoves(int x, int y) {
-        return this.board.getAllowedMoves(board.getPiece(x, y));
+        return this.board.getAllowedMoves(this.board.getPiece(x, y));
     }
 
     public void move(Piece piece, Position targetPosition) {
