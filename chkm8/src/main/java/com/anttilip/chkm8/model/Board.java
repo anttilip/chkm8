@@ -40,6 +40,7 @@ public class Board {
             Piece copy = afterMove.getPiece(piece.getPosition());
             afterMove.movePiece(copy, move);
             if (!afterMove.isCheck(copy.getPlayer())) {
+                // Move does not lead to own king being in check so move is allowed
                 allowedMoves.add(move);
             }
         }
@@ -106,38 +107,33 @@ public class Board {
     }
 
     public boolean isCheck(Player player) {
-        return getThreateningPieces(player).size() != 0;
-    }
-
-    private List<Piece> getThreateningPieces(Player player) {
-        List<Piece> threateningPieces = new ArrayList<>();
-        King playersKing = this.getKing(player);
+        King king = this.getKing(player);
 
         // Check if pawns threaten king
         int enemyPawnDirection = (player == Player.WHITE) ? 1 : -1;
-        Piece right = this.getPiece(playersKing.getPosition().getX() + 1, enemyPawnDirection);
-        Piece left = this.getPiece(playersKing.getPosition().getX() - 1, enemyPawnDirection);
+        Piece right = this.getPiece(king.getPosition().getX() + 1, enemyPawnDirection);
+        Piece left = this.getPiece(king.getPosition().getX() - 1, enemyPawnDirection);
 
         if (right instanceof Pawn && right.getPlayer() != player) {
             // Pawn on right threatens the king
-            threateningPieces.add(right);
+            return true;
         }
         if (left instanceof Pawn && left.getPlayer() != player) {
             // Pawn on left threatens the king
-            threateningPieces.add(left);
+            return true;
         }
 
-        // Check if knight threaten king
+        // Check if a knight threaten king
         for (Position direction : Knight.MOVE_DIRECTIONS) {
-            Piece enemy = this.getPiece(Position.add(playersKing.getPosition(), direction));
+            Piece enemy = this.getPiece(Position.add(king.getPosition(), direction));
             if (enemy instanceof Knight && enemy.getPlayer() == Player.getOther(player)) {
-                threateningPieces.add(enemy);
+                return true;
             }
         }
 
         // Scan from king to check if rooks, bishops or queens threaten the king
         for (Position direction : King.MOVE_DIRECTIONS) {
-            Position square = Position.add(playersKing.getPosition(), direction);
+            Position square = Position.add(king.getPosition(), direction);
             while (square.onBoard()) {
                 if (this.getPiece(square) != null) {
                     if (Player.getOther(player) == this.getPiece(square).getPlayer()) {
@@ -147,16 +143,17 @@ public class Board {
                             break;
                         }
                         if (Arrays.asList(enemyPiece.getMoveDirections()).contains(direction)) {
-                            threateningPieces.add(enemyPiece);
+                            // King is in check if enemy piece can move to the same direction as king
+                            return true;
                         }
                     }
+                    // If scan finds own piece, king can't be threatened from that direction
                     break;
                 }
                 square = Position.add(square, direction);
             }
         }
-
-        return threateningPieces;
+        return false;
     }
 
     public boolean isCastlingAllowed(King king, Rook rook) {
