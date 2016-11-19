@@ -37,7 +37,7 @@ final class StateChecker {
 
     private static void checkCheckStates(ChessState chessState, Set<GameState> gameStates) {
         for (Player player : Player.values()) {
-            if (chessState.getBoard().isCheck(player)) {
+            if (chessState.getBoard().isPlayerChecked(player)) {
                 // Player is checked
                 gameStates.add(GameState.CHECK);
                 if (!playerHasAllowedMoves(chessState, player)) {

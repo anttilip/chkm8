@@ -39,7 +39,7 @@ public class Board {
             Board afterMove = this.copy();
             Piece copy = afterMove.getPiece(piece.getPosition());
             afterMove.movePiece(copy, move);
-            if (!afterMove.isCheck(copy.getPlayer())) {
+            if (!afterMove.isPlayerChecked(copy.getPlayer())) {
                 // Move does not lead to own king being in check so move is allowed
                 allowedMoves.add(move);
             }
@@ -106,7 +106,7 @@ public class Board {
         return getPiece(position) != null;
     }
 
-    public boolean isCheck(Player player) {
+    public boolean isPlayerChecked(Player player) {
         King king = this.getKing(player);
 
         // Check if pawns threaten king
