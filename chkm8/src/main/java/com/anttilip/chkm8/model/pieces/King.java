@@ -42,12 +42,12 @@ public class King extends Piece {
             Piece rook = board.getPiece(newPosition);
             if (this.position.getX() < rook.position.getX()) {
                 // King side castling
-                this.position = Position.add(this.position, new Position(2, 0));
-                board.movePiece(rook, Position.add(rook.position, new Position(-2, 0)));
+                this.position.add(2, 0);
+                board.movePiece(rook, rook.position.copy().add(-2, 0));
             } else {
                 // Queen side castling
-                this.position = Position.add(this.position, new Position(-2, 0));
-                board.movePiece(rook, Position.add(rook.position, new Position(3, 0)));
+                this.position.add(-2, 0);
+                board.movePiece(rook, rook.position.copy().add(3, 0));
             }
         } else {
             // No castling, so regular movement

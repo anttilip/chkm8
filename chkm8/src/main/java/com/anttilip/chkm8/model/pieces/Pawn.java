@@ -62,8 +62,8 @@ public class Pawn extends Piece {
     @Override
     public void getSpecialMoves(Board board, List<Position> possibleMoves) {
         // Double move
-        Position doubleMove = Position.add(this.position, new Position(0, moveDirection * 2));
-        if (this.firstMove && possibleMoves.contains(Position.add(this.position, this.moveDirections[0]))) {
+        Position doubleMove = this.position.copy().add(0, moveDirection * 2);
+        if (this.firstMove && possibleMoves.contains(this.position.copy().add(0, moveDirection))) {
             if (!board.isOccupied(doubleMove)) {
                 possibleMoves.add(doubleMove);
             }
@@ -71,8 +71,8 @@ public class Pawn extends Piece {
 
         // Attacking moves
         Position[] attackingMoves = {
-            Position.add(this.position, new Position(1, moveDirection)),
-            Position.add(this.position, new Position(-1, moveDirection))
+            this.position.copy().add(1, moveDirection),
+            this.position.copy().add(-1, moveDirection)
         };
         for (Position attackMove : attackingMoves) {
             // Regular attack move
