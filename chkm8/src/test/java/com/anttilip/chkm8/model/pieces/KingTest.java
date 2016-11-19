@@ -126,6 +126,15 @@ public class KingTest {
     }
 
     @Test
+    public void doesNotMoveIntoCheckWhenEnemyIsPinned() {
+        board.getPieces().add(new Rook(new Position(3, 4), Player.WHITE));
+        board.getPieces().add(new Knight(new Position(3, 5), Player.BLACK));
+        board.getPieces().add(new King(new Position(3, 6), Player.BLACK));
+        List<Position> moves = board.getAllowedMoves(king);
+        assertFalse(moves.contains(new Position(4, 3)));
+    }
+
+    @Test
     public void copyOfItselfIsSame() {
         assertTrue(king.copy().equals(king));
     }

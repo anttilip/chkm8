@@ -1,5 +1,6 @@
 package com.anttilip.chkm8.model;
 
+import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.Piece;
 import org.junit.Before;
@@ -55,6 +56,25 @@ public class StateCheckerTest {
         chessState.move(blackRook, new Position(2, 5));
         assertTrue(chessState.getGameStates().contains(GameState.CHECK));
     }
+
+    @Test
+    public void pawnsCauseCheckLeft() {
+        chessState.getBoard().getPieces().clear();
+        chessState.getBoard().getPieces().add(new King(new Position(7, 7), Player.BLACK));
+        chessState.getBoard().getPieces().add(new King(new Position(4, 0), Player.WHITE));
+        chessState.getBoard().getPieces().add(new Pawn(new Position(3, 1), Player.BLACK));
+        assertTrue(chessState.getGameStates().contains(GameState.CHECK));
+    }
+
+    @Test
+    public void pawnsCauseCheckRight() {
+        chessState.getBoard().getPieces().clear();
+        chessState.getBoard().getPieces().add(new King(new Position(7, 7), Player.BLACK));
+        chessState.getBoard().getPieces().add(new King(new Position(4, 0), Player.WHITE));
+        chessState.getBoard().getPieces().add(new Pawn(new Position(5, 1), Player.BLACK));
+        assertTrue(chessState.getGameStates().contains(GameState.CHECK));
+    }
+
 
     @Test
     public void stateIncompleteWhenOnlyCheck() {

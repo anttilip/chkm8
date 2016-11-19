@@ -143,6 +143,15 @@ public class QueenTest {
     }
 
     @Test
+    public void eatenEnemiesAreRemoved() {
+        Position pawnPosition = Position.add(queen.getPosition(), new Position(1, 1));
+        Pawn enemyPawn = new Pawn(pawnPosition, Player.BLACK);
+        board.getPieces().add(enemyPawn);
+        board.movePiece(queen, pawnPosition);
+        assertFalse(board.getPieces().contains(enemyPawn));
+    }
+
+    @Test
     public void moveCantCauseCheck() {
         Piece whiteKing = board.getKing(Player.WHITE);
         Piece blackRook = new Rook(new Position(3, 5), Player.BLACK);
