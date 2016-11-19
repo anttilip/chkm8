@@ -6,11 +6,9 @@
 package com.anttilip.chkm8.model.pieces;
 
 import com.anttilip.chkm8.model.Board;
-import com.anttilip.chkm8.model.MoveLimitation;
 import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 import org.junit.After;
