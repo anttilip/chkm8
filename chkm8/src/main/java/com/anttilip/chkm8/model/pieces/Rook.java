@@ -10,10 +10,12 @@ import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
 /**
- *
- * @author antti
+ * Represents a rook, extends the abstract Piece class.
  */
 public class Rook extends Piece {
+    /**
+     * Rooks allowed move directions.
+     */
     private static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 0), // Right
         new Position(0, 1), // Up
@@ -27,6 +29,13 @@ public class Rook extends Piece {
         this.firstMove = true;
     }
 
+    /**
+     * Moves rook to the given position.
+     *
+     * Rook is special piece since it is used for castling.
+     * @param newPosition Position that piece is moved to.
+     * @param board Board that piece belongs to.
+     */
     @Override
     public void move(Position newPosition, Board board) {
         this.firstMove = false;

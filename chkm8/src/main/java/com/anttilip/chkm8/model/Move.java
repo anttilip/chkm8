@@ -8,8 +8,7 @@ package com.anttilip.chkm8.model;
 import com.anttilip.chkm8.model.pieces.Piece;
 
 /**
- *
- * @author antti
+ * Represents one move and board state before the move.
  */
 public class Move {
 
@@ -18,6 +17,13 @@ public class Move {
     private final Position origin;
     private final Board board;
 
+    /**
+     * Constructs the move.
+     * @param piece Piece that is moved.
+     * @param origin Position from which piece is moved.
+     * @param target Position to which piece is moved.
+     * @param board Board before piece is moved
+     */
     public Move(Piece piece, Position origin, Position target, Board board) {
         this.piece = piece;
         this.origin = origin;

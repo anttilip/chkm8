@@ -6,8 +6,7 @@
 package com.anttilip.chkm8.model;
 
 /**
- *
- * @author antti
+ * Enum class representing different game states, e.g. check and stalemate.
  */
 public enum GameState {
     CHECK,

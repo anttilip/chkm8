@@ -9,10 +9,12 @@ import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
 /**
- *
- * @author antti
+ * Represents a bishop, extends the abstract Piece class.
  */
 public class Bishop extends Piece {
+    /**
+     * Bishops allowed move directions.
+     */
     private static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 1), // Up-Right
         new Position(-1, 1), // Up-Left

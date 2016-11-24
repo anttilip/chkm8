@@ -9,10 +9,12 @@ import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
 /**
- *
- * @author antti
+ * Represents a knight, extends the abstract Piece class.
  */
 public class Knight extends Piece {
+    /**
+     * Knights allowed move directions.
+     */
     public static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 2), // Up Right
         new Position(-1, 2), // Up Left

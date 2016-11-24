@@ -12,16 +12,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *  Represents the chess board.
+ */
+
 public class Board {
     public static final int BOARD_SIZE = 8;
     private final List<Piece> pieces;
     private Position enPassantPosition;
 
+    /**
+     * Constructs a new board with given pieces.
+     * @param pieces Board is initialized with given pieces
+     */
     public Board(List<Piece> pieces) {
         this.pieces = pieces;
         this.enPassantPosition = null;
     }
 
+    /**
+     * Moves given piece to a given position.
+     * @param piece Piece that is moved
+     * @param target Position that piece is moved to
+     */
     public void movePiece(Piece piece, Position target) {
         // Remove en passant since no one attacked it this turn
         if (enPassantPosition != null && !target.equals(this.enPassantPosition)) {
@@ -31,6 +44,14 @@ public class Board {
         piece.move(target, this);
     }
 
+    /**
+     * Gets pieces' allowed moves
+     *
+     * Fetches all possible moves from piece and filters out moves which would lead to own king being in check
+     *
+     * @param piece Piece for which allowed moves are calculated
+     * @return List of positions where piece is allowed to move
+     */
     public List<Position> getAllowedMoves(Piece piece) {
         // Get all possible moves that piece can make and filter out
         // moves that would lead to own king being checked
@@ -48,6 +69,11 @@ public class Board {
         return allowedMoves;
     }
 
+    /**
+     * Searches and returns piece at given position
+     * @param position
+     * @return Piece in the given position, if position does not contain a piece, null is returned
+     */
     public Piece getPiece(Position position) {
         for (Piece piece : this.pieces) {
             if (piece.getPosition().equals(position)) {
@@ -65,6 +91,11 @@ public class Board {
         return this.pieces;
     }
 
+    /**
+     * Searches and returns list of given players pieces.
+     * @param player
+     * @return List of players pieces
+     */
     public List<Piece> getPieces(Player player) {
         List<Piece> playersPieces = new ArrayList<>();
         for (Piece piece : this.pieces) {
@@ -75,6 +106,11 @@ public class Board {
         return playersPieces;
     }
 
+    /**
+     * Searches and returns players king
+     * @param player
+     * @return Players king
+     */
     public King getKing(Player player) {
         for (Piece piece : this.pieces) {
             if (piece instanceof King && piece.getPlayer() == player) {
@@ -84,6 +120,11 @@ public class Board {
         return null;
     }
 
+    /**
+     * Searches and returns all players rooks as a List
+     * @param player
+     * @return List of players rooks
+     */
     public List<Rook> getRooks(Player player) {
         List<Rook> rooks = new ArrayList<>();
         for (Piece rook : this.getPieces(player)) {
@@ -94,18 +135,40 @@ public class Board {
         return rooks;
     }
 
+    /**
+     * If board has a en passant position for a pawn, en passant position is returned
+     * @return En passant position
+     */
     public Position getEnPassantPosition() {
         return this.enPassantPosition;
     }
 
+    /**
+     * Sets new en passant position
+     * @param enPassantPosition
+     */
     public void setEnPassantPosition(Position enPassantPosition) {
         this.enPassantPosition = enPassantPosition;
     }
 
+    /**
+     * Checks if position contains a piece
+     * @param position
+     * @return boolean value of position containing a piece
+     */
     public boolean isOccupied(Position position) {
         return getPiece(position) != null;
     }
 
+    /**
+     * Checks if players king is in check.
+     *
+     * Positions that can threaten players king and checks if position
+     * contains a enemy piece that threatens players king.
+     *
+     * @param player
+     * @return boolean value of player being in check.
+     */
     public boolean isPlayerChecked(Player player) {
         King king = this.getKing(player);
 
@@ -156,6 +219,14 @@ public class Board {
         return false;
     }
 
+    /**
+     * Checks if given king and rook are allowed to castle.
+     *
+     * Checks if king is in check, important squares are not threatened and that no piece blocks the castling.
+     * @param king
+     * @param rook
+     * @return
+     */
     public boolean isCastlingAllowed(King king, Rook rook) {
         // If king or rook has already moved, castling is not possible
         if (!king.isFirstMove() || !rook.isFirstMove()) {
@@ -183,6 +254,12 @@ public class Board {
         return true;
     }
 
+    /**
+     * Checks if given position on board is threatened by given player.
+     * @param player Player that might threaten the position
+     * @param square Square that might be threatened
+     * @return boolean value of square being threatened
+     */
     private boolean isSquareThreatenedBy(Player player, Position square) {
         for (Piece piece : this.getPieces(player)) {
             if (piece instanceof King) {
@@ -196,6 +273,12 @@ public class Board {
         return false;
     }
 
+    /**
+     * Creates standard board
+     *
+     * Creates all pieces in standard positions for both players
+     * @return New board object initialized with default pieces
+     */
     public static Board createBoard() {
         List<Piece> pieces = new ArrayList<>();
 

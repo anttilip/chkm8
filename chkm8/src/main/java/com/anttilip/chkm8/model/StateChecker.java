@@ -4,7 +4,15 @@ import com.anttilip.chkm8.model.pieces.*;
 
 import java.util.*;
 
+/**
+ * Class that checks game states for a given ChessState object
+ */
 final class StateChecker {
+    /**
+     * Static method that checks all game states, e.g. check and stalemate for the given ChessState
+     * @param chessState ChessState for which game states are calculated
+     * @return EnumSet of GameStates that given chessState is in.
+     */
     static EnumSet<GameState> checkStates(ChessState chessState) {
         EnumSet<GameState> gameStates = EnumSet.noneOf(GameState.class);
         checkMoveCountStates(chessState, gameStates);
@@ -26,6 +34,11 @@ final class StateChecker {
         return gameStates;
     }
 
+    /**
+     * Checks if game has had 50 and 75 turns.
+     * @param chessState
+     * @param gameStates
+     */
     private static void checkMoveCountStates(ChessState chessState, Set<GameState> gameStates) {
         if (chessState.getMoveCount() >= 50) {
             gameStates.add(GameState.MOVE50);
@@ -35,6 +48,11 @@ final class StateChecker {
         }
     }
 
+    /**
+     * Checks if any players king is in check or checkmate
+     * @param chessState
+     * @param gameStates
+     */
     private static void checkCheckStates(ChessState chessState, Set<GameState> gameStates) {
         for (Player player : Player.values()) {
             if (chessState.getBoard().isPlayerChecked(player)) {
@@ -48,6 +66,11 @@ final class StateChecker {
         }
     }
 
+    /**
+     * Checks if game is in stalemate.
+     * @param chessState
+     * @param gameStates
+     */
     private static void checkStalemate(ChessState chessState, Set<GameState> gameStates) {
         if (!gameStates.contains(GameState.CHECK)) {
             // If player is checked, game can't be a draw
@@ -63,6 +86,11 @@ final class StateChecker {
         }
     }
 
+    /**
+     * Checks if same board configuration has happened 3 and 5 times already.
+     * @param chessState
+     * @param gameStates
+     */
     private static void checkRepetitions(ChessState chessState, Set<GameState> gameStates) {
         Map<Integer, Integer> moveCounter = new HashMap<>();
         // Include also this board configuration
@@ -83,6 +111,11 @@ final class StateChecker {
         }
     }
 
+    /**
+     * Check if both players have enough pieces for a checkmate
+     * @param chessState
+     * @param gameStates
+     */
     private static void checkInsufficientMaterial(ChessState chessState, Set<GameState> gameStates) {
         // Simplified to few most common scenarios
         if (gameStates.contains(GameState.CHECK)) {
@@ -126,8 +159,14 @@ final class StateChecker {
         }
     }
 
-    private static boolean playerHasAllowedMoves(ChessState chessState, Player p) {
-        for (Piece piece : chessState.getBoard().getPieces(p)) {
+    /**
+     * Check if any piece for given player has any allowed moves.
+     * @param chessState
+     * @param player Player whose allowed moves are calculated.
+     * @return Boolean value of player having any allowed moves.
+     */
+    private static boolean playerHasAllowedMoves(ChessState chessState, Player player) {
+        for (Piece piece : chessState.getBoard().getPieces(player)) {
             if (!chessState.getBoard().getAllowedMoves(piece).isEmpty()) {
                 return true;
             }

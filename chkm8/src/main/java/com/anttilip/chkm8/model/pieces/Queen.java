@@ -9,10 +9,12 @@ import com.anttilip.chkm8.model.Player;
 import com.anttilip.chkm8.model.Position;
 
 /**
- *
- * @author antti
+ * Represents a queen, extends the abstract Piece class.
  */
 public class Queen extends Piece {
+    /**
+     * Queens allowed move directions.
+     */
     private static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 0), // Right
         new Position(0, 1), // Up

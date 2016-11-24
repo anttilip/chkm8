@@ -7,18 +7,33 @@ import com.anttilip.chkm8.model.Position;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An abstract representation of a piece.
+ */
 public abstract class Piece {
 
     protected Position position;
     protected final Player player;
     private final boolean canMoveMoreThanOnce;
 
+    /**
+     * Constructs a new piece with given parameters.
+     * @param position Position of the piece.
+     * @param player Player that piece belongs to.
+     * @param canMoveMoreThanOne Boolean value of piece being able to move more than
+     *                           one square to one direction, i.e. can slide move
+     */
     public Piece(Position position, Player player, boolean canMoveMoreThanOne) {
         this.player = player;
         this.position = position;
         this.canMoveMoreThanOnce = canMoveMoreThanOne;
     }
 
+    /**
+     * Moves piece to new position
+     * @param newPosition Position that piece is moved to.
+     * @param board Board that piece belongs to.
+     */
     public void move(Position newPosition, Board board) {
         if (board.getPiece(newPosition) != null) {
             board.getPiece(newPosition).kill(board);
@@ -26,6 +41,11 @@ public abstract class Piece {
         this.position = newPosition;
     }
 
+    /**
+     * Checks all positions that piece can move to, including moves that might lead to own king getting checked.
+     * @param board Board that piece is in.
+     * @return List of positions that piece can move to.
+     */
     public List<Position> getPossibleMoves(Board board) {
         List<Position> getPossibleMoves = new ArrayList<>();
         for (Position direction : this.getMoveDirections()) {
@@ -50,11 +70,24 @@ public abstract class Piece {
         return getPossibleMoves;
     }
 
+    /**
+     * Returns directions, or move patterns that piece can move to.
+     * @return
+     */
     public abstract Position[] getMoveDirections();
 
+    /**
+     * If piece has some special moves, e.g. kings castling, those to the given list
+     * @param board Board that piece belongs to.
+     * @param possibleMoves List of possible positions that piece can move to.
+     */
     protected void getSpecialMoves(Board board, List<Position> possibleMoves) {
     }
 
+    /**
+     * "Kills" the piece removes it from the board.
+     * @param board
+     */
     public void kill(Board board) {
         board.getPieces().remove(this);
     }
@@ -64,6 +97,7 @@ public abstract class Piece {
     }
 
     public void setPosition(Position position) {
+        //TODO: this should be private. Change the tests.
         this.position = position;
     }
 
@@ -86,5 +120,9 @@ public abstract class Piece {
 
     public abstract boolean equals(Object o);
 
+    /**
+     * Creates an identical copy of the piece.
+     * @return Identical copy of the piece.
+     */
     public abstract Piece copy();
 }

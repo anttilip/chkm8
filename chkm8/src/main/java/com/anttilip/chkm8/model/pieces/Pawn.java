@@ -6,6 +6,9 @@ import com.anttilip.chkm8.model.Position;
 
 import java.util.List;
 
+/**
+ * Represents a pawn, extends the abstract Piece class.
+ */
 public class Pawn extends Piece {
     private boolean firstMove;
     private final Position[] moveDirections;
@@ -18,11 +21,24 @@ public class Pawn extends Piece {
         this.moveDirections = new Position[]{new Position(0, moveDirection)};
     }
 
+    /**
+     * Returns pawns allowed move direction.
+     *
+     * Pawns move direction depends on the player who controls the pawn.
+     * @return Position array containing the move direciton.
+     */
     @Override
     public Position[] getMoveDirections() {
         return this.moveDirections;
     }
 
+    /**
+     * Moves pawn to the given position.
+     *
+     * Pawn is special piece being able to do double moves, attacking moves and en passant moves.
+     * @param newPosition Position that piece is moved to.
+     * @param board Board that piece belongs to.
+     */
     @Override
     public void move(Position newPosition, Board board) {
         this.firstMove = false;
@@ -49,6 +65,10 @@ public class Pawn extends Piece {
         }
     }
 
+    /**
+     * Checks is piece is in the highest rank.
+     * @return Boolean value of pawn being in the highest rank.
+     */
     private boolean isInTheEnd() {
         return (this.player == Player.WHITE && this.position.getY() == Board.BOARD_SIZE - 1)
                 || (this.player == Player.BLACK && this.position.getY() == 0);
@@ -59,6 +79,12 @@ public class Pawn extends Piece {
     }
 
 
+    /**
+     * Adds pawns special double, attacking and en passant moves to the given list.
+     *
+     * @param board Board that piece belongs to.
+     * @param possibleMoves List of possible positions that piece can move to.
+     */
     @Override
     public void getSpecialMoves(Board board, List<Position> possibleMoves) {
         // Double move

@@ -12,10 +12,12 @@ import com.anttilip.chkm8.model.Position;
 import java.util.List;
 
 /**
- *
- * @author antti
+ * Represents a king, extends the abstract Piece class.
  */
 public class King extends Piece {
+    /**
+     * Kings allowed move directions.
+     */
     public static final Position[] MOVE_DIRECTIONS = {
         new Position(1, 0), // Right
         new Position(0, 1), // Up
@@ -33,6 +35,13 @@ public class King extends Piece {
         firstMove = true;
     }
 
+    /**
+     * Move king to a given position.
+     *
+     * King is a special piece and can castle, so moving is a bit different than regular pieces movement.
+     * @param newPosition Position that piece is moved to.
+     * @param board Board that piece belongs to.
+     */
     @Override
     public void move(Position newPosition, Board board) {
         this.firstMove = false;
@@ -58,6 +67,13 @@ public class King extends Piece {
         }
     }
 
+    /**
+     * Adds kings castling moves to the given list.
+     *
+     * Checks from board if castling is allowed and adds castling moves accordingly.
+     * @param board Board that piece belongs to.
+     * @param possibleMoves List of possible positions that piece can move to.
+     */
     @Override
     public void getSpecialMoves(Board board, List<Position> possibleMoves) {
         // Castling

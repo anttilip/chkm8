@@ -35,3 +35,52 @@ public class Main {
         System.out.println("Piece at B1: " + chessState.getPieceAt(1, 0));
     }
 }
+
+   /*
+
+   Piece getPossibleMoves():  getPossibleMoves  -> possibleMoves
+
+TODO:
+  - Kysyttävää pajassa:
+    - Swing vs javafx vs libgdx
+        - Projektin rakenne muuttuu
+    - MVC?
+        - Haluun jättää kivan AI plugin
+            - esim AIController
+            - UserInput ja AI vois käyttää samaa interfacee tms
+
+  - Tests
+
+  - Model
+    - static BoardCreator class?
+        - could have different board layouts
+            - Default
+            - Pawn wars
+            - Special cases for training / demo
+
+  - View
+    - Whole UI
+      - libgdx vs swing
+
+  - Controller
+    - Whole controller
+
+Game
+    - Omistaa M (ChessState), V (GameStateView) ja C (GameStateController)
+    - run() loop
+       - update()
+        - GameStateController
+       - draw()
+
+GameStateView
+    - Renderöi boardin ChessStaten perusteella
+    - Omistaa ChessStaten
+    - draw()
+        - Piirtää boardin, move countit, move historiaa, pelikellon etc
+
+GameStateController
+    - Liikuttaa nappuloita
+    - Handlaa user inputin
+    - Omistaa ChessStaten
+    - update()
+*/
