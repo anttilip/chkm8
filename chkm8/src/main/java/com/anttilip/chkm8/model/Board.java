@@ -174,8 +174,8 @@ public class Board {
 
         // Check if pawns threaten king
         int enemyPawnDirection = (player == Player.WHITE) ? 1 : -1;
-        Piece right = this.getPiece(king.getPosition().getX() + 1, enemyPawnDirection);
-        Piece left = this.getPiece(king.getPosition().getX() - 1, enemyPawnDirection);
+        Piece right = this.getPiece(Position.add(king.getPosition(), new Position(1, enemyPawnDirection)));
+        Piece left = this.getPiece(Position.add(king.getPosition(), new Position(-1, enemyPawnDirection)));
 
         if (right instanceof Pawn && right.getPlayer() != player) {
             // Pawn on right threatens the king
