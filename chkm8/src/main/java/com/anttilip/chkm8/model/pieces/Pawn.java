@@ -42,6 +42,11 @@ public class Pawn extends Piece {
     @Override
     public void move(Position newPosition, Board board) {
         this.firstMove = false;
+        // If move was a attacking move, remove now eaten piece
+        if (board.isOccupied(newPosition)) {
+            board.getPiece(newPosition).kill(board);
+        }
+
         Position originalPosition = this.getPosition();
         this.position = newPosition;
         if (isInTheEnd()) {
