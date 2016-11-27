@@ -42,12 +42,21 @@ public class Pawn extends Piece {
     @Override
     public void move(Position newPosition, Board board) {
         this.firstMove = false;
-        // If move was a attacking move, remove now eaten piece
-        if (board.isOccupied(newPosition)) {
+
+        // If move is double move, make en passant pawn
+        if (Math.abs(newPosition.getY() - this.position.getY()) == 2) {
+            int newPawnYDiff = (this.position.getY() > newPosition.getY()) ? -1 : 1;
+            Position enPassantPos = new Position(this.getPosition().getX(), this.getPosition().getY() + newPawnYDiff);
+            board.setEnPassantPosition(enPassantPos);
+        } else if (newPosition.equals(board.getEnPassantPosition())) {
+            // Attacked en passant
+            Piece originalPawn = board.getPiece(newPosition.getX(), newPosition.getY() + moveDirection * -1);
+            originalPawn.kill(board);
+        } else if (board.isOccupied(newPosition)) {
+            // Regular attack move
             board.getPiece(newPosition).kill(board);
         }
 
-        Position originalPosition = this.getPosition();
         this.position = newPosition;
         if (isInTheEnd()) {
             // If pawn is in the end, it is promoted to Queen
@@ -57,16 +66,6 @@ public class Pawn extends Piece {
             }
             board.getPieces().add(new Queen(this.position, this.player));
             this.kill(board);
-        }
-        // If move is double move, make en passant pawn
-        if (Math.abs(newPosition.getY() - originalPosition.getY()) == 2) {
-            int newPawnYDiff = (this.position.getY() > originalPosition.getY()) ? -1 : 1;
-            Position enPassantPos = new Position(this.getPosition().getX(), this.getPosition().getY() + newPawnYDiff);
-            board.setEnPassantPosition(enPassantPos);
-        } else if (newPosition.equals(board.getEnPassantPosition())) {
-            // Attacked en passant
-            Piece originalPawn = board.getPiece(newPosition.getX(), newPosition.getY() + moveDirection * -1);
-            originalPawn.kill(board);
         }
     }
 

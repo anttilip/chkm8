@@ -37,7 +37,7 @@ public class Board {
      */
     public void movePiece(Piece piece, Position target) {
         // Remove en passant since no one attacked it this turn
-        if (enPassantPosition != null && !target.equals(this.enPassantPosition)) {
+        if (!target.equals(this.enPassantPosition) || !(piece instanceof Pawn)) {
             enPassantPosition = null;
         }
         // Move piece to its new position
