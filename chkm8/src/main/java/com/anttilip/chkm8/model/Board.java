@@ -194,15 +194,16 @@ public class Board {
             }
         }
 
-        // Scan from king to check if rooks, bishops or queens threaten the king
+        // Scan from king to check if other pieces threaten the king
         for (Position direction : King.MOVE_DIRECTIONS) {
+            boolean moreThanOneSquareAway = false;
             Position square = Position.add(king.getPosition(), direction);
             while (square.onBoard()) {
                 if (this.getPiece(square) != null) {
                     if (Player.getOther(player) == this.getPiece(square).getPlayer()) {
                         Piece enemyPiece = this.getPiece(square);
-                        if (enemyPiece instanceof King) {
-                            // King can't threaten another king
+                        if (moreThanOneSquareAway && !enemyPiece.canMoveMoreThanOnce()) {
+                            // Only check for rooks, bishops and queens
                             break;
                         }
                         if (Arrays.asList(enemyPiece.getMoveDirections()).contains(direction)) {
@@ -214,6 +215,7 @@ public class Board {
                     break;
                 }
                 square = Position.add(square, direction);
+                moreThanOneSquareAway = true;
             }
         }
         return false;
@@ -233,44 +235,36 @@ public class Board {
             return false;
         }
 
-        // Check starting and ending positions
-        int start = Math.min(rook.getPosition().getX(), king.getPosition().getX());
-        int end = Math.max(rook.getPosition().getX(), king.getPosition().getX());
-
-        for (int i = start; i <= end; i++) {
+        int direction = rook.getPosition().getX() - king.getPosition().getX();
+        direction = (direction < 0) ? -1 : 1;
+        Position square = king.getPosition().copy();
+        int moves = 0;
+        while (!square.equals(rook.getPosition())) {
+            Piece pieceInSquare = this.getPiece(square);
             // Path to castling can't be blocked by other pieces
-            Position square = new Position(i, king.getPosition().getY());
-            Piece other = this.getPiece(square);
-            if (other != null && (!other.equals(king) && !other.equals(rook))) {
+            if (this.getPiece(square) != null && (!pieceInSquare.equals(king) && !pieceInSquare.equals(rook))) {
                 return false;
             }
-            // Squares in the path can't be threatened by opponent
-            Player opponent = Player.getOther(king.getPlayer());
-            if (isSquareThreatenedBy(opponent, square)) {
-                return false;
+
+            // Check if square is threatened by simulating king moving into that position
+            // King only moves 2 places, so no need to check if other squares are threatened
+            if (moves <= 2) {
+                Board boardCopy = this.copy();
+                Piece kingCopy = boardCopy.getPiece(king.getPosition());
+                if (!square.equals(king.getPosition())) {
+                    boardCopy.movePiece(kingCopy, square);
+                }
+                if (boardCopy.isPlayerChecked(king.getPlayer())) {
+                    // If king would be in check after the move, square is threatened
+                    return false;
+                }
             }
+            // Check next square toward the rook
+            square.add(direction, 0);
+            moves++;
         }
 
         return true;
-    }
-
-    /**
-     * Checks if given position on board is threatened by given player.
-     * @param player Player that might threaten the position
-     * @param square Square that might be threatened
-     * @return boolean value of square being threatened
-     */
-    private boolean isSquareThreatenedBy(Player player, Position square) {
-        for (Piece piece : this.getPieces(player)) {
-            if (piece instanceof King) {
-                // King can't threaten another king
-                continue;
-            }
-            if (piece.getPossibleMoves(this).contains(square)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

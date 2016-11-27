@@ -105,6 +105,10 @@ public abstract class Piece {
         return this.player;
     }
 
+    public boolean canMoveMoreThanOnce() {
+        return canMoveMoreThanOnce;
+    }
+
     @Override
     public String toString() {
         return this.player + " " + this.getClass().getSimpleName();
