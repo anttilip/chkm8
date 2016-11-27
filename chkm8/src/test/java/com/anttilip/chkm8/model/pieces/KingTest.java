@@ -126,6 +126,16 @@ public class KingTest {
     }
 
     @Test
+    public void doesNotMoveIntoCheckWithEnemyKing() {
+        Piece blackKing= new King(new Position(3, 5), Player.BLACK);
+        board.getPieces().add(blackKing);
+        board.movePiece(king, new Position(3, 3));
+        List<Position> moves = board.getAllowedMoves(king);
+        assertFalse(moves.contains(new Position(3, 4)));
+    }
+
+
+    @Test
     public void doesNotMoveIntoCheckWhenEnemyIsPinned() {
         board.getPieces().add(new Rook(new Position(3, 4), Player.WHITE));
         board.getPieces().add(new Knight(new Position(3, 5), Player.BLACK));

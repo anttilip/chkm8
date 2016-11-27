@@ -230,7 +230,7 @@ public class ChessStateTest {
 
     @Test
     public void getPiecesAllowedMovesReturnsSameAsBoard() {
-        List<Position> moves = chessState.getGetPiecesAllowedMoves(3, 1);
+        List<Position> moves = chessState.getGetPiecesAllowedMoves(chessState.getPieceAt(3, 1));
         assertTrue(moves.size() == 2 && moves.contains(new Position(3, 2)) && moves.contains(new Position(3, 3)));
     }
 }
