@@ -96,7 +96,9 @@ public class King extends Piece {
 
     @Override
     public Piece copy() {
-        return new King(this.position, this.player);
+        King copy = new King(this.position.copy(), this.player);
+        copy.firstMove = this.firstMove;
+        return copy;
     }
 
     @Override

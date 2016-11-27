@@ -119,7 +119,7 @@ public class Pawn extends Piece {
 
     @Override
     public Piece copy() {
-        Pawn copy = new Pawn(this.position, this.player);
+        Pawn copy = new Pawn(this.position.copy(), this.player);
         copy.firstMove = this.firstMove;
         return copy;
     }

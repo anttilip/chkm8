@@ -37,7 +37,7 @@ public class Knight extends Piece {
 
     @Override
     public Piece copy() {
-        return new Knight(this.position, this.player);
+        return new Knight(this.position.copy(), this.player);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Bishop extends Piece {
 
     @Override
     public Piece copy() {
-        return new Bishop(this.position, this.player);
+        return new Bishop(this.position.copy(), this.player);
     }
 
     @Override

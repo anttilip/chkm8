@@ -37,7 +37,7 @@ public class Queen extends Piece {
 
     @Override
     public Piece copy() {
-        return new Queen(this.position, this.player);
+        return new Queen(this.position.copy(), this.player);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class Rook extends Piece {
 
     @Override
     public Piece copy() {
-        return new Rook(this.position, this.player);
+        return new Rook(this.position.copy(), this.player);
     }
 
     @Override
