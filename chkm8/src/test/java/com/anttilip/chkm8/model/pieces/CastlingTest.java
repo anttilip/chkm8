@@ -103,9 +103,9 @@ public class CastlingTest {
     }
 
     @Test
-    public void cantCastleWhenRookIsThreatened() {
+    public void canCastleWhenRookIsThreatened() {
         board.movePiece(whiteBishop, new Position(3, 3));
-        assertFalse(board.getAllowedMoves(blackKing).contains(blackKingSideRook.position));
+        assertTrue(board.getAllowedMoves(blackKing).contains(blackKingSideRook.position));
     }
 
     @Test
