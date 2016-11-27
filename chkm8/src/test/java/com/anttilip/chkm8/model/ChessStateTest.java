@@ -138,7 +138,7 @@ public class ChessStateTest {
         chessState.move(whitePawn, new Position(3, 4));
         chessState.undoLastMove();
         Piece piece = (chessState.getBoard().getPiece(3, 3));
-        assertTrue(piece.getPosition() == whitePawnCopy.getPosition()
+        assertTrue(piece.getPosition().equals((whitePawnCopy.getPosition()))
                 && piece.getPlayer() == whitePawnCopy.getPlayer()
                 && piece.getClass() == whitePawnCopy.getClass());
     }
@@ -174,7 +174,7 @@ public class ChessStateTest {
         chessState.undoLastMove();
         chessState.undoLastMove();
         Piece piece = (chessState.getBoard().getPiece(3, 3));
-        assertTrue(piece.getPosition() == whitePawnCopy.getPosition()
+        assertTrue(piece.getPosition().equals(whitePawnCopy.getPosition())
                 && piece.getPlayer() == whitePawnCopy.getPlayer()
                 && piece.getClass() == whitePawnCopy.getClass());
     }
