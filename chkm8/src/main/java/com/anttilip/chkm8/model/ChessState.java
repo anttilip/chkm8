@@ -46,13 +46,12 @@ public class ChessState {
     }
 
     /**
-     * Searches and returns all allowed moves for a piece in given coordinate position.
-     * @param x
-     * @param y
+     * Searches and returns all allowed moves for a given piece
+     * @param piece Piece for which allowed moves are calculated
      * @return List of positions that piece can move into.
      */
-    public List<Position> getGetPiecesAllowedMoves(int x, int y) {
-        return this.board.getAllowedMoves(this.board.getPiece(x, y));
+    public List<Position> getGetPiecesAllowedMoves(Piece piece) {
+        return this.board.getAllowedMoves(piece);
     }
 
     /**
