@@ -52,6 +52,7 @@ public class Pawn extends Piece {
             // Attacked en passant
             Piece originalPawn = board.getPiece(newPosition.getX(), newPosition.getY() + moveDirection * -1);
             originalPawn.kill(board);
+            board.setEnPassantPosition(null);
         } else if (board.isOccupied(newPosition)) {
             // Regular attack move
             board.getPiece(newPosition).kill(board);
