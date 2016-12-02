@@ -115,10 +115,9 @@ public class ChessView {
      * Draws the board.
      */
     public void render() {
-        // Draw board and pieces
+        // Draw board to the bottom
         batch.begin();
         batch.draw(this.boardTexture, 0, 0);
-        drawPieces(state.getBoard());
         batch.end();
 
         // Draw visual aids for game
@@ -135,6 +134,12 @@ public class ChessView {
 
         // Clear gl settings for next draw
         Gdx.gl.glDisable(GL20.GL_BLEND);
+
+        // Draw pieces on top of everything
+        batch.begin();
+        drawPieces(state.getBoard());
+        batch.end();
+
     }
 
     private void linkTextures() {
