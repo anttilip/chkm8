@@ -87,7 +87,7 @@ public class ChessView {
         if (controller.getCurrentlyPressedPiece() != null) {
             Piece draggedPiece = controller.getCurrentlyPressedPiece();
             for (Position pos : this.state.getBoard().getAllowedMoves(draggedPiece)) {
-                shapeRenderer.setColor(0, 0, 1, 0.5f);
+                shapeRenderer.setColor(0, 0, 1, 0.45f);
                 shapeRenderer.rect(pos.getX() * PIECE_SIZE, pos.getY() * PIECE_SIZE, PIECE_SIZE, PIECE_SIZE);
             }
         }
@@ -96,7 +96,7 @@ public class ChessView {
     private void drawPiecesOwnSquare() {
         if (controller.getCurrentlyPressedPiece() != null) {
             Piece dragged = this.controller.getCurrentlyPressedPiece();
-            shapeRenderer.setColor(0, 0.3f, 0, 0.5f);
+            shapeRenderer.setColor(0, 0.3f, 0, 0.45f);
             shapeRenderer.rect(dragged.getPosition().getX() * PIECE_SIZE, dragged.getPosition().getY() * PIECE_SIZE, PIECE_SIZE, PIECE_SIZE);
         }
     }
@@ -105,7 +105,7 @@ public class ChessView {
         for (Player player : Player.values()) {
             if (state.getBoard().isPlayerChecked(player)) {
                 Position check = state.getBoard().getKing(player).getPosition();
-                shapeRenderer.setColor(0.6f, 0, 0, 0.5f);
+                shapeRenderer.setColor(0.6f, 0, 0, 0.45f);
                 shapeRenderer.rect(check.getX() * PIECE_SIZE, check.getY() * PIECE_SIZE, PIECE_SIZE, PIECE_SIZE);
             }
         }
