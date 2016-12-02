@@ -35,6 +35,15 @@ public class ChessState {
     public Piece getPieceAt(int x, int y) {
         return this.board.getPiece(x, y);
     }
+    
+    /**
+     * Returns a piece at given x and y coordinates.
+     * @param pos position in which piece is searched
+     * @return Piece in given coordinates, null if position is not occupied
+     */
+    public Piece getPieceAt(Position pos) {
+        return this.board.getPiece(pos);
+    }
 
     /**
      * Searches and returns players pieces
