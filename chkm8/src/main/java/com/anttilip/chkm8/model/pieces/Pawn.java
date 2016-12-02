@@ -14,6 +14,11 @@ public class Pawn extends Piece {
     private final Position[] moveDirections;
     private final int moveDirection;
 
+    /**
+     * Constructor for pawn.
+     * @param position Position of the piece.
+     * @param player Player who controls the piece.
+     */
     public Pawn(Position position, Player player) {
         super(position, player, false);
         this.firstMove = true;

@@ -10,6 +10,9 @@ public class PlayerInputProcessor implements InputProcessor {
     private int lastClickY;
     private boolean isDragged;
 
+    /**
+     * Constructor for custom input processor which handles user input.
+     */
     public PlayerInputProcessor() {
         lastClickX = -1;
         lastClickY = -1;
@@ -17,14 +20,6 @@ public class PlayerInputProcessor implements InputProcessor {
 
     }
 
-    public int getLastClickX() {
-        return lastClickX;
-    }
-
-    public int getLastClickY() {
-        return lastClickY;
-    }
-    
     public Vector2 getLastClickPosition() {
         return new Vector2(lastClickX, lastClickY);
     }

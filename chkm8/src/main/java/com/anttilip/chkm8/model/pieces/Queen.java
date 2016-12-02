@@ -26,6 +26,11 @@ public class Queen extends Piece {
         new Position(1, -1) // Down-Right
     };
 
+    /**
+     * Constructor for queen.
+     * @param position Position of the piece.
+     * @param player Player who controls the piece.
+     */
     public Queen(Position position, Player player) {
         super(position, player, true);
     }

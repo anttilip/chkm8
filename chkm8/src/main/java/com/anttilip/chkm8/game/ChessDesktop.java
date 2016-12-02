@@ -5,6 +5,10 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class ChessDesktop {
 
+    /**
+     * Creates the lwjgl application and gives the main game class as a parameter.
+     * @param args arguments given to main
+     */
     public static void main(String[] args) {
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
         config.title = Game.TITLE;

@@ -45,7 +45,7 @@ public class Board {
     }
 
     /**
-     * Gets pieces' allowed moves
+     * Gets pieces' allowed moves.
      *
      * Fetches all possible moves from piece and filters out moves which would lead to own king being in check
      *
@@ -70,8 +70,8 @@ public class Board {
     }
 
     /**
-     * Searches and returns piece at given position
-     * @param position
+     * Searches and returns piece at given position.
+     * @param position Position where piece is searched
      * @return Piece in the given position, if position does not contain a piece, null is returned
      */
     public Piece getPiece(Position position) {
@@ -83,6 +83,12 @@ public class Board {
         return null;
     }
 
+    /**
+     * Searches and returns piece at given position.
+     * @param x x-coordinate in board
+     * @param y y-coordinate in board
+     * @return returns piece in given coordinates or null if position is not occupied
+     */
     public Piece getPiece(int x, int y) {
         return getPiece(new Position(x, y));
     }
@@ -93,7 +99,7 @@ public class Board {
 
     /**
      * Searches and returns list of given players pieces.
-     * @param player
+     * @param player Player whose pieces are returned
      * @return List of players pieces
      */
     public List<Piece> getPieces(Player player) {
@@ -107,8 +113,8 @@ public class Board {
     }
 
     /**
-     * Searches and returns players king
-     * @param player
+     * Searches and returns players king.
+     * @param player Player whose king is returned
      * @return Players king
      */
     public King getKing(Player player) {
@@ -121,8 +127,8 @@ public class Board {
     }
 
     /**
-     * Searches and returns all players rooks as a List
-     * @param player
+     * Searches and returns all players rooks as a List.
+     * @param player Player whose rooks are returned
      * @return List of players rooks
      */
     public List<Rook> getRooks(Player player) {
@@ -136,7 +142,7 @@ public class Board {
     }
 
     /**
-     * If board has a en passant position for a pawn, en passant position is returned
+     * If board has a en passant position for a pawn, en passant position is returned.
      * @return En passant position
      */
     public Position getEnPassantPosition() {
@@ -144,16 +150,16 @@ public class Board {
     }
 
     /**
-     * Sets new en passant position
-     * @param enPassantPosition
+     * Sets a new en passant position.
+     * @param enPassantPosition Position to which en passant is set
      */
     public void setEnPassantPosition(Position enPassantPosition) {
         this.enPassantPosition = enPassantPosition;
     }
 
     /**
-     * Checks if position contains a piece
-     * @param position
+     * Checks if position contains a piece.
+     * @param position Position that is checked for a piece
      * @return boolean value of position containing a piece
      */
     public boolean isOccupied(Position position) {
@@ -166,7 +172,7 @@ public class Board {
      * Positions that can threaten players king and checks if position
      * contains a enemy piece that threatens players king.
      *
-     * @param player
+     * @param player Player who might be checked.
      * @return boolean value of player being in check.
      */
     public boolean isPlayerChecked(Player player) {
@@ -225,9 +231,9 @@ public class Board {
      * Checks if given king and rook are allowed to castle.
      *
      * Checks if king is in check, important squares are not threatened and that no piece blocks the castling.
-     * @param king
-     * @param rook
-     * @return
+     * @param king King for which castling is calculated
+     * @param rook Rook for which castling is calculated
+     * @return Returns boolean value of castling being allowed for given pieces
      */
     public boolean isCastlingAllowed(King king, Rook rook) {
         // If king or rook has already moved, castling is not possible
@@ -268,7 +274,7 @@ public class Board {
     }
 
     /**
-     * Creates standard board
+     * Creates standard board.
      *
      * Creates all pieces in standard positions for both players
      * @return New board object initialized with default pieces
@@ -305,6 +311,10 @@ public class Board {
         return new Board(pieces);
     }
 
+    /**
+     * Copies current instance of Board.
+     * @return Returns new identical instance of Board.
+     */
     public Board copy() {
         List<Piece> piecesCopy = new ArrayList<>();
         for (Piece orig : this.pieces) {

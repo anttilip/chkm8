@@ -8,7 +8,11 @@ public class Position {
     private int x;
     private int y;
 
-    
+    /**
+     * Constructor for position.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     */
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
@@ -34,7 +38,7 @@ public class Position {
      * Takes new coordinates and adds them to current coordinates.
      * @param x x-coordinate that is added to current x coordinate.
      * @param y y-coordinate that is added to current y coordinate.
-     * @return
+     * @return Returns position itself after the coordinate addition.
      */
     public Position add(int x, int y) {
         this.x += x;
@@ -56,8 +60,8 @@ public class Position {
      * Example:
      * Position.add(new Position(3, 4), new Position(1, 2));
      * returns new Position where x = 4, y = 6
-     * @param a
-     * @param b
+     * @param a First position.
+     * @param b Second position.
      * @return new Position instance of combined positions
      */
     public static Position add(Position a, Position b) {

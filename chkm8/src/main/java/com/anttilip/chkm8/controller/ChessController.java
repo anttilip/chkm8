@@ -14,6 +14,12 @@ public class ChessController {
     private final PlayerInputProcessor playerInputProcessor;
     private Piece currentlyPressedPiece;
 
+    /**
+     * Constructor for main controller class.
+     *
+     * Player manipulates model through this class.
+     * @param state ChessState that wraps the model.
+     */
     public ChessController(ChessState state) {
         this.state = state;
         this.playerInputProcessor = new PlayerInputProcessor();
@@ -25,6 +31,9 @@ public class ChessController {
         return currentlyPressedPiece;
     }
 
+    /**
+     * Reads user input and moves pieces according to players input.
+     */
     public void update() {
         if (playerInputProcessor.isDragged()) {
             // Left mouse key is down
@@ -47,6 +56,11 @@ public class ChessController {
         }
     }
 
+    /**
+     * Check if given piece is being dragged by player.
+     * @param piece Piece for which dragging is checked.
+     * @return Returns boolean value of piece being dragged.
+     */
     public boolean pieceIsDragged(Piece piece) {
         return piece.equals(this.currentlyPressedPiece);
     }

@@ -26,6 +26,11 @@ public class Knight extends Piece {
         new Position(2, -1) // Right Down
     };
 
+    /**
+     * Constructor for knight.
+     * @param position Position of the piece.
+     * @param player Player who controls the piece.
+     */
     public Knight(Position position, Player player) {
         super(position, player, false);
     }

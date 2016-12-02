@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Represents state of the game.
+ * Represents and wraps the model or game logic.
  *
  * Works as an API for manipulating the model e.g. moving pieces.
  */
@@ -16,6 +16,9 @@ public class ChessState {
     private final Stack<Move> moveHistory;
     private Player currentPlayer;
 
+    /**
+     * Constructor for the model.
+     */
     public ChessState() {
         this.board = Board.createBoard();
         this.currentPlayer = Player.WHITE;
@@ -46,8 +49,8 @@ public class ChessState {
     }
 
     /**
-     * Searches and returns players pieces
-     * @param player
+     * Searches and returns players pieces.
+     * @param player Player whose pieces are returned
      * @return List of players pieces
      */
     public List<Piece> getPlayersPieces(Player player) {
@@ -55,7 +58,7 @@ public class ChessState {
     }
 
     /**
-     * Searches and returns all allowed moves for a given piece
+     * Searches and returns all allowed moves for a given piece.
      * @param piece Piece for which allowed moves are calculated
      * @return List of positions that piece can move into.
      */

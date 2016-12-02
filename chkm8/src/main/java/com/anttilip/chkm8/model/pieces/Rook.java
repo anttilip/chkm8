@@ -24,6 +24,11 @@ public class Rook extends Piece {
     };
     private boolean firstMove;
 
+    /**
+     * Constructor for rook.
+     * @param position Position of the piece.
+     * @param player Player who controls the piece.
+     */
     public Rook(Position position, Player player) {
         super(position, player, true);
         this.firstMove = true;

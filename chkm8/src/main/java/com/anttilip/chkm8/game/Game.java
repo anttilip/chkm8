@@ -5,7 +5,6 @@ import com.anttilip.chkm8.model.ChessState;
 import com.anttilip.chkm8.model.GameState;
 import com.anttilip.chkm8.view.ChessView;
 import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class Game implements ApplicationListener {
 
@@ -17,38 +16,37 @@ public class Game implements ApplicationListener {
     private ChessView view;
     private ChessController controller;
 
-    private OrthographicCamera camera;
-
     @Override
     public void create() {
         state = new ChessState();
         controller = new ChessController(state);
         view = new ChessView(state, controller);
-        view.create();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, WIDTH, HEIGHT);
 
     }
-
+    @Override
     public void render() {
         if (state.getGameStates().contains(GameState.INCOMPLETE)) {
-        this.controller.update();
-        this.view.render();
+            this.controller.update();
+            this.view.render();
         } else {
             System.out.println("Game over");
             // Display game over screen
         }
     }
-
+    
+    @Override
     public void dispose() {
     }
-
+    
+    @Override
     public void resize(int w, int h) {
     }
-
+    
+    @Override
     public void pause() {
     }
-
+    
+    @Override
     public void resume() {
     }
 

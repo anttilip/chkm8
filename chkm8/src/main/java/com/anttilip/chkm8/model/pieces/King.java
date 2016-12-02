@@ -30,6 +30,11 @@ public class King extends Piece {
     };
     private boolean firstMove;
 
+    /**
+     * Constructor for king.
+     * @param position Position of the piece.
+     * @param player Player who controls the piece.
+     */
     public King(Position position, Player player) {
         super(position, player, false);
         firstMove = true;

@@ -30,7 +30,7 @@ public abstract class Piece {
     }
 
     /**
-     * Moves piece to new position
+     * Moves piece to new position.
      * @param newPosition Position that piece is moved to.
      * @param board Board that piece belongs to.
      */
@@ -72,7 +72,7 @@ public abstract class Piece {
 
     /**
      * Returns directions, or move patterns that piece can move to.
-     * @return
+     * @return return position array of allowed move directions for the piece.
      */
     public abstract Position[] getMoveDirections();
 
@@ -86,7 +86,7 @@ public abstract class Piece {
 
     /**
      * "Kills" the piece removes it from the board.
-     * @param board
+     * @param board Board on which the piece is.
      */
     public void kill(Board board) {
         board.getPieces().remove(this);
@@ -105,6 +105,10 @@ public abstract class Piece {
         return this.player;
     }
 
+    /**
+     * Check if piece can move more than once, i.e. can slide
+     * @return Returns boolean value of piece being able to move more than once.
+     */
     public boolean canMoveMoreThanOnce() {
         return canMoveMoreThanOnce;
     }
@@ -122,6 +126,11 @@ public abstract class Piece {
         return 31 * hash + this.getClass().hashCode();
     }
 
+    /**
+     * Check if some other object is identical to this piece.
+     * @param o Object which is checked against this piece.
+     * @return Boolean value of other object equaling this piece.
+     */
     public abstract boolean equals(Object o);
 
     /**

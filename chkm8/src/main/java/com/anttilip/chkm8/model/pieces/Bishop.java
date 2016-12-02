@@ -22,6 +22,11 @@ public class Bishop extends Piece {
         new Position(1, -1) // Down-Right
     };
 
+    /**
+     * Constructor for Bishop.
+     * @param position Position of the bishop
+     * @param player Player to whom bishop belongs to
+     */
     public Bishop(Position position, Player player) {
         super(position, player, true);
     }

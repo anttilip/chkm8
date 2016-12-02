@@ -28,11 +28,24 @@ public class ChessView {
     private ShapeRenderer shapeRenderer;
     private Map<Class, Texture> whiteTextures;
     private Map<Class, Texture> blackTextures;
-    private Texture board;
+    private Texture boardTexture;
 
+    /**
+     * Constructor for view class that displays the model.
+     *
+     * Creates all needed objects for drawing the board.
+     * @param state ChessState that represents the model.
+     * @param controller ChessController which manipulates the model.
+     */
     public ChessView(ChessState state, ChessController controller) {
         this.state = state;
         this.controller = controller;
+        batch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+        boardTexture = new Texture(Gdx.files.internal("Board.png"));
+        whiteTextures = new HashMap<>();
+        blackTextures = new HashMap<>();
+        linkTextures();
     }
 
     private void drawPieces(Board board) {
@@ -94,19 +107,13 @@ public class ChessView {
         }
     }
 
-    public void create() {
-        batch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
-        board = new Texture(Gdx.files.internal("Board.png"));
-        whiteTextures = new HashMap<>();
-        blackTextures = new HashMap<>();
-        linkTextures();
-    }
-
+    /**
+     * Draws the board.
+     */
     public void render() {
         // Draw board and pieces
         batch.begin();
-        batch.draw(this.board, 0, 0);
+        batch.draw(this.boardTexture, 0, 0);
         drawPieces(state.getBoard());
         batch.end();
 
@@ -141,12 +148,23 @@ public class ChessView {
         blackTextures.put(King.class, new Texture(Gdx.files.internal("black_king.png")));
         blackTextures.put(Queen.class, new Texture(Gdx.files.internal("black_queen.png")));
     }
-       
-    
+
+    /**
+     * Converts screen y-coordinate, e.g. from controller to game coordinate.
+     *
+     * Origin for input is top left corner but for drawing it is bottom left corner.
+     * @param y y-coordinate which is converted.
+     * @return Converted y-coordinate.
+     */
     public static int screenYtoGameY(int y) {
         return BOARD_SIZE - y;
     }
-    
+
+    /**
+     * Converts position from input to square on board.
+     * @param screen Vector2 position from input.
+     * @return Returns corresponding board square position.
+     */
     public static Position screenToBoardPosition(Vector2 screen) {
         int x = (int) screen.x / PIECE_SIZE;
         int y = (int) (BOARD_SIZE - screen.y) / PIECE_SIZE;
