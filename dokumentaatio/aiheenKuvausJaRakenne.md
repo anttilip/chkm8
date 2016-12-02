@@ -23,7 +23,10 @@ kiinnitetä kehityksessä erityisesti huomiota.
 ## Sekvenssikaaviot
 
 **Mallin alustaminen**
+
 ![initialize_model](initialize_model.png)
 
+
 **Pelaaja liikuttaa nappulan hyväksyttyyn paikkaan**
+
 ![move_piece](move_piece.png)
