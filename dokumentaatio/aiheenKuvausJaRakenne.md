@@ -19,3 +19,11 @@ kiinnitetä kehityksessä erityisesti huomiota.
 
 ## Rakenne
 ![luokkakaavio](luokkakaavio.png)
+
+## Sekvenssikaaviot
+
+**Mallin alustaminen**
+![initialize_model](initialize_model.png)
+
+**Pelaaja liikuttaa nappulan hyväksyttyyn paikkaan**
+![move_piece](move_piece.png)
