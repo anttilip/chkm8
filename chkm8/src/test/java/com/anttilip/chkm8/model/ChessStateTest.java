@@ -213,10 +213,17 @@ public class ChessStateTest {
     }
 
     @Test
-    public void getPieceAtReturnsCorrectly() {
+    public void getPieceAtXYReturnsCorrectly() {
         Piece whiteQueen = new Queen(new Position(4, 4), Player.WHITE);
         chessState.getBoard().getPieces().add(whiteQueen);
         assertTrue(chessState.getPieceAt(4, 4).equals(whiteQueen));
+    }
+    
+    @Test
+    public void getPieceAtPositionReturnsCorrectly() {
+        Piece whiteQueen = new Queen(new Position(4, 4), Player.WHITE);
+        chessState.getBoard().getPieces().add(whiteQueen);
+        assertTrue(chessState.getPieceAt(whiteQueen.getPosition()).equals(whiteQueen));
     }
 
     @Test
