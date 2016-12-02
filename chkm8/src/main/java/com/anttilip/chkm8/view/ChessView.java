@@ -34,6 +34,7 @@ public class ChessView {
      * Constructor for view class that displays the model.
      *
      * Creates all needed objects for drawing the board.
+     *
      * @param state ChessState that represents the model.
      * @param controller ChessController which manipulates the model.
      */
@@ -49,30 +50,33 @@ public class ChessView {
     }
 
     private void drawPieces(Board board) {
-        // Draw pieces
+        // Draw pieces which are not dragged
         for (Piece piece : board.getPieces()) {
+            if (controller.pieceIsDragged(piece)) {
+                // If piece is dragged, don't draw it yet
+                continue;
+            }
+            float x = piece.getPosition().getX() * PIECE_SIZE;
+            float y = piece.getPosition().getY() * PIECE_SIZE;
             if (piece.getPlayer() == Player.WHITE) {
-                // Draw white pieces
-                if (controller.pieceIsDragged(piece)) {
-                    // If piece is being dragged, it should move with mouse
-                    float x = controller.getDraggedX() - PIECE_SIZE / 2;
-                    float y = screenYtoGameY(controller.getDraggedY()) - PIECE_SIZE / 2;
-                    batch.draw(whiteTextures.get(piece.getClass()), x, y);
-                } else {
-                    float x = piece.getPosition().getX() * PIECE_SIZE;
-                    float y = piece.getPosition().getY() * PIECE_SIZE;
-                    batch.draw(whiteTextures.get(piece.getClass()), x, y);
-                }
+                // White texture
+                batch.draw(whiteTextures.get(piece.getClass()), x, y);
             } else {
-            // Draw black pieces
-                if (controller.pieceIsDragged(piece)) {
-                    // If piece is being dragged, it should move with mouse
-                    float x = controller.getDraggedX() - PIECE_SIZE / 2;
-                    float y = screenYtoGameY(controller.getDraggedY()) - PIECE_SIZE / 2;
-                    batch.draw(blackTextures.get(piece.getClass()), x, y);
+                // Black texture
+                batch.draw(blackTextures.get(piece.getClass()), x, y);
+            }
+        }
+
+        // Dragged piece should be drawn last so it can't get behind any still piece.
+        for (Piece piece : board.getPieces()) {
+            if (controller.pieceIsDragged(piece)) {
+                float x = controller.getDraggedX() - PIECE_SIZE / 2;
+                float y = screenYtoGameY(controller.getDraggedY()) - PIECE_SIZE / 2;
+                if (piece.getPlayer() == Player.WHITE) {
+                    // White textures
+                    batch.draw(whiteTextures.get(piece.getClass()), x, y);
                 } else {
-                    float x = piece.getPosition().getX() * PIECE_SIZE;
-                    float y = piece.getPosition().getY() * PIECE_SIZE;
+                    // Black textures
                     batch.draw(blackTextures.get(piece.getClass()), x, y);
                 }
             }
@@ -152,7 +156,9 @@ public class ChessView {
     /**
      * Converts screen y-coordinate, e.g. from controller to game coordinate.
      *
-     * Origin for input is top left corner but for drawing it is bottom left corner.
+     * Origin for input is top left corner but for drawing it is bottom left
+     * corner.
+     *
      * @param y y-coordinate which is converted.
      * @return Converted y-coordinate.
      */
@@ -162,6 +168,7 @@ public class ChessView {
 
     /**
      * Converts position from input to square on board.
+     *
      * @param screen Vector2 position from input.
      * @return Returns corresponding board square position.
      */
