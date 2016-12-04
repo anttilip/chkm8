@@ -24,7 +24,7 @@ public class Move {
      * @param target Position to which piece is moved.
      * @param board Board before piece is moved
      */
-    public Move(Piece piece, Position origin, Position target, Board board) {
+    Move(Piece piece, Position origin, Position target, Board board) {
         this.piece = piece;
         this.origin = origin;
         this.target = target;
@@ -35,15 +35,15 @@ public class Move {
         return this.piece;
     }
 
-    public Position getTarget() {
+    Position getTarget() {
         return this.target;
     }
 
-    public Position getOrigin() {
+    Position getOrigin() {
         return this.origin;
     }
 
-    public int getBoardHash() {
+    int getBoardHash() {
         return this.board.hashCode();
     }
     

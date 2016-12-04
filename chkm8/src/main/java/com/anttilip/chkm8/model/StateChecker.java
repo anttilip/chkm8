@@ -5,7 +5,7 @@ import com.anttilip.chkm8.model.pieces.*;
 import java.util.*;
 
 /**
- * Class that checks game states for a given ChessState object
+ * Class that checks game states for a given ChessState object.
  */
 final class StateChecker {
     /**

@@ -1,6 +1,6 @@
 package com.anttilip.chkm8.model;
 
-import com.anttilip.chkm8.model.pieces.*;
+import com.anttilip.chkm8.model.pieces.Piece;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -53,7 +53,7 @@ public class ChessState {
      * @param player Player whose pieces are returned
      * @return List of players pieces
      */
-    public List<Piece> getPlayersPieces(Player player) {
+    List<Piece> getPlayersPieces(Player player) {
         return this.board.getPieces(player);
     }
 
@@ -113,11 +113,11 @@ public class ChessState {
      * Returns how many turns has passed.
      * @return Size of move history stack
      */
-    public int getMoveCount() {
+    int getMoveCount() {
         return this.moveHistory.size();
     }
 
-    public List<Move> getMoveHistory() {
+    List<Move> getMoveHistory() {
         return this.moveHistory;
     }
 

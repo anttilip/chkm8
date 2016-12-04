@@ -88,7 +88,7 @@ public abstract class Piece {
      * "Kills" the piece removes it from the board.
      * @param board Board on which the piece is.
      */
-    public void kill(Board board) {
+    void kill(Board board) {
         board.getPieces().remove(this);
     }
 

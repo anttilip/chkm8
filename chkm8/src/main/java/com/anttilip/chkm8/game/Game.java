@@ -8,9 +8,9 @@ import com.badlogic.gdx.ApplicationListener;
 
 public class Game implements ApplicationListener {
 
-    public static final String TITLE = "chkm8";
-    public static final int WIDTH = 512;
-    public static final int HEIGHT = 512;
+    static final String TITLE = "chkm8";
+    static final int WIDTH = 512;
+    static final int HEIGHT = 512;
 
     private ChessState state;
     private ChessView view;

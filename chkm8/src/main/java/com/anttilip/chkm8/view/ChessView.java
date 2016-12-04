@@ -167,7 +167,7 @@ public class ChessView {
      * @param y y-coordinate which is converted.
      * @return Converted y-coordinate.
      */
-    public static int screenYtoGameY(int y) {
+    private static int screenYtoGameY(int y) {
         return BOARD_SIZE - y;
     }
 

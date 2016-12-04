@@ -17,7 +17,7 @@ public class PlayerInputProcessor extends InputAdapter {
     /**
      * Constructor for custom input processor which handles user input.
      */
-    public PlayerInputProcessor() {
+    PlayerInputProcessor() {
         lastClickX = -1;
         lastClickY = -1;
         isDragged = false;
@@ -25,11 +25,11 @@ public class PlayerInputProcessor extends InputAdapter {
 
     }
 
-    public Vector2 getLastClickPosition() {
+    Vector2 getLastClickPosition() {
         return new Vector2(lastClickX, lastClickY);
     }
 
-    public boolean isDragged() {
+    boolean isDragged() {
         return isDragged;
     }
 
@@ -37,7 +37,7 @@ public class PlayerInputProcessor extends InputAdapter {
      * Check if player pressed the reset button.
      * @return Return true if user pressed return button, otherwise return false.
      */
-    public boolean isResetPressed() {
+    boolean isResetPressed() {
         if (resetPressed) {
             resetPressed = false;
             return true;

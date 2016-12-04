@@ -6,14 +6,14 @@
 package com.anttilip.chkm8.model;
 
 /**
- * Enum class for players colors, WHITE and Black.
+ * Enum class for players colors, WHITE and BLACK.
  */
 public enum Player {
     WHITE(0),
     BLACK(1);
-    
+
     private final int value;
-    
+
     Player(int value) {
         this.value = value;
     }

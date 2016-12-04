@@ -93,6 +93,10 @@ public class Board {
         return getPiece(new Position(x, y));
     }
 
+    /**
+     * Returns all pieces on board.
+     * @return Returns all pieces on board.
+     */
     public List<Piece> getPieces() {
         return this.pieces;
     }
@@ -279,7 +283,7 @@ public class Board {
      * Creates all pieces in standard positions for both players
      * @return New board object initialized with default pieces
      */
-    public static Board createBoard() {
+    static Board createBoard() {
         List<Piece> pieces = new ArrayList<>();
 
         for (Player player : Player.values()) {

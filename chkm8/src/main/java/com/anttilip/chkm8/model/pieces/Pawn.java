@@ -84,7 +84,7 @@ public class Pawn extends Piece {
                 || (this.player == Player.BLACK && this.position.getY() == 0);
     }
 
-    public boolean isFirstMove() {
+    boolean isFirstMove() {
         return this.firstMove;
     }
 
