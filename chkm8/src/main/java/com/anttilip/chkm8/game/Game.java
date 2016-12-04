@@ -19,7 +19,7 @@ public class Game implements ApplicationListener {
     @Override
     public void create() {
         state = new ChessState();
-        controller = new ChessController(state);
+        controller = new ChessController(state, this);
         view = new ChessView(state, controller);
 
     }
@@ -33,7 +33,13 @@ public class Game implements ApplicationListener {
             // Display game over screen
         }
     }
-    
+
+    /**
+     * Resets the game to initialized state.
+     */
+    public void reset() {
+        create();
+    }
     @Override
     public void dispose() {
     }

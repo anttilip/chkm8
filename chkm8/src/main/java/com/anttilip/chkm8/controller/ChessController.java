@@ -1,5 +1,6 @@
 package com.anttilip.chkm8.controller;
 
+import com.anttilip.chkm8.game.Game;
 import com.anttilip.chkm8.model.ChessState;
 import com.anttilip.chkm8.model.Position;
 import com.anttilip.chkm8.model.pieces.Piece;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 public class ChessController {
 
     private static final int POINTER = 0;
+    private final Game game;
     private final ChessState state;
     private final PlayerInputProcessor playerInputProcessor;
     private Piece currentlyPressedPiece;
@@ -19,9 +21,11 @@ public class ChessController {
      *
      * Player manipulates model through this class.
      * @param state ChessState that wraps the model.
+     * @param game Main game object.
      */
-    public ChessController(ChessState state) {
+    public ChessController(ChessState state, Game game) {
         this.state = state;
+        this.game = game;
         this.playerInputProcessor = new PlayerInputProcessor();
         Gdx.input.setInputProcessor(playerInputProcessor);
         this.currentlyPressedPiece = null;
@@ -35,6 +39,11 @@ public class ChessController {
      * Reads user input and moves pieces according to players input.
      */
     public void update() {
+        if (playerInputProcessor.isResetPressed()) {
+            // Reset game
+            game.reset();
+            return;
+        }
         if (playerInputProcessor.isDragged()) {
             // Left mouse key is down
             Vector2 clickPos = playerInputProcessor.getLastClickPosition();

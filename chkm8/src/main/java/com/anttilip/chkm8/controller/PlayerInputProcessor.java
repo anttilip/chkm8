@@ -1,14 +1,18 @@
 package com.anttilip.chkm8.controller;
 
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 
-public class PlayerInputProcessor implements InputProcessor {
+public class PlayerInputProcessor extends InputAdapter {
+
+    private static final int RESET_BUTTON = Keys.R;
 
     private int lastClickX;
     private int lastClickY;
     private boolean isDragged;
+    private boolean resetPressed;
 
     /**
      * Constructor for custom input processor which handles user input.
@@ -17,6 +21,7 @@ public class PlayerInputProcessor implements InputProcessor {
         lastClickX = -1;
         lastClickY = -1;
         isDragged = false;
+        resetPressed = false;
 
     }
 
@@ -28,18 +33,23 @@ public class PlayerInputProcessor implements InputProcessor {
         return isDragged;
     }
 
-    @Override
-    public boolean keyDown(int i) {
+    /**
+     * Check if player pressed the reset button.
+     * @return Return true if user pressed return button, otherwise return false.
+     */
+    public boolean isResetPressed() {
+        if (resetPressed) {
+            resetPressed = false;
+            return true;
+        }
         return false;
     }
 
     @Override
-    public boolean keyUp(int i) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char c) {
+    public boolean keyDown(int key) {
+        if (key == RESET_BUTTON) {
+            resetPressed = true;
+        }
         return false;
     }
 
@@ -62,21 +72,6 @@ public class PlayerInputProcessor implements InputProcessor {
             isDragged = false;
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int i, int i1, int i2) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int i, int i1) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int i) {
         return false;
     }
 }
