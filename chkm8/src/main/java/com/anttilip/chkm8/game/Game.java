@@ -40,6 +40,16 @@ public class Game implements ApplicationListener {
     public void reset() {
         create();
     }
+
+    /**
+     * Undoes last move and resets view and controller.
+     */
+    public void undo() {
+        state.undoLastMove();
+        controller = new ChessController(state, this);
+        view = new ChessView(state, controller);
+    }
+
     @Override
     public void dispose() {
     }

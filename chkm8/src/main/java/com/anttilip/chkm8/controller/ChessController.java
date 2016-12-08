@@ -44,6 +44,11 @@ public class ChessController {
             game.reset();
             return;
         }
+        if (playerInputProcessor.isUndoPressed()) {
+            // Undo last move
+            game.undo();
+            return;
+        }
         if (playerInputProcessor.isDragged()) {
             // Left mouse key is down
             Vector2 clickPos = playerInputProcessor.getLastClickPosition();
