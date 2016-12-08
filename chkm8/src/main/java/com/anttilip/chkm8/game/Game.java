@@ -25,13 +25,8 @@ public class Game implements ApplicationListener {
     }
     @Override
     public void render() {
-        if (state.getGameStates().contains(GameState.INCOMPLETE)) {
-            this.controller.update();
-            this.view.render();
-        } else {
-            System.out.println("Game over");
-            // Display game over screen
-        }
+        this.controller.update();
+        this.view.draw();
     }
 
     /**

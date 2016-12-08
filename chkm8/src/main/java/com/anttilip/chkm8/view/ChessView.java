@@ -114,7 +114,7 @@ public class ChessView {
     /**
      * Draws the board.
      */
-    public void render() {
+    public void draw() {
         // Draw board to the bottom
         batch.begin();
         batch.draw(this.boardTexture, 0, 0);
