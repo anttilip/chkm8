@@ -437,7 +437,7 @@ body{
 <span>
 </span>
 </td>
-<td class='covered'><pre><span  class=''>    public Move(Piece piece, Position origin, Position target, Board board) {</span></pre></td></tr>
+<td class='covered'><pre><span  class=''>    Move(Piece piece, Position origin, Position target, Board board) {</span></pre></td></tr>
 
 
 <tr>
@@ -594,7 +594,7 @@ body{
 <span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Position getTarget() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    Position getTarget() {</span></pre></td></tr>
 
 
 <tr>
@@ -653,7 +653,7 @@ body{
 <span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public Position getOrigin() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    Position getOrigin() {</span></pre></td></tr>
 
 
 <tr>
@@ -712,7 +712,7 @@ body{
 <span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public int getBoardHash() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    int getBoardHash() {</span></pre></td></tr>
 
 
 <tr>
@@ -1000,7 +1000,7 @@ body{
 
 <h2>Tests examined</h2>
 <ul>
-<li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteIfRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenMove75(com.anttilip.chkm8.model.StateCheckerTest) (20 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheck(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnly50Move(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIsnt(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateOnWrongTurn(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToBackToIncomplete(com.anttilip.chkm8.model.StateCheckerTest) (9 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIs(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove50On49thMove(com.anttilip.chkm8.model.StateCheckerTest) (17 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove75On74thMove(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneNormally(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove75on75thMove(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnTrue(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.ChessStateTest.com.anttilip.chkm8.model.ChessStateTest (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnlyCheck(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove50On50thMove(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteNormally(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenStalemate(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.pieces.EnPassantTest.com.anttilip.chkm8.model.pieces.EnPassantTest (17 ms)</li>
+<li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteIfRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenMove75(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheck(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnly50Move(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIsnt(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateOnWrongTurn(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToBackToIncomplete(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIs(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove50On49thMove(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove75On74thMove(com.anttilip.chkm8.model.StateCheckerTest) (12 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneNormally(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove75on75thMove(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnTrue(com.anttilip.chkm8.model.StateCheckerTest) (0 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.ChessStateTest.com.anttilip.chkm8.model.ChessStateTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnlyCheck(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove50On50thMove(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteNormally(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenStalemate(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.pieces.EnPassantTest.com.anttilip.chkm8.model.pieces.EnPassantTest (4 ms)</li>
 </ul>
 
 <br/>
