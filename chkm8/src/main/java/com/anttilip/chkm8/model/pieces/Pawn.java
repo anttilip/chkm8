@@ -30,7 +30,7 @@ public class Pawn extends Piece {
      * Returns pawns allowed move direction.
      *
      * Pawns move direction depends on the player who controls the pawn.
-     * @return Position array containing the move direciton.
+     * @return Position array containing the move direction.
      */
     @Override
     public Position[] getMoveDirections() {

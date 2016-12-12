@@ -1,5 +1,9 @@
 package com.anttilip.chkm8.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.anttilip.chkm8.model.pieces.Queen;
 import com.anttilip.chkm8.model.pieces.Bishop;
 import com.anttilip.chkm8.model.pieces.Rook;
@@ -7,10 +11,6 @@ import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.model.pieces.Pawn;
 import com.anttilip.chkm8.model.pieces.King;
 import com.anttilip.chkm8.model.pieces.Knight;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *  Represents the chess board.

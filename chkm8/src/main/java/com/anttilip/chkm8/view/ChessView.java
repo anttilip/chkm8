@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 
 import com.anttilip.chkm8.controller.ChessController;
 import com.anttilip.chkm8.model.Player;
@@ -15,7 +16,6 @@ import com.anttilip.chkm8.model.Position;
 import com.anttilip.chkm8.model.pieces.*;
 import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.ChessState;
-import com.badlogic.gdx.math.Vector2;
 
 public class ChessView {
 

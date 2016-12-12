@@ -1,10 +1,10 @@
 package com.anttilip.chkm8.game;
 
+import com.badlogic.gdx.ApplicationListener;
+
 import com.anttilip.chkm8.controller.ChessController;
 import com.anttilip.chkm8.model.ChessState;
-import com.anttilip.chkm8.model.GameState;
 import com.anttilip.chkm8.view.ChessView;
-import com.badlogic.gdx.ApplicationListener;
 
 public class Game implements ApplicationListener {
 

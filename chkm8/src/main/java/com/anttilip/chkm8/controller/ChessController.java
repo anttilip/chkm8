@@ -1,12 +1,13 @@
 package com.anttilip.chkm8.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+
 import com.anttilip.chkm8.game.Game;
 import com.anttilip.chkm8.model.ChessState;
 import com.anttilip.chkm8.model.Position;
 import com.anttilip.chkm8.model.pieces.Piece;
 import com.anttilip.chkm8.view.ChessView;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 
 public class ChessController {
 

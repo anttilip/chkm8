@@ -1,10 +1,10 @@
 package com.anttilip.chkm8.model;
 
-import com.anttilip.chkm8.model.pieces.Piece;
-
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Stack;
+
+import com.anttilip.chkm8.model.pieces.Piece;
 
 /**
  * Represents and wraps the model or game logic.

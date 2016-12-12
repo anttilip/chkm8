@@ -6,8 +6,6 @@ import com.anttilip.chkm8.model.pieces.Piece;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.EnumSet;
-
 import static org.junit.Assert.*;
 
 public class StateCheckerTest {
