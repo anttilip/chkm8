@@ -53,8 +53,11 @@ public class ChessView {
         // Draw pieces which are not dragged
         for (Piece piece : board.getPieces()) {
             if (controller.pieceIsDragged(piece)) {
-                // If piece is dragged, don't draw it yet
-                continue;
+                // If piece is dragged, set piece to translucent
+                this.batch.setColor(1, 1, 1, .3f);
+            } else {
+                // If piece is not dragged, set piece to opaque
+                this.batch.setColor(1, 1, 1, 1f);
             }
             float x = piece.getPosition().getX() * PIECE_SIZE;
             float y = piece.getPosition().getY() * PIECE_SIZE;
@@ -66,8 +69,9 @@ public class ChessView {
                 batch.draw(blackTextures.get(piece.getClass()), x, y);
             }
         }
+    }
 
-        // Dragged piece should be drawn last so it can't get behind any still piece.
+    private void drawDraggedPiece(Board board) {
         for (Piece piece : board.getPieces()) {
             if (controller.pieceIsDragged(piece)) {
                 float x = controller.getDraggedX() - PIECE_SIZE / 2;
@@ -138,6 +142,7 @@ public class ChessView {
         // Draw pieces on top of everything
         batch.begin();
         drawPieces(state.getBoard());
+        drawDraggedPiece(state.getBoard());
         batch.end();
 
     }
