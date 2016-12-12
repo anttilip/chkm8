@@ -69,6 +69,8 @@ public class ChessView {
                 batch.draw(blackTextures.get(piece.getClass()), x, y);
             }
         }
+        // Reset color to opaque
+        this.batch.setColor(1, 1, 1, 1f);
     }
 
     private void drawDraggedPiece(Board board) {
