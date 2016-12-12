@@ -75,8 +75,8 @@ final class StateChecker {
         if (!gameStates.contains(GameState.CHECK)) {
             // If player is checked, game can't be a draw
             boolean atLeastOneMove = false;
-            for (Piece piece : chessState.getBoard().getPieces(chessState.getCurrentPlayer())) {
-                if (!chessState.getBoard().getAllowedMoves(piece).isEmpty()) {
+            for (Piece piece : chessState.getPlayersPieces(chessState.getCurrentPlayer())) {
+                if (!chessState.getGetPiecesAllowedMoves(piece).isEmpty()) {
                     atLeastOneMove = true;
                 }
             }
@@ -112,19 +112,20 @@ final class StateChecker {
     }
 
     /**
-     * Check if both players have enough pieces for a checkmate
+     * Check if both players have enough pieces for a checkmate.
+     *
+     * Simplified to only a few most common scenarios.
      * @param chessState
      * @param gameStates
      */
     private static void checkInsufficientMaterial(ChessState chessState, Set<GameState> gameStates) {
-        // Simplified to few most common scenarios
         if (gameStates.contains(GameState.CHECK)) {
             // Insufficient material can't be declared when game is in check
             return;
         }
         for (Player player : Player.values()) {
             Player other = Player.getOther(player);
-            if (chessState.getBoard().getPieces(player).size() != 1) {
+            if (chessState.getPlayersPieces(player).size() != 1) {
                 // Player with less pieces must have only king
                 continue;
             }
@@ -132,7 +133,7 @@ final class StateChecker {
             // Check piece requirements
             boolean alreadyOneBishopOrKnight = false;
             List<Piece> pawns = new ArrayList<>();
-            for (Piece piece : chessState.getBoard().getPieces(other)) {
+            for (Piece piece : chessState.getPlayersPieces(other)) {
                 if (piece instanceof Queen || piece instanceof Rook) {
                     return;
                 } else if (piece instanceof Bishop || piece instanceof Knight) {
@@ -151,7 +152,7 @@ final class StateChecker {
 
             // If player has only pawns, they can't have any moves
             for (Piece pawn : pawns) {
-                if (!chessState.getBoard().getAllowedMoves(pawn).isEmpty()) {
+                if (!chessState.getGetPiecesAllowedMoves(pawn).isEmpty()) {
                     return;
                 }
             }
@@ -166,8 +167,8 @@ final class StateChecker {
      * @return Boolean value of player having any allowed moves.
      */
     private static boolean playerHasAllowedMoves(ChessState chessState, Player player) {
-        for (Piece piece : chessState.getBoard().getPieces(player)) {
-            if (!chessState.getBoard().getAllowedMoves(piece).isEmpty()) {
+        for (Piece piece : chessState.getPlayersPieces(player)) {
+            if (!chessState.getGetPiecesAllowedMoves(piece).isEmpty()) {
                 return true;
             }
         }
