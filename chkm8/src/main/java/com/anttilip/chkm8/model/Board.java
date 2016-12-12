@@ -173,61 +173,44 @@ public class Board {
     /**
      * Checks if players king is in check.
      *
-     * Positions that can threaten players king and checks if position
-     * contains a enemy piece that threatens players king.
+     * Calculates positions that can threaten players king and checks
+     * if position contains a enemy piece that threatens players king.
      *
      * @param player Player who might be checked.
      * @return boolean value of player being in check.
      */
     public boolean isPlayerChecked(Player player) {
-        King king = this.getKing(player);
+        King playersKing = this.getKing(player);
 
-        // Check if pawns threaten king
-        int enemyPawnDirection = (player == Player.WHITE) ? 1 : -1;
-        Piece right = this.getPiece(Position.add(king.getPosition(), new Position(1, enemyPawnDirection)));
-        Piece left = this.getPiece(Position.add(king.getPosition(), new Position(-1, enemyPawnDirection)));
-
-        if (right instanceof Pawn && right.getPlayer() != player) {
-            // Pawn on right threatens the king
-            return true;
-        }
-        if (left instanceof Pawn && left.getPlayer() != player) {
-            // Pawn on left threatens the king
-            return true;
-        }
-
-        // Check if a knight threaten king
+        // Check knights
         for (Position direction : Knight.MOVE_DIRECTIONS) {
-            Piece enemy = this.getPiece(Position.add(king.getPosition(), direction));
+            Piece enemy = this.getPiece(Position.add(playersKing.getPosition(), direction));
             if (enemy instanceof Knight && enemy.getPlayer() == Player.getOther(player)) {
                 return true;
             }
         }
 
-        // Scan from king to check if other pieces threaten the king
+        // Scan enemy pieces from king position
         for (Position direction : King.MOVE_DIRECTIONS) {
-            boolean moreThanOneSquareAway = false;
-            Position square = Position.add(king.getPosition(), direction);
+            Position square = Position.add(playersKing.getPosition(), direction);
+            boolean scanningDepthIsOne = true;
             while (square.onBoard()) {
-                if (this.getPiece(square) != null) {
-                    if (Player.getOther(player) == this.getPiece(square).getPlayer()) {
-                        Piece enemyPiece = this.getPiece(square);
-                        if (moreThanOneSquareAway && !enemyPiece.canMoveMoreThanOnce()) {
-                            // Only check for rooks, bishops and queens
-                            break;
-                        }
-                        if (Arrays.asList(enemyPiece.getMoveDirections()).contains(direction)) {
-                            // King is in check if enemy piece can move to the same direction as king
-                            return true;
-                        }
+                Piece piece = getPiece(square);
+                if (piece instanceof King) {
+                    // If piece is king, return true only if scanning depth is 1
+                    if (scanningDepthIsOne) {
+                        return true;
                     }
-                    // If scan finds own piece, king can't be threatened from that direction
                     break;
                 }
+                if (piece != null && piece.getPossibleMoves(this).contains(playersKing.getPosition())) {
+                    return true;
+                }
                 square = Position.add(square, direction);
-                moreThanOneSquareAway = true;
+                scanningDepthIsOne = false;
             }
         }
+
         return false;
     }
 
