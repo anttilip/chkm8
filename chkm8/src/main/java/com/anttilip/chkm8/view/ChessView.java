@@ -16,6 +16,7 @@ import com.anttilip.chkm8.model.Position;
 import com.anttilip.chkm8.model.pieces.*;
 import com.anttilip.chkm8.model.Board;
 import com.anttilip.chkm8.model.ChessState;
+import com.anttilip.chkm8.model.GameState;
 
 public class ChessView {
 
@@ -112,6 +113,10 @@ public class ChessView {
             if (state.getBoard().isPlayerChecked(player)) {
                 Position check = state.getBoard().getKing(player).getPosition();
                 shapeRenderer.setColor(0.6f, 0, 0, 0.45f);
+                if (this.state.getGameStates().contains(GameState.CHECKMATE)) {
+                    // If king is in checkmate, don't draw square translucent
+                    shapeRenderer.setColor(0.6f, 0, 0, 1f);
+                }
                 shapeRenderer.rect(check.getX() * PIECE_SIZE, check.getY() * PIECE_SIZE, PIECE_SIZE, PIECE_SIZE);
             }
         }
