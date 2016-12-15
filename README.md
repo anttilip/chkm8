@@ -9,6 +9,8 @@ GUI is made with [libGDX](http://libgdx.badlogicgames.com/).
 textures are from Wikimedia Commons and published under public domain
 and CC BY-SA 3.0 license.
 
+![demo](dokumentaatio/demo.gif "Demo game showing en passant and castling")
+
 
 ## Dokumentaatio
 - [Aiheen kuvaus ja rakenne](dokumentaatio/aiheenKuvausJaRakenne.md)
