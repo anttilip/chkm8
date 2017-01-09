@@ -37,7 +37,7 @@ controller are a bit blended and there is no clear divide between them.
 
 ## Sequence diagrams
 
-**Initializing the model **
+**Initializing the model**
 
 ![initialize_model](initialize_model.png)
 

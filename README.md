@@ -15,5 +15,5 @@ and CC BY-SA 3.0 license.
 ## Documentation
 - [Description and structure](documentation/description-and-structure.md)
 - [Instructions](documentation/instructions.md)
-- [pit](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/dokumentaatio/pit-reports/index.html)
-- [checkstyle](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/dokumentaatio/checkstyle/checkstyle.html)
+- [pit](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/documentation/pit-reports/index.html)
+- [checkstyle](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/documentation/checkstyle/checkstyle.html)
