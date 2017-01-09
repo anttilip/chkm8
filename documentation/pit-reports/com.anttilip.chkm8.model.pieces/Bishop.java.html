@@ -1,0 +1,847 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+	border: 1px solid #dddddd;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	font-family: Consolas, Courier, monospace;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>Bishop.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.anttilip.chkm8.model.pieces;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.anttilip.chkm8.model.Player;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.anttilip.chkm8.model.Position;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Represents a bishop, extends the abstract Piece class.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class Bishop extends Piece {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Bishops allowed move directions.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_13'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final Position[] MOVE_DIRECTIONS = {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_14'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        new Position(1, 1), // Up-Right</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        new Position(-1, 1), // Up-Left</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        new Position(-1, -1), // Down-Left</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_17'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        new Position(1, -1) // Down-Right</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    };</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Constructor for Bishop.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param position Position of the bishop</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param player Player to whom bishop belongs to</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Bishop(Position position, Player player) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_26'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super(position, player, true);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_27'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_29'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_30'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     public Position[] getMoveDirections() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_31'>1</a>
+<span>
+
+1. getMoveDirections : mutated return of Object value for com/anttilip/chkm8/model/pieces/Bishop::getMoveDirections to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return MOVE_DIRECTIONS;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_32'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_33'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_34'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Piece copy() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_36'/>
+36
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_36'>1</a>
+<span>
+
+1. copy : mutated return of Object value for com/anttilip/chkm8/model/pieces/Bishop::copy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return new Bishop(this.position.copy(), this.player);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_40'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean equals(Object o) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_41'/>
+41
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_41'>1</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!(o instanceof Bishop)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_42'/>
+42
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_42'>1</a>
+<span>
+
+1. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_44'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Bishop other = (Bishop) o;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_45'>3</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+2. equals : negated conditional &rarr; KILLED<br/>
+
+3. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return other.position.equals(this.position) &#38;&#38; other.player == this.player;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_46'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@d08f85a_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_48'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@d08f85a_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getMoveDirections<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/pieces/Bishop::getMoveDirections to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@d08f85a_36'>36</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_36'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copy<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/pieces/Bishop::copy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@d08f85a_41'>41</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_41'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@d08f85a_42'>42</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_42'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.KnightTest.com.anttilip.chkm8.model.pieces.KnightTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@d08f85a_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@d08f85a_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteIfRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenMove75(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.pieces.CastlingTest.com.anttilip.chkm8.model.pieces.CastlingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheck(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnightAndBishop(com.anttilip.chkm8.model.StateCheckerTest) (13 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnly50Move(com.anttilip.chkm8.model.StateCheckerTest) (8 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientBishop(com.anttilip.chkm8.model.StateCheckerTest) (75 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.pieces.RookTest.com.anttilip.chkm8.model.pieces.RookTest (15 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.pieces.KingTest.com.anttilip.chkm8.model.pieces.KingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToBackToIncomplete(com.anttilip.chkm8.model.StateCheckerTest) (23 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove50On49thMove(com.anttilip.chkm8.model.StateCheckerTest) (26 ms)</li><li>com.anttilip.chkm8.model.BoardTest.com.anttilip.chkm8.model.BoardTest (44 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficient2Bishops(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove75On74thMove(com.anttilip.chkm8.model.StateCheckerTest) (33 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneNormally(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove75on75thMove(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.pieces.KnightTest.com.anttilip.chkm8.model.pieces.KnightTest (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest (6 ms)</li><li>com.anttilip.chkm8.model.ChessStateTest.com.anttilip.chkm8.model.ChessStateTest (180 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnlyCheck(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove50On50thMove(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteNormally(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.8
+
+</body>
+</html>

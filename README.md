@@ -9,12 +9,11 @@ GUI is made with [libGDX](http://libgdx.badlogicgames.com/).
 textures are from Wikimedia Commons and published under public domain
 and CC BY-SA 3.0 license.
 
-![demo](dokumentaatio/demo.gif "Demo game showing en passant, castling and pawn promotion")
+![demo](documentation/demo.gif "Demo game showing en passant, castling and pawn promotion")
 
 
-## Dokumentaatio
-- [Aiheen kuvaus ja rakenne](dokumentaatio/aiheenKuvausJaRakenne.md)
-- [Käyttöohjeet](dokumentaatio/kaytto-ohjeet.md)
-- [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+## Documentation
+- [Description and structure](documentation/description-and-structure.md)
+- [Instructions](documentation/instructions.md)
 - [pit](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/dokumentaatio/pit-reports/index.html)
 - [checkstyle](https://htmlpreview.github.io/?https://github.com/anttilip/chkm8/blob/master/dokumentaatio/checkstyle/checkstyle.html)

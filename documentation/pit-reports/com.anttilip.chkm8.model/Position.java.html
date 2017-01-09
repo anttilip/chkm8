@@ -1,0 +1,1629 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+	border: 1px solid #dddddd;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	font-family: Consolas, Courier, monospace;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>Position.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.anttilip.chkm8.model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Represents one position or square on board.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_6'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class Position {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_7'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private static final String BOARD_LETTERS = &#34;ABCDEFGH&#34;;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_8'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int x;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int y;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_12'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Constructor for position.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_13'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param x x-coordinate</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_14'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param y y-coordinate</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_16'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public Position(int x, int y) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_17'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.x = x;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_18'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.y = y;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_19'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getX() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_22'/>
+22
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_22'>1</a>
+<span>
+
+1. getX : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return x;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getY() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_26'/>
+26
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_26'>1</a>
+<span>
+
+1. getY : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return y;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_29'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_30'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Checks and returns if position is on board.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_31'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return Boolean value of position being on board.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_32'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_33'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean onBoard() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_34'>9</a>
+<span>
+
+1. onBoard : changed conditional boundary &rarr; KILLED<br/>
+
+2. onBoard : changed conditional boundary &rarr; KILLED<br/>
+
+3. onBoard : changed conditional boundary &rarr; KILLED<br/>
+
+4. onBoard : changed conditional boundary &rarr; KILLED<br/>
+
+5. onBoard : negated conditional &rarr; KILLED<br/>
+
+6. onBoard : negated conditional &rarr; KILLED<br/>
+
+7. onBoard : negated conditional &rarr; KILLED<br/>
+
+8. onBoard : negated conditional &rarr; KILLED<br/>
+
+9. onBoard : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return (this.x &#62;= 0 &#38;&#38; this.x &#60; Board.BOARD_SIZE &#38;&#38; this.y &#62;= 0 &#38;&#38; this.y &#60; Board.BOARD_SIZE);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_35'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_36'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_37'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_38'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Takes new coordinates and adds them to current coordinates.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_39'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param x x-coordinate that is added to current x coordinate.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_40'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param y y-coordinate that is added to current y coordinate.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_41'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return Returns position itself after the coordinate addition.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_42'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_43'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Position add(int x, int y) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_44'/>
+44
+</td>
+<td class='uncertain'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_44'>1</a>
+<span>
+
+1. add : Replaced integer addition with subtraction &rarr; TIMED_OUT<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='uncertain'>        this.x += x;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_45'/>
+45
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_45'>1</a>
+<span>
+
+1. add : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        this.y += y;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_46'>1</a>
+<span>
+
+1. add : mutated return of Object value for com/anttilip/chkm8/model/Position::add to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return this;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_47'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_48'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_49'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_50'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Copies current position and returns new Position instance.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_51'/>
+51
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_51'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return New position instance identical to current one.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_52'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_53'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Position copy() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_54'/>
+54
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_54'>1</a>
+<span>
+
+1. copy : mutated return of Object value for com/anttilip/chkm8/model/Position::copy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return new Position(this.x, this.y);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_55'/>
+55
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_55'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_56'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_57'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_58'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Static method that adds two positions together and returns new position.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_59'/>
+59
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_59'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     *</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_60'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Example:</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_61'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Position.add(new Position(3, 4), new Position(1, 2));</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_62'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * returns new Position where x = 4, y = 6</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_63'/>
+63
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_63'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param a First position.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_64'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param b Second position.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_65'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return new Position instance of combined positions</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_66'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_67'/>
+67
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_67'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static Position add(Position a, Position b) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_68'/>
+68
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_68'>3</a>
+<span>
+
+1. add : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+2. add : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+3. add : mutated return of Object value for com/anttilip/chkm8/model/Position::add to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return new Position(a.getX() + b.getX(), a.getY() + b.getY());</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_69'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_70'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_71'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_72'/>
+72
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_72'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Returns String representation of standard chess position, e.g. &#34;B4&#34;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_73'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return Position converted to a standard square.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_74'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_75'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_76'/>
+76
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_76'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public String toString() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_77'/>
+77
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_77'>2</a>
+<span>
+
+1. toString : Replaced integer addition with subtraction &rarr; KILLED<br/>
+
+2. toString : mutated return of Object value for com/anttilip/chkm8/model/Position::toString to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return BOARD_LETTERS.charAt(this.x) + Integer.toString(y + 1);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_78'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_79'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_80'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_81'/>
+81
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_81'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean equals(Object o) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_82'/>
+82
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_82'>1</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!(o instanceof Position)) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_83'/>
+83
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_83'>1</a>
+<span>
+
+1. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return false;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_84'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_85'/>
+85
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_85'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Position other = (Position) o;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_86'/>
+86
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_86'>3</a>
+<span>
+
+1. equals : negated conditional &rarr; KILLED<br/>
+
+2. equals : negated conditional &rarr; KILLED<br/>
+
+3. equals : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return other.x == this.x &#38;&#38; other.y == this.y;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_87'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_88'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_89'/>
+89
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_89'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_90'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int hashCode() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_91'/>
+91
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_91'>3</a>
+<span>
+
+1. hashCode : Replaced integer addition with subtraction &rarr; SURVIVED<br/>
+
+2. hashCode : Replaced integer multiplication with division &rarr; KILLED<br/>
+
+3. hashCode : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return 11 * this.x + this.y;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_92'/>
+92
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_92'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_93'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@11ce9319_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_94'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_22'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getX<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_26'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getY<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.QueenTest.com.anttilip.chkm8.model.pieces.QueenTest</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.QueenTest.com.anttilip.chkm8.model.pieces.QueenTest</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> changed conditional boundary &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>onBoard<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_44'>44</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_44'/> 
+
+<p class='TIMED_OUT'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>add<br/><b>Killed by : </b>none</span></span> Replaced integer addition with subtraction &rarr; TIMED_OUT</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_45'>45</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_45'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>add<br/><b>Killed by : </b>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckRight(com.anttilip.chkm8.model.StateCheckerTest)</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>add<br/><b>Killed by : </b>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckRight(com.anttilip.chkm8.model.StateCheckerTest)</span></span> mutated return of Object value for com/anttilip/chkm8/model/Position::add to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_54'>54</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_54'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>copy<br/><b>Killed by : </b>com.anttilip.chkm8.model.pieces.QueenTest.com.anttilip.chkm8.model.pieces.QueenTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/Position::copy to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_68'>68</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_68'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>add<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>add<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>add<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/Position::add to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_77'>77</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_77'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/Position::toString to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_82'>82</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_82'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_83'>83</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_83'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_86'>86</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_86'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>equals<br/><b>Killed by : </b>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@11ce9319_91'>91</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@11ce9319_91'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>hashCode<br/><b>Killed by : </b>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest</span></span> Replaced integer multiplication with division &rarr; KILLED</p> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>hashCode<br/><b>Killed by : </b>none</span></span> Replaced integer addition with subtraction &rarr; SURVIVED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>hashCode<br/><b>Killed by : </b>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest)</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteIfRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckRight(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckLeft(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.pieces.PawnTest.com.anttilip.chkm8.model.pieces.PawnTest (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientBishop(com.anttilip.chkm8.model.StateCheckerTest) (75 ms)</li><li>com.anttilip.chkm8.model.PositionTest.com.anttilip.chkm8.model.PositionTest (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientOnlyKings(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.pieces.RookTest.com.anttilip.chkm8.model.pieces.RookTest (15 ms)</li><li>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest (1 ms)</li><li>com.anttilip.chkm8.model.pieces.KingTest.com.anttilip.chkm8.model.pieces.KingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.BoardTest.com.anttilip.chkm8.model.BoardTest (44 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneNormally(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.pieces.BishopTest.com.anttilip.chkm8.model.pieces.BishopTest (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficient2Knights(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.ChessStateTest.com.anttilip.chkm8.model.ChessStateTest (180 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnlyCheck(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove50On50thMove(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteNormally(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnFalse(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenStalemate(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.pieces.EnPassantTest.com.anttilip.chkm8.model.pieces.EnPassantTest (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenMove75(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.pieces.CastlingTest.com.anttilip.chkm8.model.pieces.CastlingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheck(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnly50Move(com.anttilip.chkm8.model.StateCheckerTest) (8 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientQueenFalse(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnightAndBishop(com.anttilip.chkm8.model.StateCheckerTest) (13 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIsnt(com.anttilip.chkm8.model.StateCheckerTest) (0 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateOnWrongTurn(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToBackToIncomplete(com.anttilip.chkm8.model.StateCheckerTest) (23 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnight(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIs(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove50On49thMove(com.anttilip.chkm8.model.StateCheckerTest) (26 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove75On74thMove(com.anttilip.chkm8.model.StateCheckerTest) (33 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficient2Bishops(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientRookFalse(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnightAndPawn(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove75on75thMove(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnTrue(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.pieces.KnightTest.com.anttilip.chkm8.model.pieces.KnightTest (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnAndKnight(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.pieces.QueenTest.com.anttilip.chkm8.model.pieces.QueenTest (3 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.8
+
+</body>
+</html>

@@ -1,0 +1,523 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+	border: 1px solid #dddddd;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	font-family: Consolas, Courier, monospace;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+
+.pop {outline:none; }
+.pop strong {line-height:30px;}
+.pop {text-decoration:none;}
+.pop span { z-index:10;display:none; padding:14px 20px; margin-top:-30px; margin-left:28px; width:800px; line-height:16px; word-wrap:break-word; }
+.pop:hover span{ display:inline; position:absolute; color:#111; border:1px solid #DCA; background:#fffAF0;}
+
+.pop span { border-radius:4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -moz-box-shadow: 5px 5px 8px #CCC; -webkit-box-shadow: 5px 5px 8px #CCC; box-shadow: 5px 5px 8px #CCC; }
+</style>
+
+</head>
+<body>
+
+
+<h1>Player.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_1'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.anttilip.chkm8.model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_2'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_3'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_4'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> * Enum class for players colors, WHITE and BLACK.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_5'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_6'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>public enum Player {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_7'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    WHITE(0),</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_8'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    BLACK(1);</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_9'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_10'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private final int value;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_11'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_12'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    Player(int value) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_13'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.value = value;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_14'></a>
+<span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_15'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_16'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getValue() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_17'/>
+17
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_17'>1</a>
+<span>
+
+1. getValue : replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return value;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_18'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_19'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_20'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_21'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * Given a player, returns the players opponent.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_22'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @param player Given player whose opponent is returned.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_23'/>
+23
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_23'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     * @return Opponent of a given player.</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_24'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_25'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static Player getOther(Player player) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_26'/>
+26
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_26'>2</a>
+<span>
+
+1. getOther : negated conditional &rarr; KILLED<br/>
+
+2. getOther : mutated return of Object value for com/anttilip/chkm8/model/Player::getOther to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED<br/>
+
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return (player == WHITE) ? BLACK : WHITE;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_27'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@58b03029_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_28'></a>
+<span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58b03029_17'>17</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_17'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getValue<br/><b>Killed by : </b>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest</span></span> replaced return of integer sized value with (x == 0 ? 1 : 0) &rarr; KILLED</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@58b03029_26'>26</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@58b03029_26'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getOther<br/><b>Killed by : </b>com.anttilip.chkm8.model.MiscTest.com.anttilip.chkm8.model.MiscTest</span></span> negated conditional &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getOther<br/><b>Killed by : </b>com.anttilip.chkm8.model.MiscTest.com.anttilip.chkm8.model.MiscTest</span></span> mutated return of Object value for com/anttilip/chkm8/model/Player::getOther to ( if (x != null) null else throw new RuntimeException ) &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteIfRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenMove75(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.pieces.CastlingTest.com.anttilip.chkm8.model.pieces.CastlingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckRight(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.MiscTest.com.anttilip.chkm8.model.MiscTest (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheck(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.pawnsCauseCheckLeft(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.pieces.PawnTest.com.anttilip.chkm8.model.pieces.PawnTest (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientQueenFalse(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnightAndBishop(com.anttilip.chkm8.model.StateCheckerTest) (13 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnly50Move(com.anttilip.chkm8.model.StateCheckerTest) (8 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIsnt(com.anttilip.chkm8.model.StateCheckerTest) (0 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientBishop(com.anttilip.chkm8.model.StateCheckerTest) (75 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientOnlyKings(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.MoveTest.com.anttilip.chkm8.model.MoveTest (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.pieces.KingTest.com.anttilip.chkm8.model.pieces.KingTest (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateOnWrongTurn(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenRepetition3(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToBackToIncomplete(com.anttilip.chkm8.model.StateCheckerTest) (23 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnight(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateStaleMateWhenIs(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove50On49thMove(com.anttilip.chkm8.model.StateCheckerTest) (26 ms)</li><li>com.anttilip.chkm8.model.BoardTest.com.anttilip.chkm8.model.BoardTest (44 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficient2Bishops(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateDoesntTurnToMove75On74thMove(com.anttilip.chkm8.model.StateCheckerTest) (33 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientRookFalse(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientKnightAndPawn(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteInBeginning(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateSetSizeIsOneNormally(com.anttilip.chkm8.model.StateCheckerTest) (4 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove75on75thMove(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenCheckmate(com.anttilip.chkm8.model.StateCheckerTest) (5 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnTrue(com.anttilip.chkm8.model.StateCheckerTest) (2 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnAndKnight(com.anttilip.chkm8.model.StateCheckerTest) (10 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToRepetition5(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficient2Knights(com.anttilip.chkm8.model.StateCheckerTest) (7 ms)</li><li>com.anttilip.chkm8.model.ChessStateTest.com.anttilip.chkm8.model.ChessStateTest (180 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIncompleteWhenOnlyCheck(com.anttilip.chkm8.model.StateCheckerTest) (1 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateTurnsToMove50On50thMove(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateIsIncompleteNormally(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateInsufficientPawnFalse(com.anttilip.chkm8.model.StateCheckerTest) (3 ms)</li><li>com.anttilip.chkm8.model.StateCheckerTest.stateNotIncompleteWhenStalemate(com.anttilip.chkm8.model.StateCheckerTest) (6 ms)</li><li>com.anttilip.chkm8.model.pieces.EnPassantTest.com.anttilip.chkm8.model.pieces.EnPassantTest (6 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.1.8
+
+</body>
+</html>
